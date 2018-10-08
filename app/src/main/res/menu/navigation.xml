@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_OneVariable"
+        android:icon="@drawable/ic_ebb2ff17a150b0d360bf960c73905c50"
+        android:title="@string/title_OneVariable" />
+    <item
+        android:id="@+id/navigation_Graph"
+        android:icon="@drawable/ic_sine_595b40b65ba036ed117d4b5f"
+        android:title="@string/title_Graph" />
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_Interpolation"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_Interpolation" />
+
+    <item
+        android:id="@+id/navigation_SystemofEquations"
+        android:icon="@drawable/ic_functions_black_24dp"
+        android:title="@string/title_SystemofEqu" />
+
+</menu>

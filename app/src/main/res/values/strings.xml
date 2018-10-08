@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Analytica</string>
+    <string name="title_OneVariable">One Variable</string>
+    <string name="title_home">Home</string>
+    <string name="title_Graph">Graph</string>
+    <string name="title_SystemofEqu">System of Equations</string>
+    <string name="title_Interpolation">Interpolation</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="tab_text_1">Incremental Search</string>
+    <string name="tab_text_2">Bisection</string>
+    <string name="tab_text_3">False Position</string>
+    <string name="tab_text_4">Fixed Point</string>
+    <string name="tab_text_5">Newton</string>
+    <string name="tab_text_6">Secant</string>
+    <string name="tab_text_7">Multiple Roots</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+</resources>
