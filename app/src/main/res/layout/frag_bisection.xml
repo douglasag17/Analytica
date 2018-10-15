@@ -205,7 +205,6 @@
                     android:buttonTint="@color/colorPrimaryDark"
                     android:text="Absolute Error"
                     android:textSize="18sp" />
-                android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/radio2"
@@ -215,7 +214,6 @@
                     android:buttonTint="@color/colorPrimaryDark"
                     android:text="Relative Error"
                     android:textSize="18sp" />
-                android:textSize="18sp" />
             </RadioGroup>
         </RelativeLayout>
     </ScrollView>

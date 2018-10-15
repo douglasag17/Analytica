@@ -13,8 +13,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +20,7 @@ public class MainActivity extends AppCompatActivity
 
         BottomNavigationView navigation =  findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(this);
-        navigation.getMenu().getItem(2).setChecked(true);
+        navigation.getMenu().getItem(0).setChecked(true);
         loadfragment(new HomeFragment());
     }
 
@@ -60,8 +58,6 @@ public class MainActivity extends AppCompatActivity
                 fragment=new OneVariableFragment();
                 break;
         }
-
         return loadfragment(fragment);
-
     }
 }
