@@ -14,7 +14,7 @@
         android:title="@string/title_OneVariable" />
     <item
         android:id="@+id/navigation_SystemofEquations"
-        android:icon="@drawable/systemsequations"
+        android:icon="@drawable/matrix"
         android:title="@string/title_SystemofEqu" />
     <item
         android:id="@+id/navigation_Interpolation"
