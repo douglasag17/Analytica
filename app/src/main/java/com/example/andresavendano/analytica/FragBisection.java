@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import com.udojava.evalex.Expression;
 import java.io.FileWriter;
@@ -27,9 +29,8 @@ public class FragBisection extends Fragment {
     private EditText xupp;
     private EditText iterations;
     private Double tolerance;
+    private int errorType;
     private Button calculate;
-    private String errorType;
-
     Spinner tol;
     ArrayAdapter<String> adapter;
     ArrayList<String> values;
@@ -84,12 +85,23 @@ public class FragBisection extends Fragment {
                 builder.show();
             }
         });
-
         /**
          * Error Type
          */
-
-
+        RadioGroup radioGroup = v.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                switch(checkedId) {
+                    case R.id.absoluteError:
+                        errorType = 1;
+                        break;
+                    case R.id.relativeError:
+                        errorType = 0;
+                        break;
+                }
+            }
+        });
         /**
          * Calculate Bisection method
          */
@@ -108,12 +120,6 @@ public class FragBisection extends Fragment {
                 Double xu = Double.parseDouble(xupp.getText().toString());
                 int niter = Integer.parseInt(iterations.getText().toString());
                 tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
-                System.out.println(fx);
-                System.out.println(xi);
-                System.out.println(xu);
-                System.out.println(niter);
-                System.out.println(tolerance);
-                System.out.println(errorType);
                 bisection(xi, xu, tolerance, niter, fx);
 
             }
@@ -121,11 +127,7 @@ public class FragBisection extends Fragment {
         return v;
     }
 
-    public static void bisection(double xi, double xs, double tolerance, int niter, String functionRead) {
-        //System.out.print("Type the function to be evaluated: ");
-        //Scanner function = new Scanner(System.in);
-        //String functionRead = function.next();
-        //PrettyTable table = new PrettyTable("i","Inferior","Superior","Medio","f(medio)","Absolute Error");
+    public void bisection(double xi, double xs, double tolerance, int niter, String functionRead) {
         Expression fx = new Expression(functionRead).setPrecision(16);
         BigDecimal fxid = fx.with("x", Double.toString(xi)).eval();
         double fxi = fxid.doubleValue();
@@ -141,7 +143,6 @@ public class FragBisection extends Fragment {
             double fxm = fxmd.doubleValue();
             int count = 1;
             double error = tolerance + 1;
-            //table.addRow(Double.toString(count), Double.toString(xi), Double.toString(xs), Double.toString(xm), Double.toString(fxm), "-");
             while (error > tolerance && count < niter && fxm != 0) {
                 if (fxi * fxm < 0) {
                     xs = xm;
@@ -151,12 +152,12 @@ public class FragBisection extends Fragment {
                     fxi = fxm;
                 }
                 double xaux = xm;
-                xm = (xi + xs)/2;
+                xm = (xi + xs) / 2;
                 fxmd = fx.with("x", Double.toString(xm)).eval();
                 fxm = fxmd.doubleValue();
-                error = Math.abs(xm - xaux);
+                if(errorType == 1) error = Math.abs(xm - xaux);//absolute
+                else error = Math.abs((xm-xaux)/xm);//relative
                 count++;
-                //table.addRow(Double.toString(count), Double.toString(xi), Double.toString(xs), Double.toString(xm), Double.toString(fxm), Double.toString(error));
             }
             if (fxm == 0) {
                 System.out.println(xm + " is root");
@@ -169,20 +170,6 @@ public class FragBisection extends Fragment {
         } else {
             System.out.println("the interval is unsuitable");
         }
-        /*System.out.println(table);
-        System.out.print("Type the name of the file to be generated: ");
-        Scanner fileName = new Scanner(System.in);
-        String fileNameRead = fileName.next();
-        FileWriter file = null;
-        PrintWriter pw = null;
-        try {
-            file = new FileWriter(fileNameRead +".txt");
-            //pw = new PrintWriter(file);
-            //pw.println(table);
-            file.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
 }
