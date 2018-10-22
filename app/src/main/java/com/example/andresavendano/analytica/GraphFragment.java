@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class GraphFragment extends Fragment{
@@ -34,12 +35,32 @@ public class GraphFragment extends Fragment{
 
                 if(checkSyntax(function)==true){
                     tv.setText(function);
+                    double x, y;
+                    x = -100.0;
+                    series = new LineGraphSeries<DataPoint>();
+                    Expression expression = new Expression(function);
+                    for (int i = 0; i < 5000; i++) {
+                        x = x + 0.1;
+                            y = expression.setVariable("x", String.valueOf(x)).eval().doubleValue();
 
-                    LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
-                            new DataPoint(0, 1),
-                            new DataPoint(1, 5),
-                            new DataPoint(2, 3)
-                    });
+                            series.appendData(new DataPoint(x, y), true, 5000);
+                            // set manual X bounds
+
+                    }
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    graph.getViewport().setMinY(-30);
+                    graph.getViewport().setMaxY(30);
+
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setMinX(-30);
+                    graph.getViewport().setMaxX(30);
+
+                    // enable scaling and scrolling
+                    graph.getViewport().setScrollable(true); // enables horizontal scrolling
+                    graph.getViewport().setScrollableY(true); // enables vertical scrolling
+                    graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
+                    graph.getViewport().setScalableY(true); // enables vertical zooming and scrolling
+
                     graph.addSeries(series);
                 }
 
@@ -47,6 +68,17 @@ public class GraphFragment extends Fragment{
         });
 
         return v;
+    }
+    private LineGraphSeries graphit(String function){
+        LineGraphSeries series= new LineGraphSeries();
+        BigDecimal result = null;
+
+        Expression expression = new Expression(function);
+        for(int i=0;i<100;i++){
+            result = expression.with("x",String.valueOf(i)).eval();
+            series.appendData(new DataPoint(i, result.intValue()), true, 10000000);
+        }
+        return series;
     }
 
     private boolean checkSyntax(String function) {
