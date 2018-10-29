@@ -12,14 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
 import com.udojava.evalex.Expression;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class FragBisection extends Fragment {
@@ -31,6 +31,7 @@ public class FragBisection extends Fragment {
     private Double tolerance;
     private int errorType;
     private Button calculate;
+    private TableLayout table;
     Spinner tol;
     ArrayAdapter<String> adapter;
     ArrayList<String> values;
@@ -38,10 +39,10 @@ public class FragBisection extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.frag_bisection, container, false);
-
         final View newTol = inflater.inflate(R.layout.new_tolerance,  (ViewGroup) getView(), false);
+
+        table = (TableLayout) v.findViewById(R.id.tableBisection);
 
         /**
          * This code is for the tolerance
@@ -64,7 +65,6 @@ public class FragBisection extends Fragment {
                 final EditText input =  newTol.findViewById(R.id.input);
                 builder.setView(newTol);
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -143,6 +143,34 @@ public class FragBisection extends Fragment {
             double fxm = fxmd.doubleValue();
             int count = 1;
             double error = tolerance + 1;
+
+            TableRow fila = new TableRow(getContext());
+            TextView tv_col1 = new TextView(getContext());
+            tv_col1.setId(R.id.iterationsTable);
+            tv_col1.setText(count+"  ");
+            TextView tv_col2 = new TextView(getContext());
+            tv_col2.setId(R.id.xiTable);
+            tv_col2.setText(xi+"  ");
+            TextView tv_col3 = new TextView(getContext());
+            tv_col3.setId(R.id.xuTable);
+            tv_col3.setText(xs+"   ");
+            TextView tv_col4 = new TextView(getContext());
+            tv_col4.setId(R.id.xmTable);
+            tv_col4.setText(xm+"   ");
+            TextView tv_col5 = new TextView(getContext());
+            tv_col5.setId(R.id.evalTable);
+            tv_col5.setText(fxm+"  ");
+            TextView tv_col6 = new TextView(getContext());
+            tv_col6.setId(R.id.errorTable);
+            tv_col6.setText("-");
+            fila.addView(tv_col1);
+            fila.addView(tv_col2);
+            fila.addView(tv_col3);
+            fila.addView(tv_col4);
+            fila.addView(tv_col5);
+            fila.addView(tv_col6);
+            table.addView(fila);
+
             while (error > tolerance && count < niter && fxm != 0) {
                 if (fxi * fxm < 0) {
                     xs = xm;
@@ -158,6 +186,33 @@ public class FragBisection extends Fragment {
                 if(errorType == 1) error = Math.abs(xm - xaux);//absolute
                 else error = Math.abs((xm-xaux)/xm);//relative
                 count++;
+
+                TableRow fila1 = new TableRow(getContext());
+                TextView tv_col11 = new TextView(getContext());
+                tv_col11.setId(R.id.iterationsTable);
+                tv_col11.setText(count+"  ");
+                TextView tv_col22 = new TextView(getContext());
+                tv_col22.setId(R.id.xiTable);
+                tv_col22.setText(xi+"  ");
+                TextView tv_col33 = new TextView(getContext());
+                tv_col33.setId(R.id.xuTable);
+                tv_col33.setText(xs+"   ");
+                TextView tv_col44 = new TextView(getContext());
+                tv_col44.setId(R.id.xmTable);
+                tv_col44.setText(xm+"   ");
+                TextView tv_col55 = new TextView(getContext());
+                tv_col55.setId(R.id.evalTable);
+                tv_col55.setText(fxm+"  ");
+                TextView tv_col66 = new TextView(getContext());
+                tv_col66.setId(R.id.errorTable);
+                tv_col66.setText(error+"");
+                fila1.addView(tv_col11);
+                fila1.addView(tv_col22);
+                fila1.addView(tv_col33);
+                fila1.addView(tv_col44);
+                fila1.addView(tv_col55);
+                fila1.addView(tv_col66);
+                table.addView(fila1);
             }
             if (fxm == 0) {
                 System.out.println(xm + " is root");
