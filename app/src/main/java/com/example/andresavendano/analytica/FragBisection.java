@@ -18,7 +18,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.udojava.evalex.Expression;
 import java.math.BigDecimal;
 import java.util.ArrayList;

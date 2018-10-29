@@ -17,7 +17,9 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragBisection.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragBisection.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragFalsePosition.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragFalsePosition.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/frag_falseposition.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/frag_falseposition.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,6 +42,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="FragBisection.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragBisection.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -57,6 +60,23 @@
                 <element signature="e#4259#4260#0" expanded="true" />
                 <element signature="e#4671#5231#0" expanded="true" />
                 <element signature="e#5230#5231#0" expanded="true" />
+=======
+      <file leaf-file-name="FragBisection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragBisection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="974">
+              <caret line="147" column="12" lean-forward="false" selection-start-line="147" selection-start-column="12" selection-end-line="147" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2270#3588#0" expanded="true" />
+                <element signature="e#2685#3233#0" expanded="true" />
+                <element signature="e#3232#3233#0" expanded="true" />
+                <element signature="e#3303#3530#0" expanded="true" />
+                <element signature="e#3529#3530#0" expanded="true" />
+                <element signature="e#3587#3588#0" expanded="true" />
+                <element signature="e#4642#5202#0" expanded="true" />
+                <element signature="e#5201#5202#0" expanded="true" />
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
               </folding>
             </state>
           </provider>
@@ -65,13 +85,33 @@
       <file leaf-file-name="frag_bisection.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="220">
               <caret line="323" column="46" lean-forward="false" selection-start-line="323" selection-start-column="46" selection-end-line="323" selection-end-column="46" />
+=======
+            <state relative-caret-position="-335">
+              <caret line="224" column="39" lean-forward="false" selection-start-line="224" selection-start-column="39" selection-end-line="224" selection-end-column="39" />
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
               <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer2">
             <state />
+<<<<<<< HEAD
+=======
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FragFalsePosition.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragFalsePosition.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="414">
+              <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
           </provider>
         </entry>
       </file>
@@ -2113,7 +2153,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/OneVariableFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/frag_incremental.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragIncremental.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml" />
+=======
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/frag_falseposition.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragFalsePosition.java" />
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragBisection.java" />
       </list>
     </option>
@@ -2432,7 +2478,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/utils/graphUtils.java" />
+=======
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/pagerAdapter.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/utils/CustomScrollView.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_graph.xml">
@@ -2450,7 +2499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
           <caret line="31" column="9" lean-forward="false" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2587,6 +2635,7 @@
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+<<<<<<< HEAD
             <element signature="e#2299#3617#0" expanded="true" />
             <element signature="e#2714#3262#0" expanded="true" />
             <element signature="e#3261#3262#0" expanded="true" />
@@ -2597,6 +2646,16 @@
             <element signature="e#4259#4260#0" expanded="true" />
             <element signature="e#4671#5231#0" expanded="true" />
             <element signature="e#5230#5231#0" expanded="true" />
+=======
+            <element signature="e#2270#3588#0" expanded="true" />
+            <element signature="e#2685#3233#0" expanded="true" />
+            <element signature="e#3232#3233#0" expanded="true" />
+            <element signature="e#3303#3530#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
+            <element signature="e#3587#3588#0" expanded="true" />
+            <element signature="e#4642#5202#0" expanded="true" />
+            <element signature="e#5201#5202#0" expanded="true" />
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
           </folding>
         </state>
       </provider>
@@ -2632,7 +2691,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="16" lean-forward="true" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2640,7 +2698,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2648,7 +2705,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="12" column="54" lean-forward="true" selection-start-line="12" selection-start-column="54" selection-end-line="12" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2717,7 +2773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
           <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2842,17 +2897,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragIncremental.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="182">
+          <caret line="42" column="29" lean-forward="false" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1301#3098#0" expanded="true" />
-            <element signature="e#3097#3098#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1301#3098#0" expanded="false" />
+            <element signature="e#3097#3098#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/frag_incremental.xml">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="105" column="31" lean-forward="false" selection-start-line="105" selection-start-column="31" selection-end-line="105" selection-end-column="31" />
@@ -2864,17 +2920,40 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragFalsePosition.java">
+=======
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="15" column="5" lean-forward="false" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="323" column="46" lean-forward="false" selection-start-line="323" selection-start-column="46" selection-end-line="323" selection-end-column="46" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/frag_falseposition.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="51" column="38" lean-forward="false" selection-start-line="51" selection-start-column="38" selection-end-line="51" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/frag_bisection.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-335">
+          <caret line="224" column="39" lean-forward="false" selection-start-line="224" selection-start-column="39" selection-end-line="224" selection-end-column="39" />
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
           <folding />
         </state>
       </provider>
@@ -2884,6 +2963,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragBisection.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="240">
           <caret line="220" column="42" lean-forward="false" selection-start-line="220" selection-start-column="42" selection-end-line="220" selection-end-column="42" />
           <folding>
@@ -2898,6 +2978,30 @@
             <element signature="e#4259#4260#0" expanded="true" />
             <element signature="e#4671#5231#0" expanded="true" />
             <element signature="e#5230#5231#0" expanded="true" />
+=======
+        <state relative-caret-position="974">
+          <caret line="147" column="12" lean-forward="false" selection-start-line="147" selection-start-column="12" selection-end-line="147" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2270#3588#0" expanded="true" />
+            <element signature="e#2685#3233#0" expanded="true" />
+            <element signature="e#3232#3233#0" expanded="true" />
+            <element signature="e#3303#3530#0" expanded="true" />
+            <element signature="e#3529#3530#0" expanded="true" />
+            <element signature="e#3587#3588#0" expanded="true" />
+            <element signature="e#4642#5202#0" expanded="true" />
+            <element signature="e#5201#5202#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/andresavendano/analytica/FragFalsePosition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+>>>>>>> 64dd8f8058ca8666079ffa78bba701d5d998168a
           </folding>
         </state>
       </provider>
