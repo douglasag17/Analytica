@@ -21,7 +21,6 @@
             android:isScrollContainer="true"
             android:orientation="vertical">
 
-
             <TextView
                 android:id="@+id/fx"
                 android:layout_width="wrap_content"
@@ -209,7 +208,6 @@
                     android:checked="false"
                     android:text="Absolute Error"
                     android:textSize="18sp" />
-                android:textSize="18sp" />
 
                 <RadioButton
                     android:id="@+id/relativeError"
@@ -219,10 +217,68 @@
                     android:buttonTint="@color/colorPrimaryDark"
                     android:text="Relative Error"
                     android:textSize="18sp" />
-                android:textSize="18sp" />
             </RadioGroup>
         </RelativeLayout>
     </ScrollView>
+
+    <TableLayout
+        android:id="@+id/tableBisection"
+        android:layout_width="368dp"
+        android:layout_height="551dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableRow
+            android:id="@+id/rowsFR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/iterationsTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="i" />
+
+            <TextView
+                android:id="@+id/xiTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xi" />
+            <TextView
+                android:id="@+id/xuTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xu" />
+            <TextView
+                android:id="@+id/xmTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Xm" />
+
+            <TextView
+                android:id="@+id/evalTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="f(Xm)" />
+
+            <TextView
+                android:id="@+id/errorTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Error" />
+        </TableRow>
+
+    </TableLayout>
 
     <TableLayout
         android:id="@+id/linearLayout"
@@ -264,36 +320,5 @@
         </TableRow>
 
     </TableLayout>
-
-    <!--<android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="200dp"
-        tools:ignore="MissingConstraints">
-
-        <Button
-            android:id="@+id/table"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Table"
-            android:layout_gravity="bottom"/>
-
-        <Button
-            android:id="@+id/calculate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculate"
-            android:layout_gravity="bottom" />
-
-        <Button
-            android:id="@+id/graph"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Graph"
-            android:layout_gravity="bottom" />
-
-
-    </android.support.v7.widget.LinearLayoutCompat>-->
-
 
 </android.support.constraint.ConstraintLayout>
