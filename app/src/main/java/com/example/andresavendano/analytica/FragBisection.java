@@ -129,13 +129,16 @@ public class FragBisection extends Fragment {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fx = function.getText().toString().trim();
-                Double xi = Double.parseDouble(xinf.getText().toString());
-                Double xu = Double.parseDouble(xupp.getText().toString());
-                int niter = Integer.parseInt(iterations.getText().toString());
-                tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
-                bisection(xi, xu, tolerance, niter, fx);
-
+                try {
+                    String fx = function.getText().toString().trim();
+                    Double xi = Double.parseDouble(xinf.getText().toString());
+                    Double xu = Double.parseDouble(xupp.getText().toString());
+                    int niter = Integer.parseInt(iterations.getText().toString());
+                    tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
+                    bisection(xi, xu, tolerance, niter, fx);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(),"Complete the blank spaces", Toast.LENGTH_LONG).show();
+                }
             }
         });
         graph = v.findViewById(R.id.graph);
