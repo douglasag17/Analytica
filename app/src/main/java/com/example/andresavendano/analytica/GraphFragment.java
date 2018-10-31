@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.math.BigDecimal;
 import java.util.LinkedList;
@@ -111,6 +112,9 @@ public class GraphFragment extends Fragment{
                     }
                     allSeries.add(listSeries);
                     init(inflatedView,function);
+                }
+                else {
+                    Toast.makeText(getContext(),"The function is not correct", Toast.LENGTH_LONG).show();
                 }
 
             }

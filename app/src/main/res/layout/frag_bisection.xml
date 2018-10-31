@@ -280,12 +280,6 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Table" />
-
-            <Button
                 android:id="@+id/calculate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
