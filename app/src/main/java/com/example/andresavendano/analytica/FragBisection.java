@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.udojava.evalex.Expression;
 import java.math.BigDecimal;
@@ -29,6 +30,12 @@ public class FragBisection extends Fragment {
     private EditText xinf;
     private EditText xupp;
     private EditText iterations;
+    private TextView tittleIterations;
+    private TextView titleXi;
+    private TextView titleXu;
+    private TextView titleXm;
+    private TextView titleEval;
+    private TextView titleError;
     private Double tolerance;
     private int errorType;
     private Button calculate;
@@ -43,9 +50,14 @@ public class FragBisection extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_bisection, container, false);
         final View newTol = inflater.inflate(R.layout.new_tolerance,  (ViewGroup) getView(), false);
-
+        //Table
         table = (TableLayout) v.findViewById(R.id.tableBisection);
-
+        tittleIterations = v.findViewById(R.id.titleIterations);
+        titleXi = v.findViewById(R.id.titleXi);
+        titleXu = v.findViewById(R.id.titleXu);
+        titleXm = v.findViewById(R.id.titleXm);
+        titleEval = v.findViewById(R.id.titleEval);
+        titleError = v.findViewById(R.id.titleError);
         /**
          * This code is for the tolerance
          */
@@ -154,26 +166,32 @@ public class FragBisection extends Fragment {
             double fxm = fxmd.doubleValue();
             int count = 1;
             double error = tolerance + 1;
-
+            //adding rows
+            tittleIterations.setText("i");
+            titleXi.setText("Xi");
+            titleXu.setText("Xu");
+            titleXm.setText("Xm");
+            titleEval.setText("f(xm)");
+            titleError.setText("Error");
             TableRow fila = new TableRow(getContext());
             TextView tv_col1 = new TextView(getContext());
-            tv_col1.setId(R.id.iterationsTable);
+            tv_col1.setId(R.id.titleIterations);
             tv_col1.setText(count+"  ");
             TextView tv_col2 = new TextView(getContext());
-            tv_col2.setId(R.id.xiTable);
+            tv_col2.setId(R.id.titleXi);
             tv_col2.setText(xi+"  ");
             TextView tv_col3 = new TextView(getContext());
-            tv_col3.setId(R.id.xuTable);
-            tv_col3.setText(xs+"   ");
+            tv_col3.setId(R.id.titleXu);
+            tv_col3.setText(xs+"  ");
             TextView tv_col4 = new TextView(getContext());
-            tv_col4.setId(R.id.xmTable);
-            tv_col4.setText(xm+"   ");
+            tv_col4.setId(R.id.titleXm);
+            tv_col4.setText(xm+"  ");
             TextView tv_col5 = new TextView(getContext());
-            tv_col5.setId(R.id.evalTable);
+            tv_col5.setId(R.id.titleEval);
             tv_col5.setText(fxm+"  ");
             TextView tv_col6 = new TextView(getContext());
-            tv_col6.setId(R.id.errorTable);
-            tv_col6.setText("-");
+            tv_col6.setId(R.id.titleError);
+            tv_col6.setText("  -");
             fila.addView(tv_col1);
             fila.addView(tv_col2);
             fila.addView(tv_col3);
@@ -200,22 +218,22 @@ public class FragBisection extends Fragment {
 
                 TableRow fila1 = new TableRow(getContext());
                 TextView tv_col11 = new TextView(getContext());
-                tv_col11.setId(R.id.iterationsTable);
+                tv_col11.setId(R.id.titleIterations);
                 tv_col11.setText(count+"  ");
                 TextView tv_col22 = new TextView(getContext());
-                tv_col22.setId(R.id.xiTable);
+                tv_col22.setId(R.id.titleXi);
                 tv_col22.setText(xi+"  ");
                 TextView tv_col33 = new TextView(getContext());
-                tv_col33.setId(R.id.xuTable);
-                tv_col33.setText(xs+"   ");
+                tv_col33.setId(R.id.titleXu);
+                tv_col33.setText(xs+"  ");
                 TextView tv_col44 = new TextView(getContext());
-                tv_col44.setId(R.id.xmTable);
-                tv_col44.setText(xm+"   ");
+                tv_col44.setId(R.id.titleXm);
+                tv_col44.setText(xm+"  ");
                 TextView tv_col55 = new TextView(getContext());
-                tv_col55.setId(R.id.evalTable);
+                tv_col55.setId(R.id.titleEval);
                 tv_col55.setText(fxm+"  ");
                 TextView tv_col66 = new TextView(getContext());
-                tv_col66.setId(R.id.errorTable);
+                tv_col66.setId(R.id.titleError);
                 tv_col66.setText(error+"");
                 fila1.addView(tv_col11);
                 fila1.addView(tv_col22);
@@ -227,14 +245,18 @@ public class FragBisection extends Fragment {
             }
             if (fxm == 0) {
                 System.out.println(xm + " is root");
+                Toast.makeText(getContext(),xm + " is root", Toast.LENGTH_LONG).show();
             } else if (error < tolerance) {
                 System.out.println(count);
                 System.out.println(xm + " is an aproximation of a root with a tolerance = " + tolerance);
+                Toast.makeText(getContext(),xm + " is an aproximation of a root with a tolerance = " + tolerance, Toast.LENGTH_LONG).show();
             } else {
                 System.out.println("failed at " + niter + " iterations");
+                Toast.makeText(getContext(),"failed at " + niter + " iterations", Toast.LENGTH_LONG).show();
             }
         } else {
             System.out.println("the interval is unsuitable");
+            Toast.makeText(getContext(),"the interval is unsuitable", Toast.LENGTH_LONG).show();
         }
     }
 

@@ -7,9 +7,6 @@
     android:layout_height="match_parent"
     android:background="#0000">
 
-
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -240,40 +237,40 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/iterationsTable"
+                                android:id="@+id/titleIterations"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="i" />
+                                android:text=" " />
 
                             <TextView
-                                android:id="@+id/xiTable"
+                                android:id="@+id/titleXi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Xi" />
+                                android:text=" " />
 
                             <TextView
-                                android:id="@+id/xuTable"
+                                android:id="@+id/titleXu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Xu" />
+                                android:text=" " />
 
                             <TextView
-                                android:id="@+id/xmTable"
+                                android:id="@+id/titleXm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Xm" />
+                                android:text=" " />
 
                             <TextView
-                                android:id="@+id/evalTable"
+                                android:id="@+id/titleEval"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="f(Xm)" />
+                                android:text=" " />
 
                             <TextView
-                                android:id="@+id/errorTable"
+                                android:id="@+id/titleError"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Error" />
+                                android:text=" " />
                         </TableRow>
 
                     </TableLayout>
