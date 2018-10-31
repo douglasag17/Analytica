@@ -1,5 +1,6 @@
 package com.example.andresavendano.analytica;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -22,6 +23,7 @@ public class FragIncremental extends Fragment {
     private EditText txtiters;
     private TextView resultado;
     private Button calculate;
+    private Button graph;
 
     @Nullable
     @Override
@@ -71,6 +73,14 @@ public class FragIncremental extends Fragment {
                 } catch (Exception e) {
                     Toast.makeText(getContext(),"Complete the blank spaces", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        graph = v.findViewById(R.id.graph);
+        graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), GraphActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
         return v;
