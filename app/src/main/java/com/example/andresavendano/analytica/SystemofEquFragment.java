@@ -22,73 +22,104 @@ public class SystemofEquFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_onevariable, container, false);
-        Button buttonIncrementales=view.findViewById(R.id.buttonIncrementales);
-        buttonIncrementales.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.fragment_systemofequ, container, false);
+        Button buttonSimpleGaussianElimination=view.findViewById(R.id.buttonSimpleGaussian);
+        buttonSimpleGaussianElimination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
                 int i=0;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }
         });
-        Button buttonBisection=view.findViewById(R.id.buttonBiseccion);
-        buttonBisection.setOnClickListener(new View.OnClickListener() {
+        Button buttonSimpleGaussianPartialPivoting=view.findViewById(R.id.buttonSimpleGaussianPartialPivoting);
+        buttonSimpleGaussianPartialPivoting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
                 int i=1;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }
         });
-        Button buttonPuntoFijo=view.findViewById(R.id.buttonPuntoFijo);
-        buttonPuntoFijo.setOnClickListener(new View.OnClickListener() {
+        Button buttonSimpleGaussianTotalPivoting=view.findViewById(R.id.buttonSimpleGaussianTotalPivoting);
+        buttonSimpleGaussianTotalPivoting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
-                int i=3;
-                intent.putExtra("cual",i);
-                startActivity(intent);
-            }
-        });
-        Button buttonRaicez=view.findViewById(R.id.buttonRaicez);
-        buttonRaicez.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
-                int i=6;
-                intent.putExtra("cual",i);
-                startActivity(intent);
-            }
-        });
-        Button buttonReglaFalsa=view.findViewById(R.id.buttonReglaFalsa);
-        buttonReglaFalsa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
                 int i=2;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }
         });
-        Button buttonSecante=view.findViewById(R.id.buttonSecante);
-        buttonSecante.setOnClickListener(new View.OnClickListener() {
+        Button buttonLUPartialPivoting=view.findViewById(R.id.buttonLUPartialPivoting);
+        buttonLUPartialPivoting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
+                int i=4;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
+        Button buttonLUGaussianElimination=view.findViewById(R.id.buttonLUGaussianElimination);
+        buttonLUGaussianElimination.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
+                int i=3;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
+        Button buttonDirectFactorization=view.findViewById(R.id.buttonDirectFactorization);
+        buttonDirectFactorization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
                 int i=5;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }
         });
-        Button buttonNewton=view.findViewById(R.id.buttonNewton);
-        buttonNewton.setOnClickListener(new View.OnClickListener() {
+        Button buttonVandermonde=view.findViewById(R.id.buttonVandermonde);
+        buttonVandermonde.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main2Activity.class);
-                int i=4;
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
+                int i=6;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
+        Button buttonJacobi=view.findViewById(R.id.buttonJacobi);
+        buttonJacobi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
+                int i=7;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
+        Button buttonGauss_Seidel=view.findViewById(R.id.buttonGauss_Seidel);
+        buttonGauss_Seidel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
+                int i=8;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
+
+        Button buttonSORGauss_Seidel=view.findViewById(R.id.buttonSORGauss_Seidel);
+        buttonSORGauss_Seidel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main3Activity.class);
+                int i=9;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }

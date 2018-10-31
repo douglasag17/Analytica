@@ -34,8 +34,71 @@
                 android:id="@+id/lol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ingrese funcion" />
+                android:hint="ingrese función" />
         </android.support.design.widget.TextInputLayout>
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/leftBracket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/xi"
+                    android:layout_toStartOf="@+id/xi"
+                    android:text="["
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp"
+                    android:layout_toLeftOf="@+id/xi" />
+
+
+
+                <EditText
+                    android:id="@+id/xi"
+                    android:layout_width="53dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/function"
+                    android:layout_marginEnd="-76dp"
+                    android:layout_toStartOf="@+id/comma"
+                    android:ems="10"
+                    android:hint="xi"
+                    android:inputType="textPersonName"
+                    android:layout_marginRight="-76dp"
+                    android:layout_toLeftOf="@+id/comma" />
+                <TextView
+                    android:id="@+id/comma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignTop="@+id/leftBracket"
+                    android:layout_marginStart="76dp"
+                    android:text=","
+                    android:textSize="24sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="76dp" />
+
+                <EditText
+                    android:id="@+id/xu"
+                    android:layout_width="53dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/function"
+
+                    android:ems="10"
+                    android:hint="xu"
+                    android:inputType="textPersonName" />
+
+
+                <TextView
+                    android:id="@+id/rightBracket"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="]"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+            </TableRow>
+        </TableLayout>
 
         <Button
             android:layout_margin="8dp"

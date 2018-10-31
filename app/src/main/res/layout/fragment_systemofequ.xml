@@ -4,6 +4,6 @@
     >
     <include
         android:id="@+id/include2"
-        layout="@layout/options_layout"
+        layout="@layout/option_layout_soe"
         />
 </RelativeLayout>

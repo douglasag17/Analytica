@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginTop="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:isScrollContainer="true">
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonSimpleGaussian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Simple Gaussian Elimination" />
+
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonSimpleGaussianPartialPivoting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Simple Gaussian Partial Pivoting"
+                android:textColor="@android:color/white"/>
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonSimpleGaussianTotalPivoting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Simple Gaussian Total Pivoting" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonLUGaussianElimination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="LU Simple Gaussian" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonLUPartialPivoting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="LU Partial Pivoting" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonDirectFactorization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Direct Factorization" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonVandermonde"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Vandermonde" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonJacobi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Jacobi" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonGauss_Seidel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="Gauss Seidel" />
+            <Button
+                android:layout_margin="8dp"
+                android:id="@+id/buttonSORGauss_Seidel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:stateListAnimator="@null"
+                android:text="SOR Gauss Seidel" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
