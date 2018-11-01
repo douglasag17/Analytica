@@ -43,8 +43,8 @@ public class GraphFragment extends Fragment{
 
         final TextInputEditText text=inflatedView.findViewById(R.id.lol);
         final TextView tv= inflatedView.findViewById(R.id.tv);
-        Button button= (Button) inflatedView.findViewById(R.id.button);
-        final GraphView graph= (GraphView)inflatedView.findViewById(R.id.graph);
+        Button button= inflatedView.findViewById(R.id.button);
+        final GraphView graph= inflatedView.findViewById(R.id.graph);
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
@@ -125,7 +125,7 @@ public class GraphFragment extends Fragment{
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void init(final View inflater, String function) {
-        TableLayout stk = (TableLayout) inflater.findViewById(R.id.displayLinear);
+        TableLayout stk = inflater.findViewById(R.id.displayLinear);
         TableRow tbrow = new TableRow(getActivity());
         tbrow.setId(idRow);
         idRow=idRow+1;
@@ -225,7 +225,7 @@ public class GraphFragment extends Fragment{
         @Override
         public void run() {
             //do something
-            GraphView graph= (GraphView)v.findViewById(R.id.graph);
+            GraphView graph= v.findViewById(R.id.graph);
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setMinY(-30);
             graph.getViewport().setMaxY(30);

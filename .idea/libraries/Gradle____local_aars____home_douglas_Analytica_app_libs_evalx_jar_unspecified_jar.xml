@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: __local_aars__:/Users/andresavendano/Downloads/carpeta sin título/Analytica/app/libs/evalx.jar:unspecified@jar">
+  <library name="Gradle: __local_aars__:/home/douglas/Analytica/app/libs/evalx.jar:unspecified@jar">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/app/libs/evalx.jar!/" />
     </CLASSES>

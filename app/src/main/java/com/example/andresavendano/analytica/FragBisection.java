@@ -51,7 +51,7 @@ public class FragBisection extends Fragment {
         View v = inflater.inflate(R.layout.frag_bisection, container, false);
         final View newTol = inflater.inflate(R.layout.new_tolerance,  (ViewGroup) getView(), false);
         //Table
-        table = (TableLayout) v.findViewById(R.id.tableBisection);
+        table = v.findViewById(R.id.tableBisection);
         tittleIterations = v.findViewById(R.id.titleIterations);
         titleXi = v.findViewById(R.id.titleXi);
         titleXu = v.findViewById(R.id.titleXu);

@@ -18,7 +18,7 @@ public class FragFalsePosition extends Fragment {
         View v = inflater.inflate(R.layout.frag_falseposition,container,false);
 
         //table
-        table = (TableLayout) v.findViewById(R.id.tableFR);
+        table = v.findViewById(R.id.tableFR);
 
         for (int i = 0; i < 5; i++) {
             TableRow fila = new TableRow(getContext());
