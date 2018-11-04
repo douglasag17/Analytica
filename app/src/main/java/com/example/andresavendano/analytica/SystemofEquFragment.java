@@ -83,22 +83,12 @@ public class SystemofEquFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        Button buttonVandermonde=view.findViewById(R.id.buttonVandermonde);
-        buttonVandermonde.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),Main3Activity.class);
-                int i=6;
-                intent.putExtra("cual",i);
-                startActivity(intent);
-            }
-        });
         Button buttonJacobi=view.findViewById(R.id.buttonJacobi);
         buttonJacobi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),Main3Activity.class);
-                int i=7;
+                int i=6;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }
@@ -108,7 +98,7 @@ public class SystemofEquFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),Main3Activity.class);
-                int i=8;
+                int i=7;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }
@@ -119,7 +109,7 @@ public class SystemofEquFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),Main3Activity.class);
-                int i=9;
+                int i=8;
                 intent.putExtra("cual",i);
                 startActivity(intent);
             }

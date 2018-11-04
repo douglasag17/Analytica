@@ -62,6 +62,9 @@ public class Main4Activity extends AppCompatActivity {
         else if(ii==4) {
             mViewPager.setCurrentItem(4);
         }
+        else if(ii==5) {
+            mViewPager.setCurrentItem(5);
+        }
 
         TabLayout tabLayout = findViewById(R.id.tabs);
 
@@ -152,14 +155,17 @@ public class Main4Activity extends AppCompatActivity {
                 case 4:
                     fragment=new FragCubicSpline();
                     break;
+                case 5:
+                    fragment=new FragVandermonde();
+                    break;
             }
             return fragment;
         }
 
         @Override
         public int getCount() {
-            // Show 10 total pages.
-            return 5;
+            // Show 6 total pages.
+            return 6;
         }
     }
 }

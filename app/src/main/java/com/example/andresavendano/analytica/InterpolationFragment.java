@@ -73,6 +73,16 @@ public class InterpolationFragment extends Fragment{
                 startActivity(intent);
             }
         });
+        Button buttonVandermonde=view.findViewById(R.id.buttonVandermonde);
+        buttonVandermonde.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main4Activity.class);
+                int i=5;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
 
         return view;
 

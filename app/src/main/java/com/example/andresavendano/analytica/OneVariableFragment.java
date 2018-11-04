@@ -13,11 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import static com.example.andresavendano.analytica.R.id.buttonAitken;
 import static com.example.andresavendano.analytica.R.id.buttonIncrementales;
+import static com.example.andresavendano.analytica.R.id.buttonSteffensen;
 
 public class OneVariableFragment extends Fragment{
-
-
 
     @Nullable
     @Override
@@ -93,9 +93,27 @@ public class OneVariableFragment extends Fragment{
                 startActivity(intent);
             }
         });
+        Button buttonAitken = view.findViewById(R.id.buttonAitken);
+        buttonAitken.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main2Activity.class);
+                int i=7;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
+        Button buttonSteffensen = view.findViewById(R.id.buttonSteffensen);
+        buttonSteffensen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),Main2Activity.class);
+                int i=8;
+                intent.putExtra("cual",i);
+                startActivity(intent);
+            }
+        });
         return view;
-
-
     }
 
 }

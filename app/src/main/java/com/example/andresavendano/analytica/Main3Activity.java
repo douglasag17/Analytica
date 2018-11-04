@@ -74,9 +74,6 @@ public class Main3Activity extends AppCompatActivity {
         else if(ii==8) {
             mViewPager.setCurrentItem(8);
         }
-        else if(ii==9) {
-            mViewPager.setCurrentItem(9);
-        }
 
         TabLayout tabLayout = findViewById(R.id.tabs);
 
@@ -171,15 +168,12 @@ public class Main3Activity extends AppCompatActivity {
                     fragment=new FragDirectFactorization();
                     break;
                 case 6:
-                    fragment=new FragVandermonde();
-                    break;
-                case 7:
                     fragment=new FragJacobi();
                     break;
-                case 8:
+                case 7:
                     fragment=new FragGaussSeidel();
                     break;
-                case 9:
+                case 8:
                     fragment=new FragSorGaussSeidel();
                     break;
 
@@ -189,8 +183,8 @@ public class Main3Activity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 10 total pages.
-            return 10;
+            // Show 9 total pages.
+            return 9;
         }
     }
 }

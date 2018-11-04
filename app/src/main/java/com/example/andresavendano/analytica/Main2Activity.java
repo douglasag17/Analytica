@@ -61,6 +61,12 @@ public class Main2Activity extends AppCompatActivity {
         else if(ii==6) {
             mViewPager.setCurrentItem(6);
         }
+        else if(ii==7) {
+            mViewPager.setCurrentItem(7);
+        }
+        else if(ii==8) {
+            mViewPager.setCurrentItem(8);
+        }
         TabLayout tabLayout = findViewById(R.id.tabs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -155,15 +161,20 @@ public class Main2Activity extends AppCompatActivity {
                 case 6:
                     fragment=new FragMultipleRoots();
                     break;
-
+                case 7:
+                    fragment=new FragAitken();
+                    break;
+                case 8:
+                    fragment=new FragSteffensen();
+                    break;
             }
             return fragment;
         }
 
         @Override
         public int getCount() {
-            // Show 7 total pages.
-            return 7;
+            // Show 9 total pages.
+            return 9;
         }
     }
 }

@@ -80,17 +80,6 @@
                 android:text="Direct Factorization" />
             <Button
                 android:layout_margin="8dp"
-                android:id="@+id/buttonVandermonde"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:textColor="@android:color/white"
-                android:background="@drawable/bk_boton_plano"
-                android:stateListAnimator="@null"
-                android:text="Vandermonde" />
-            <Button
-                android:layout_margin="8dp"
                 android:id="@+id/buttonJacobi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

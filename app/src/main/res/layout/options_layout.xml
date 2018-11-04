@@ -89,6 +89,28 @@
             android:background="@drawable/bk_boton_plano"
             android:stateListAnimator="@null"
             android:text="Multiple roots" />
+        <Button
+            android:layout_margin="8dp"
+            android:id="@+id/buttonAitken"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bk_boton_plano"
+            android:stateListAnimator="@null"
+            android:text="Aitken" />
+        <Button
+            android:layout_margin="8dp"
+            android:id="@+id/buttonSteffensen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bk_boton_plano"
+            android:stateListAnimator="@null"
+            android:text="Steffensen" />
     </LinearLayout>
     </ScrollView>
 
