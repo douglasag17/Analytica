@@ -36,16 +36,18 @@
 
             <EditText
                 android:id="@+id/function"
-                android:layout_width="match_parent"
+                android:layout_width="324dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="12dp"
                 android:layout_toEndOf="@+id/fx"
+                android:layout_toRightOf="@+id/fx"
                 android:ems="10"
                 android:hint="f(x)"
                 android:inputType="textPersonName"
-                android:textSize="18sp"
-                android:layout_toRightOf="@+id/fx"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/leftBracket"
@@ -147,11 +149,13 @@
 
             <EditText
                 android:id="@+id/niter"
-                android:layout_width="wrap_content"
+                android:layout_width="263dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/Iterations"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginEnd="19dp"
+                android:layout_marginRight="19dp"
                 android:ems="10"
                 android:hint="#"
                 android:inputType="textEmailSubject|number" />
@@ -221,39 +225,49 @@
                                 android:id="@+id/titleIterations"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" " />
+                                android:text=" "
+                                android:textColor="@color/white"/>
 
                             <TextView
                                 android:id="@+id/titleXi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" " />
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/titleXu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" " />
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/titleXm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" " />
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/titleEval"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" " />
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/titleError"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" " />
+                                android:text=" "
+                                android:textSize="16sp"
+                                android:textColor="@color/white" />
                         </TableRow>
-
                     </TableLayout>
                 </HorizontalScrollView>
             </ScrollView>
