@@ -48,6 +48,8 @@ public class FragIncremental extends Fragment {
                     double fx0 = fx0d.doubleValue();
                     if (fx0 == 0) {
                         resultado.setText(x0 + " is a root");
+                        resultado.setTextSize(16);
+                        resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                     } else {
                         double x1 = x0 + delta;
                         int count = 1;
@@ -63,15 +65,20 @@ public class FragIncremental extends Fragment {
                         }
                         if (fx1 == 0) {
                             resultado.setText(x1 + " is a root");
+                            resultado.setTextSize(16);
+                            resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                         } else if (fx0 * fx1 < 0) {
                             resultado.setText("There is a root between " + x0 + " and " + x1);
-                            //Toast.makeText(getContext(),"there is a root between " + x0 + " and " + x1,Toast.LENGTH_SHORT).show();
+                            resultado.setTextSize(16);
+                            resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                         } else {
                             resultado.setText("failed at " + niter + " iterations");
+                            resultado.setTextSize(16);
+                            resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                         }
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getContext(),"Complete the blank spaces", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG).show();
                 }
             }
         });

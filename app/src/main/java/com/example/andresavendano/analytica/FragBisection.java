@@ -139,7 +139,7 @@ public class FragBisection extends Fragment {
                     tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
                     bisection(xi, xu, tolerance, niter, fx);
                 } catch (Exception e) {
-                    Toast.makeText(getContext(),"Complete the blank spaces", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -163,8 +163,10 @@ public class FragBisection extends Fragment {
         double fxs = fxsd.doubleValue();
         if (fxi == 0) {
             System.out.println(xi + " is a root");
+            Toast.makeText(getContext(),xi + " is a root", Toast.LENGTH_LONG).show();
         } else if (fxs == 0) {
             System.out.println(xs + " is a root");
+            Toast.makeText(getContext(),xs + " is a root", Toast.LENGTH_LONG).show();
         } else if (fxi * fxs < 0) {
             double xm = (xi + xs)/2;
             BigDecimal fxmd = fx.with("x", Double.toString(xm)).eval();

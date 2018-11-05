@@ -12,34 +12,32 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class FragSimpleGaussian extends Fragment {
-    int num=3;
+    int num = 3;
+    double A [][];
+    double b [];
+    private TableLayout table;
+    private TableLayout vectorBB;
+    private TextView resultado;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView=inflater.inflate(R.layout.frag_simple_gaussian, container, false);
-        final TableLayout table = inflaterView.findViewById(R.id.tableGauss);
+        table = inflaterView.findViewById(R.id.tableGauss);
+        vectorBB = inflaterView.findViewById(R.id.vectorB);
+        resultado = inflaterView.findViewById(R.id.textView2);
         createTable(inflaterView);
         Button button = inflaterView.findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text= "";
-                for(int j = 0;j<num;j++) {
-                    TableRow row = (TableRow) table.getChildAt(j);
-                    for (int i = 0; i < num; i++) {
-
-                        EditText txt = (EditText) row.getChildAt(i);
-                        txt.getText().toString();
-
-                        text = text + txt.getText().toString();
-                    }
-                }
-                Toast.makeText(getContext(),text, Toast.LENGTH_LONG).show();
+                A = getMatrixA();
+                b = getVectorB();
+                resultado.setText(b[1]+"");
             }
         });
         Button button3 = inflaterView.findViewById(R.id.button3);
@@ -53,12 +51,12 @@ public class FragSimpleGaussian extends Fragment {
                     edit[i]=row;
                 }
                 table.removeAllViews();
-
-                for(int j =0;j<num;j++){
+                for(int j=0; j<num; j++){
                     if(j<num-1) {
                         TableRow row = edit[j];
                         EditText editText = new EditText(getContext());
                         editText.setText("0");
+                        //editText.setHint("0");
                         row.addView(editText);
                         table.addView(row);
                     }
@@ -67,6 +65,7 @@ public class FragSimpleGaussian extends Fragment {
                         for(int i=0;i<num;i++){
                             EditText editText = new EditText(getContext());
                             editText.setText("0");
+                            //editText.setHint("0");
                             row.addView(editText);
                         }
                         table.addView(row);
@@ -79,7 +78,7 @@ public class FragSimpleGaussian extends Fragment {
             @Override
             public void onClick(View v) {
                 num--;
-                TableRow edit[]=new TableRow[num+1];
+                TableRow edit[] = new TableRow[num+1];
                 for(int i = 0;i<num+1;i++){
                     TableRow row = (TableRow) table.getChildAt(i);
                     edit[i]=row;
@@ -94,19 +93,56 @@ public class FragSimpleGaussian extends Fragment {
         });
         return inflaterView;
     }
+
     public void createTable(View inflaterView){
         TableLayout table = inflaterView.findViewById(R.id.tableGauss);
-        for(int j =0;j<num;j++){
+        for(int j =0; j<num; j++){
             TableRow row = new TableRow(getContext());
             row.setId(j);
             for(int i = 0;i<num;i++) {
                 EditText editText = new EditText(getContext());
                 editText.setId(i+j);
                 editText.setText("0");
+                //editText.setHint("0");
                 row.addView(editText);
             }
             table.addView(row);
         }
+
+        TableLayout vectorB = inflaterView.findViewById(R.id.vectorB);
+        for(int j=0; j<num; j++){
+            TableRow row = new TableRow(getContext());
+            row.setId(j);
+            EditText editText = new EditText(getContext());
+            editText.setId(j);
+            editText.setText("0");
+            //editText.setHint("0");
+            row.addView(editText);
+            vectorB.addView(row);
+        }
     }
 
+    public double[][] getMatrixA(){
+        int n = table.getChildCount();
+        A = new double [n][n];
+        for(int i=0; i<n; i++){
+            TableRow row = (TableRow) table.getChildAt(i);
+            for(int x = 0;x<row.getChildCount();++x){
+                EditText f = (EditText) row.getChildAt(x);
+                A[i][x] = Double.valueOf(f.getText().toString());
+            }
+        }
+        return A;
+    }
+
+    public double[] getVectorB(){
+        int n = vectorBB.getChildCount();
+        b = new double [n];
+        for(int i=0; i<n; i++) {
+            TableRow row = (TableRow) vectorBB.getChildAt(i);
+            EditText f = (EditText) row.getChildAt(0);
+            b[i] = Double.valueOf(f.getText().toString());
+        }
+        return b;
+    }
 }

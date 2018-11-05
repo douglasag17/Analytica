@@ -12,13 +12,25 @@
 
     </TableLayout>
 
+    <TableLayout
+        android:id="@+id/vectorB"
+        android:layout_width="68dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginRight="41dp">
+    </TableLayout>
+
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="221dp"
         android:text="Button" />
 
     <Button
@@ -38,4 +50,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="170dp"
         android:text="-" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="275dp"
+        android:layout_height="95dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="46dp"
+        android:layout_marginLeft="46dp"
+        android:layout_marginBottom="44dp"
+        android:text="TextView" />
 </RelativeLayout>
