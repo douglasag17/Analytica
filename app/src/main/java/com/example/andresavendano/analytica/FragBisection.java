@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import android.widget.Toast;
 
 import com.udojava.evalex.Expression;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class FragBisection extends Fragment {
@@ -137,6 +137,10 @@ public class FragBisection extends Fragment {
                     Double xu = Double.parseDouble(xupp.getText().toString());
                     int niter = Integer.parseInt(iterations.getText().toString());
                     tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
+                    while (table.getChildCount() > 1) {
+                        TableRow row =  (TableRow)table.getChildAt(1);
+                        table.removeView(row);
+                    }
                     bisection(xi, xu, tolerance, niter, fx);
                 } catch (Exception e) {
                     Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG).show();
@@ -274,7 +278,8 @@ public class FragBisection extends Fragment {
                 tv_col55.setTextSize(16);
                 TextView tv_col66 = new TextView(getContext());
                 tv_col66.setId(R.id.titleError);
-                tv_col66.setText(String.format("%.3f", error));
+                DecimalFormat f = new DecimalFormat("0.##E0");
+                tv_col66.setText(f.format(error));
                 tv_col66.setTextColor(getResources().getColor(R.color.colorAccent));
                 tv_col66.setTextSize(16);
                 fila1.addView(tv_col11);
@@ -286,19 +291,26 @@ public class FragBisection extends Fragment {
                 table.addView(fila1);
             }
             if (fxm == 0) {
-                System.out.println(xm + " is root");
-                Toast.makeText(getContext(),xm + " is root", Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(getContext(),xm + " is root", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
             } else if (error < tolerance) {
-                System.out.println(count);
-                System.out.println(xm + " is an aproximation of a root with a tolerance = " + tolerance);
-                Toast.makeText(getContext(),xm + " is an aproximation of a root with a tolerance = " + tolerance, Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(getContext(),xm + " is an aproximation of a root with a tolerance = " + tolerance, Toast.LENGTH_LONG);
+                View view = toast.getView();
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
             } else {
-                System.out.println("failed at " + niter + " iterations");
-                Toast.makeText(getContext(),"failed at " + niter + " iterations", Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(getContext(),"failed at " + niter + " iterations", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
             }
         } else {
-            System.out.println("the interval is unsuitable");
-            Toast.makeText(getContext(),"the interval is unsuitable", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(getContext(),"the interval is unsuitable", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
         }
     }
 
