@@ -28,11 +28,12 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="79dp">
 
-            <android.support.design.widget.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/lol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Type a function" />
+                android:hint="Type a function"
+                android:completionThreshold="0"/>
         </android.support.design.widget.TextInputLayout>
         <TableLayout
             android:layout_width="wrap_content"

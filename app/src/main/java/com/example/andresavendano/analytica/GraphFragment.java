@@ -5,6 +5,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.Series;
 import com.udojava.evalex.*;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -40,11 +43,14 @@ public class GraphFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View inflatedView =inflater.inflate(R.layout.fragment_graph,null);
-
-        final TextInputEditText text=inflatedView.findViewById(R.id.lol);
+        String[] meses = {"sin(x)","cos(x)","e^x","log(x)","sin(cos(x))+log(x^2)","x","x^2","x^3"};
+        final AutoCompleteTextView text=inflatedView.findViewById(R.id.lol);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,meses);
+        text.setAdapter(adapter);
+        
         final TextView tv= inflatedView.findViewById(R.id.tv);
-        Button button= inflatedView.findViewById(R.id.button);
-        final GraphView graph= inflatedView.findViewById(R.id.graph);
+        Button button= (Button) inflatedView.findViewById(R.id.button);
+        final GraphView graph= (GraphView)inflatedView.findViewById(R.id.graph);
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
@@ -125,7 +131,7 @@ public class GraphFragment extends Fragment{
     }
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void init(final View inflater, String function) {
-        TableLayout stk = inflater.findViewById(R.id.displayLinear);
+        TableLayout stk = (TableLayout) inflater.findViewById(R.id.displayLinear);
         TableRow tbrow = new TableRow(getActivity());
         tbrow.setId(idRow);
         idRow=idRow+1;
@@ -225,7 +231,7 @@ public class GraphFragment extends Fragment{
         @Override
         public void run() {
             //do something
-            GraphView graph= v.findViewById(R.id.graph);
+            GraphView graph= (GraphView)v.findViewById(R.id.graph);
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setMinY(-30);
             graph.getViewport().setMaxY(30);
