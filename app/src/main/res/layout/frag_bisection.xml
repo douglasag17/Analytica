@@ -198,11 +198,13 @@
             </RadioGroup>
 
             <ScrollView
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/radioGroup"
-                android:scrollbars="vertical"
-                android:layout_marginBottom="55dp">
+                android:layout_marginBottom="55dp"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:scrollbars="vertical">
 
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
@@ -225,48 +227,58 @@
                                 android:id="@+id/titleIterations"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
                                 android:text=" "
-                                android:textColor="@color/white"/>
+                                android:textColor="@color/white" />
 
                             <TextView
                                 android:id="@+id/titleXi"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
                                 android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@color/white" />
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/titleXu"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
                                 android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@color/white" />
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/titleXm"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
                                 android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@color/white" />
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/titleEval"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
                                 android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@color/white" />
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
 
                             <TextView
                                 android:id="@+id/titleError"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text=" "
-                                android:textSize="16sp"
-                                android:textColor="@color/white" />
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
                         </TableRow>
                     </TableLayout>
                 </HorizontalScrollView>
