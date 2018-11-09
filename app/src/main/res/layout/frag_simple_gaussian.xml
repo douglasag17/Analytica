@@ -5,17 +5,18 @@
     android:layout_height="match_parent"
     android:id="@+id/frame"
     xmlns:tools="http://schemas.android.com/tools">
+
     <TableLayout
         android:id="@+id/tableGauss"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="250dp"
+        android:layout_height="300dp">
 
     </TableLayout>
 
     <TableLayout
         android:id="@+id/vectorB"
         android:layout_width="68dp"
-        android:layout_height="150dp"
+        android:layout_height="1000dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -25,41 +26,65 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="221dp"
-        android:text="Button" />
-
-    <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="232dp"
+        android:layout_marginStart="87dp"
+        android:layout_marginLeft="87dp"
+        android:layout_marginBottom="216dp"
         android:text="+" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="170dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="216dp"
+        android:layout_toEndOf="@+id/button3"
         android:text="-" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="275dp"
-        android:layout_height="95dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="46dp"
-        android:layout_marginLeft="46dp"
-        android:layout_marginBottom="44dp"
-        android:text="TextView" />
+        android:layout_marginStart="74dp"
+        android:layout_marginLeft="74dp"
+        android:layout_marginBottom="106dp"
+        android:text="" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="109dp"
+        android:layout_marginLeft="109dp"
+        android:layout_marginTop="519dp"
+        android:background="@drawable/bk_boton_plano"
+        android:text="Calculate"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/butHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="202dp"
+        android:layout_marginLeft="202dp"
+        android:layout_marginTop="519dp"
+        android:background="@drawable/bk_boton_plano"
+        android:text="Help"
+        android:textColor="@android:color/white" />
+
 </RelativeLayout>
