@@ -37,6 +37,7 @@ public class FragSimpleGaussian extends Fragment {
             public void onClick(View v) {
                 A = getMatrixA();
                 b = getVectorB();
+                //resultado.setText(b[1]+"");
                 simpleGaussianElimination(A, b);
             }
         });
@@ -60,8 +61,8 @@ public class FragSimpleGaussian extends Fragment {
                         TableRow row = edit[j];
                         TableRow rowB = edit2[j];
                         EditText editText = new EditText(getContext());
-                        //editText.setText("0");
-                        editText.setHint("0");
+                        editText.setText("0");
+                        //editText.setHint("0");
                         row.addView(editText);
                         table.addView(row);
                         vectorBB.addView(rowB);
@@ -74,8 +75,8 @@ public class FragSimpleGaussian extends Fragment {
                         rowB.addView(editTextB);
                         for(int i=0;i<num;i++){
                             EditText editText = new EditText(getContext());
-                            //editText.setText("0");
-                            editText.setHint("0");
+                            editText.setText("0");
+                            //editText.setHint("0");
                             row.addView(editText);
                         }
                         vectorBB.addView(rowB);
@@ -119,8 +120,8 @@ public class FragSimpleGaussian extends Fragment {
             for(int i = 0;i<num;i++) {
                 EditText editText = new EditText(getContext());
                 editText.setId(i+j);
-                //editText.setText("0");
-                editText.setHint("0");
+                editText.setText("0");
+                //editText.setHint("0");
                 row.addView(editText);
             }
             table.addView(row);
@@ -132,8 +133,8 @@ public class FragSimpleGaussian extends Fragment {
             row.setId(j);
             EditText editText = new EditText(getContext());
             editText.setId(j);
-            //editText.setText("0");
-            editText.setHint("0");
+            editText.setText("0");
+            //editText.setHint("0");
             row.addView(editText);
             vectorB.addView(row);
         }
@@ -171,7 +172,7 @@ public class FragSimpleGaussian extends Fragment {
         System.out.println("Regressive Substitution");
         for(int i = 0; i < x.length; i++) {
             System.out.print(x[i] + "  ");
-            resultado.append(String.format("%.f", x[i])+"  ");
+            resultado.append(x[i]+"  ");
         }
     }
 
