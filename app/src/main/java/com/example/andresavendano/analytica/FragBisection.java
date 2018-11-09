@@ -43,6 +43,7 @@ public class FragBisection extends Fragment {
     private Button calculate;
     private Button graph;
     private TableLayout table;
+    private TextView t;
     Spinner tol;
     ArrayAdapter<String> adapter;
     ArrayList<String> values;
@@ -52,6 +53,7 @@ public class FragBisection extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_bisection, container, false);
         final View newTol = inflater.inflate(R.layout.new_tolerance,  (ViewGroup) getView(), false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         //Table
         table = v.findViewById(R.id.tableBisection);
         tittleIterations = v.findViewById(R.id.titleIterations);
@@ -79,16 +81,30 @@ public class FragBisection extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Type the new tolerance");
                 final EditText input =  newTol.findViewById(R.id.input);
+                if(newTol.getParent()!=null)
+                    ((ViewGroup)newTol.getParent()).removeView(newTol);
                 builder.setView(newTol);
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         String t = input.getText().toString();
-                        if(! values.contains(t)) {
-                            values.add(t);
-                            int spinnerPosition = adapter.getPosition(t);
-                            tol.setSelection(spinnerPosition);
+                        if(!t.isEmpty()) {
+                            if(Double.parseDouble(t) > 0) {
+                                if (!values.contains(t)) {
+                                    values.add(t);
+                                    int spinnerPosition = adapter.getPosition(t);
+                                    tol.setSelection(spinnerPosition);
+                                }
+                            }
+                        }else{
+                            Toast toast = Toast.makeText(getContext(),"Complete the field.", Toast.LENGTH_LONG);
+                            View view = toast.getView();
+                            TextView text = (TextView) view.findViewById(android.R.id.message);
+                            text.setTextColor(Color.BLACK);
+                            text.setGravity(1);
+                            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                            toast.show();
                         }
                     }
                 });
@@ -119,6 +135,27 @@ public class FragBisection extends Fragment {
             }
         });
         /**
+         * Help button
+         */
+        final Button help = v.findViewById(R.id.help);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("\nTo Guarantee the existence of a root the function must fulfill 2 conditions:\n" +
+                        "\t\t* \tThe function must be continuous in the interval [a, b]\n" +
+                        "\t\t* \tThe function evaluated at the extremes of the interval must have a sign change f(a)*f(b) < 0\n\n" +
+                        "The tolerance must be positive \n");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
+        /**
          * Calculate Bisection method
          */
         //Write fields declaration
@@ -143,7 +180,13 @@ public class FragBisection extends Fragment {
                     }
                     bisection(xi, xu, tolerance, niter, fx);
                 } catch (Exception e) {
-                    Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
                 }
             }
         });
@@ -166,11 +209,21 @@ public class FragBisection extends Fragment {
         BigDecimal fxsd = fx.with("x", Double.toString(xs)).eval();
         double fxs = fxsd.doubleValue();
         if (fxi == 0) {
-            System.out.println(xi + " is a root");
-            Toast.makeText(getContext(),xi + " is a root", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(getContext(),xi + " is a root", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
         } else if (fxs == 0) {
-            System.out.println(xs + " is a root");
-            Toast.makeText(getContext(),xs + " is a root", Toast.LENGTH_LONG).show();
+            Toast toast = Toast.makeText(getContext(),xs + " is a root", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
         } else if (fxi * fxs < 0) {
             double xm = (xi + xs)/2;
             BigDecimal fxmd = fx.with("x", Double.toString(xm)).eval();
@@ -293,22 +346,34 @@ public class FragBisection extends Fragment {
             if (fxm == 0) {
                 Toast toast = Toast.makeText(getContext(),xm + " is root", Toast.LENGTH_LONG);
                 View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
                 view.setBackgroundColor(Color.parseColor("#B3E5FE"));
                 toast.show();
             } else if (error < tolerance) {
                 Toast toast = Toast.makeText(getContext(),xm + " is an aproximation of a root with a tolerance = " + tolerance, Toast.LENGTH_LONG);
                 View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
                 view.setBackgroundColor(Color.parseColor("#B3E5FE"));
                 toast.show();
             } else {
                 Toast toast = Toast.makeText(getContext(),"failed at " + niter + " iterations", Toast.LENGTH_LONG);
                 View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
                 view.setBackgroundColor(Color.parseColor("#B3E5FE"));
                 toast.show();
             }
         } else {
             Toast toast = Toast.makeText(getContext(),"the interval is unsuitable", Toast.LENGTH_LONG);
             View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
             view.setBackgroundColor(Color.parseColor("#B3E5FE"));
             toast.show();
         }

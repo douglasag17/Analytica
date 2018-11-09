@@ -1,5 +1,6 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -23,13 +24,16 @@ public class FragIncremental extends Fragment {
     private EditText txtdelta;
     private EditText txtiters;
     private TextView resultado;
+    private TextView t;
     private Button calculate;
     private Button graph;
+    private Button help;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.frag_incremental, container, false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         txtfunction = v.findViewById(R.id.function);
         txtvalue = v.findViewById(R.id.value);
         txtdelta = v.findViewById(R.id.delta);
@@ -81,9 +85,32 @@ public class FragIncremental extends Fragment {
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
                     View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
                     view.setBackgroundColor(Color.parseColor("#B3E5FE"));
                     toast.show();
                 }
+            }
+        });
+        /**
+         * Help button
+         */
+        final Button help = v.findViewById(R.id.help);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("\nTo Guarantee the existence of a root the function must fulfill 2 conditions:\n" +
+                        "\t\t* \tThe function must be continuous in the interval [a, b]\n" +
+                        "\t\t* \tThe function evaluated at the extremes of the interval must have a sign change f(a)*f(b) < 0\n\n" +
+                        "The tolerance must be positive \n");
+                t.setTextSize(25);
+                builder.show();
             }
         });
         graph = v.findViewById(R.id.graph);
