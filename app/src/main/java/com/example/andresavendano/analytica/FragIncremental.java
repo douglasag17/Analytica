@@ -1,6 +1,7 @@
 package com.example.andresavendano.analytica;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,7 +35,7 @@ public class FragIncremental extends Fragment {
         txtdelta = v.findViewById(R.id.delta);
         txtiters = v.findViewById(R.id.iters);
         resultado = v.findViewById(R.id.textView);
-        calculate = v.findViewById(R.id.bttCalculate);
+        calculate = v.findViewById(R.id.calculate);
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,7 +49,7 @@ public class FragIncremental extends Fragment {
                     double fx0 = fx0d.doubleValue();
                     if (fx0 == 0) {
                         resultado.setText(x0 + " is a root");
-                        resultado.setTextSize(16);
+                        resultado.setTextSize(20);
                         resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                     } else {
                         double x1 = x0 + delta;
@@ -65,20 +66,23 @@ public class FragIncremental extends Fragment {
                         }
                         if (fx1 == 0) {
                             resultado.setText(x1 + " is a root");
-                            resultado.setTextSize(16);
+                            resultado.setTextSize(20);
                             resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                         } else if (fx0 * fx1 < 0) {
-                            resultado.setText("There is a root between " + x0 + " and " + x1);
-                            resultado.setTextSize(16);
+                            resultado.setText("There is a root in [" + x0 + " , " + x1 + "]");
+                            resultado.setTextSize(20);
                             resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                         } else {
                             resultado.setText("failed at " + niter + " iterations");
-                            resultado.setTextSize(16);
+                            resultado.setTextSize(20);
                             resultado.setTextColor(getResources().getColor(R.color.colorAccent));
                         }
                     }
                 } catch (Exception e) {
-                    Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
                 }
             }
         });

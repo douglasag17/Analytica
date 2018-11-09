@@ -10,16 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:isScrollContainer="true"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/fx"
             android:layout_width="40dp"
             android:layout_height="37dp"
             android:layout_alignBottom="@+id/function"
-            android:layout_toStartOf="@+id/textView"
+            android:layout_toLeftOf="@+id/textView"
             android:text="f(x)"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -36,7 +34,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="13dp"
             android:ems="10"
-            android:hint="f(x)"
+            android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -63,10 +61,10 @@
         <TextView
             android:id="@+id/initialvalue"
             android:layout_width="wrap_content"
-            android:layout_height="37dp"
-            android:layout_alignBottom="@+id/value"
-            android:layout_alignStart="@+id/fx"
-            android:text="Initial Value"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/value"
+            android:layout_alignEnd="@+id/fx"
+            android:text="Start"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -76,7 +74,7 @@
 
         <EditText
             android:id="@+id/value"
-            android:layout_width="155dp"
+            android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@+id/function"
             android:layout_alignParentTop="true"
@@ -159,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -173,17 +171,35 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/bttCalculate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Calculate" />
+
             <Button
                 android:id="@+id/graph"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
                 android:text="Graph" />
+
+            <Button
+                android:id="@+id/calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calculate"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:layout_marginLeft="10dp"/>
+
+            <Button
+                android:id="@+id/help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:layout_marginLeft="10dp"
+                android:text="Help" />
+
         </TableRow>
+
     </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
