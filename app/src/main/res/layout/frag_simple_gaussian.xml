@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="1dp"
         android:layout_marginTop="277dp"
-        android:text="Ab"
+        android:text=""
         android:textSize="30sp" />
 
     <TextView

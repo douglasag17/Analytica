@@ -1,5 +1,6 @@
 package com.example.andresavendano.analytica;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -22,6 +23,7 @@ public class FragSimpleGaussian extends Fragment {
     private TableLayout vectorBB;
     private TableLayout vectorX;
     private TableLayout matrixAb;
+    private TextView ab;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class FragSimpleGaussian extends Fragment {
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
         matrixAb = inflaterView.findViewById(R.id.matrixAb);
+        ab = inflaterView.findViewById(R.id.Ab);
         createTable(inflaterView);
         Button button = inflaterView.findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +54,30 @@ public class FragSimpleGaussian extends Fragment {
                 }
             }
         });
+        Button steps = inflaterView.findViewById(R.id.butEtapas);
+        steps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    double[][] example= {{14, 6, -2, 3},
+                            {3, 15, 2, -5},
+                            {-7, 4, -23, 2},
+                            {1, -3, -2, 16}};
+                    Intent intent = new Intent(v.getContext(), StepsActivity.class);
+                    intent.putExtra("parametro",example);
+                    startActivityForResult(intent, 0);
+                } catch (Exception e) {
+                    Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
+                }
+            }
+        });
+
         Button button3 = inflaterView.findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,6 +282,10 @@ public class FragSimpleGaussian extends Fragment {
                     Ab[i][j] = Ab[i][j]-(m*Ab[k][j]);
                 }
             }
+
+
+
+
         }
         matrixAb.removeAllViews();
         // Escribe Ab es matrixAb
@@ -268,6 +299,9 @@ public class FragSimpleGaussian extends Fragment {
                 ed.setTextColor(getResources().getColor(R.color.colorAccent));
                 ed.setText(String.format("%.3f", Ab[v][m])+"");
                 row.addView(ed);
+                ab.setText("Ab");
+                ab.setTextSize(30);
+                //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
             matrixAb.addView(row);
         }
