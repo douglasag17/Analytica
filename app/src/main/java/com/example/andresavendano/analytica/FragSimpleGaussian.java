@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class FragSimpleGaussian extends Fragment {
     double b [];
     private TableLayout table;
     private TableLayout vectorBB;
+    private TableLayout vectorX;
     private TextView resultado;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,6 +31,7 @@ public class FragSimpleGaussian extends Fragment {
         View inflaterView=inflater.inflate(R.layout.frag_simple_gaussian, container, false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
+        vectorX = inflaterView.findViewById(R.id.vectorX);
         resultado = inflaterView.findViewById(R.id.textView2);
         createTable(inflaterView);
         Button button = inflaterView.findViewById(R.id.button2);
@@ -48,38 +51,56 @@ public class FragSimpleGaussian extends Fragment {
                 num++;
                 TableRow edit[]=new TableRow[num];
                 TableRow edit2[]=new TableRow[num];
+                TableRow edit3[]=new TableRow[num];
                 for(int i = 0;i<num-1;i++){
                     TableRow row = (TableRow) table.getChildAt(i);
                     TableRow rowB = (TableRow) vectorBB.getChildAt(i);
+                    TableRow rowX = (TableRow) vectorX.getChildAt(i);
                     edit[i]=row;
                     edit2[i]=rowB;
+                    edit3[i]=rowX;
                 }
                 table.removeAllViews();
                 vectorBB.removeAllViews();
+                vectorX.removeAllViews();
                 for(int j=0; j<num; j++){
                     if(j<num-1) {
                         TableRow row = edit[j];
                         TableRow rowB = edit2[j];
+                        TableRow rowX = edit3[j];
                         EditText editText = new EditText(getContext());
-                        editText.setText("0");
-                        //editText.setHint("0");
+                        //editText.setText("0");
+                        editText.setHint("  0  ");
+                        editText.setGravity(Gravity.CENTER_HORIZONTAL);
+                        //editText.setWidth(170);
                         row.addView(editText);
                         table.addView(row);
                         vectorBB.addView(rowB);
-                    }
-                    else{
+                        vectorX.addView(rowX);
+                    } else {
                         TableRow row = new TableRow(getContext());
                         TableRow rowB = new TableRow(getContext());
+                        TableRow rowX = new TableRow(getContext());
                         EditText editTextB = new EditText(getContext());
-                        editTextB.setText("0");
+                        EditText editTextX = new EditText(getContext());
+                        //editTextB.setText("0");
+                        editTextB.setHint("  0  ");
+                        editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
+                        editTextX.setHint("  X"+num+"  ");
+                        editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
+                        //editTextB.setWidth(170);
                         rowB.addView(editTextB);
+                        rowX.addView(editTextX);
                         for(int i=0;i<num;i++){
                             EditText editText = new EditText(getContext());
-                            editText.setText("0");
-                            //editText.setHint("0");
+                            //editText.setText("0");
+                            editText.setHint("  0  ");
+                            editText.setGravity(Gravity.CENTER_HORIZONTAL);
+                            //editText.setWidth(170);
                             row.addView(editText);
                         }
                         vectorBB.addView(rowB);
+                        vectorX.addView(rowX);
                         table.addView(row);
                     }
                 }
@@ -92,19 +113,25 @@ public class FragSimpleGaussian extends Fragment {
                 num--;
                 TableRow edit[] = new TableRow[num+1];
                 TableRow editB[] = new TableRow[num+1];
+                TableRow editX[] = new TableRow[num+1];
                 for(int i = 0;i<num+1;i++){
                     TableRow row = (TableRow) table.getChildAt(i);
                     TableRow rowB = (TableRow) vectorBB.getChildAt(i);
+                    TableRow rowX = (TableRow) vectorX.getChildAt(i);
                     edit[i]=row;
                     editB[i]=rowB;
+                    editX[i]=rowX;
                 }
                 table.removeAllViews();
                 vectorBB.removeAllViews();
+                vectorX.removeAllViews();
                 for(int j =0;j<num;j++){
                     TableRow row = edit[j];
                     TableRow rowB = editB[j];
+                    TableRow rowX = editX[j];
                     row.removeViewAt(num);
                     vectorBB.addView(rowB);
+                    vectorX.addView(rowX);
                     table.addView(row);
                 }
             }
@@ -120,8 +147,10 @@ public class FragSimpleGaussian extends Fragment {
             for(int i = 0;i<num;i++) {
                 EditText editText = new EditText(getContext());
                 editText.setId(i+j);
-                editText.setText("0");
-                //editText.setHint("0");
+                //editText.setText("0");
+                editText.setHint("  0  ");
+                editText.setGravity(Gravity.CENTER_HORIZONTAL);
+                //editText.setWidth(170);
                 row.addView(editText);
             }
             table.addView(row);
@@ -133,10 +162,28 @@ public class FragSimpleGaussian extends Fragment {
             row.setId(j);
             EditText editText = new EditText(getContext());
             editText.setId(j);
-            editText.setText("0");
-            //editText.setHint("0");
+            //editText.setText("0");
+            editText.setHint("  0  ");
+            editText.setGravity(Gravity.CENTER_HORIZONTAL);
+            //editText.setWidth(170);
             row.addView(editText);
             vectorB.addView(row);
+        }
+
+        TableLayout vectorX = inflaterView.findViewById(R.id.vectorX);
+        int count = 1;
+        for(int j=0; j<num; j++){
+            TableRow row = new TableRow(getContext());
+            row.setId(j);
+            EditText editText = new EditText(getContext());
+            editText.setId(j);
+            //editText.setText("0");
+            editText.setHint("  X"+count+"  ");
+            editText.setGravity(Gravity.CENTER_HORIZONTAL);
+            //editText.setWidth(170);
+            row.addView(editText);
+            vectorX.addView(row);
+            count++;
         }
     }
 
@@ -171,8 +218,12 @@ public class FragSimpleGaussian extends Fragment {
 
         System.out.println("Regressive Substitution");
         for(int i = 0; i < x.length; i++) {
-            System.out.print(x[i] + "  ");
-            resultado.append(x[i]+"  ");
+            TableRow row = (TableRow) vectorX.getChildAt(i);
+            EditText ed = (EditText) row.getChildAt(0);
+            ed.setEnabled(false);
+            ed.setTextColor(getResources().getColor(R.color.colorAccent));
+            ed.setText(String.format("%.3f", x[i])+"");
+            resultado.append(String.format("%.3f", x[i])+"  ");
         }
     }
 
