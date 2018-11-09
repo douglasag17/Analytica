@@ -1,7 +1,6 @@
 package com.example.andresavendano.analytica;
 
-import android.content.Context;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,7 +21,7 @@ public class FragSimpleGaussian extends Fragment {
     private TableLayout table;
     private TableLayout vectorBB;
     private TableLayout vectorX;
-    private TextView resultado;
+    private TableLayout matrixAb;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -32,16 +30,25 @@ public class FragSimpleGaussian extends Fragment {
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
-        resultado = inflaterView.findViewById(R.id.textView2);
+        matrixAb = inflaterView.findViewById(R.id.matrixAb);
         createTable(inflaterView);
         Button button = inflaterView.findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                A = getMatrixA();
-                b = getVectorB();
-                //resultado.setText(b[1]+"");
-                simpleGaussianElimination(A, b);
+                try {
+                    A = getMatrixA();
+                    b = getVectorB();
+                    simpleGaussianElimination(A, b);
+                } catch (Exception e) {
+                    Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
+                }
             }
         });
         Button button3 = inflaterView.findViewById(R.id.button3);
@@ -215,32 +222,32 @@ public class FragSimpleGaussian extends Fragment {
         double [][] U = scallingMatrix(A, b, A.length);
         int B = U.length;
         double x[] = regressiveSubstitution(U, B);
-
-        System.out.println("Regressive Substitution");
+        // Escribe en el vector X Regressive Substitution
         for(int i = 0; i < x.length; i++) {
             TableRow row = (TableRow) vectorX.getChildAt(i);
             EditText ed = (EditText) row.getChildAt(0);
             ed.setEnabled(false);
             ed.setTextColor(getResources().getColor(R.color.colorAccent));
             ed.setText(String.format("%.3f", x[i])+"");
-            resultado.append(String.format("%.3f", x[i])+"  ");
         }
     }
 
     public double[][] scallingMatrix(double A[][], double b[], int n){
         double [][] Ab = augmentMatrix(A, b);
-        if(Ab[0][0] == 0){
-            double a[] = new double[Ab[0].length];
-            System.arraycopy(Ab[0], 0, a, 0, Ab[0].length);
-            for(int i = 1; i < n; i++){
-                if(Ab[i][0] != 0){
-                    System.arraycopy(Ab[i], 0, Ab[0], 0, Ab[0].length); //Ab[0] = Ab[i]
-                    System.arraycopy(a, 0, Ab[i], 0, Ab[0].length);
-                    break;
+        for (int i = 0; i < Ab.length; i++) {
+            if(Ab[i][i] == 0){
+                double a[] = new double[Ab[0].length];
+                System.arraycopy(Ab[i], 0, a, 0, Ab[0].length); // a = Ab[i]
+                for (int j = 1; j < Ab.length; j++) {
+                    if(Ab[j][i] != 0){
+                        System.arraycopy(Ab[j], 0, Ab[i], 0, Ab[0].length); //Ab[i] = Ab[j]
+                        System.arraycopy(a, 0, Ab[j], 0, Ab[0].length); //Ab[j] = a
+                        break;
+                    }
+
                 }
             }
         }
-
         for(int k = 0; k < n; k++){
             for(int i = k+1; i < n; i++){
                 double m = (float)(Ab[i][k])/Ab[k][k];
@@ -249,18 +256,20 @@ public class FragSimpleGaussian extends Fragment {
                 }
             }
         }
-
-        System.out.println("\n Ab");
+        matrixAb.removeAllViews();
+        // Escribe Ab es matrixAb
         for (int v = 0; v < Ab.length; v++) {
-            System.out.print("[");
-            //resultado.append("[");
+            TableRow row = new TableRow(getContext());
+            row.setId(v);
             for (int m = 0; m < Ab[v].length; m++) {
                 System.out.print (Ab[v][m]);
-                //resultado.append(Ab[v][m]+"  ");
-                if (m != Ab[v].length-1) System.out.print("   ");
+                EditText ed = new EditText(getContext());
+                ed.setEnabled(false);
+                ed.setTextColor(getResources().getColor(R.color.colorAccent));
+                ed.setText(String.format("%.3f", Ab[v][m])+"");
+                row.addView(ed);
             }
-            System.out.println("]");
-            //resultado.append("]");
+            matrixAb.addView(row);
         }
         return Ab;
     }
