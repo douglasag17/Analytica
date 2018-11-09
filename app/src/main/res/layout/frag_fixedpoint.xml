@@ -1,7 +1,312 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Tolerance"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#11f">
+    android:background="#0000">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/fx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/function"
+            android:layout_alignLeft="@+id/leftBracket"
+            android:layout_marginLeft="15dp"
+            android:text="f(x)"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/gx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/fx"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/fx"
+            android:layout_marginTop="65dp"
+            android:text="g(x)"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/functionG"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/function"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/gx"
+            android:layout_toRightOf="@id/gx"
+            android:hint="(sin(x)+e^2*x-4)/log(x^2)"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/moreTolerance"
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:layout_alignBottom="@+id/radioGroup"
+            android:layout_marginRight="8dp"
+            android:layout_toEndOf="@id/tolerance"
+            android:layout_toRightOf="@id/tolerance"
+            android:text="+" />
+
+        <EditText
+            android:id="@+id/function"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_toEndOf="@+id/fx"
+            android:layout_toRightOf="@+id/fx"
+            android:ems="10"
+            android:hint="(sin(x)+e^2*x-4)/log(x^2)"
+            android:inputType="textPersonName"
+            android:textSize="18sp" />
+        <TextView
+            android:id="@+id/Xu"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_below="@id/gx"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="27dp"
+            android:layout_toEndOf="@id/niter"
+            android:text="xu"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/xi"
+            app:layout_constraintVertical_bias="0.06"
+            android:layout_toRightOf="@id/niter" />
+
+        <EditText
+            android:id="@+id/xu"
+            android:layout_width="53dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Iterations"
+            android:layout_toEndOf="@id/Xu"
+            android:layout_toRightOf="@id/Xu"
+            android:ems="10"
+            android:hint="xu"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/comma"
+            app:layout_constraintTop_toBottomOf="@+id/function"
+            app:layout_constraintVertical_bias="0.041" />
+
+        <TextView
+            android:id="@+id/Iterations"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_below="@id/gx"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="27dp"
+            android:text="Iterations"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/xi"
+            app:layout_constraintVertical_bias="0.06" />
+
+        <EditText
+            android:id="@+id/niter"
+            android:layout_width="87dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/Iterations"
+            android:layout_toRightOf="@id/Iterations"
+            android:ems="10"
+            android:hint="#"
+            android:inputType="textEmailSubject|number" />
+
+        <Spinner
+            android:id="@+id/tolerance"
+            android:layout_width="124dp"
+            android:layout_height="64dp"
+            android:layout_alignBottom="@+id/radioGroup"
+
+            android:layout_toRightOf="@id/radioGroup"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Iterations"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="5dp">
+
+            <RadioButton
+                android:id="@+id/absoluteError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:checked="false"
+                android:text="Absolute Error"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/relativeError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:buttonTint="@color/colorPrimaryDark"
+                android:text="Relative Error"
+                android:textSize="18sp" />
+        </RadioGroup>
+
+        <ScrollView
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radioGroup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="55dp"
+            android:gravity="center"
+            android:scrollbars="vertical">
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+
+                <TableLayout
+                    android:id="@+id/tableFixedPoint"
+                    android:layout_width="368dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TableRow
+                        android:id="@+id/rowsFR"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/titleIterations"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text=" "
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/titleXi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text=" "
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/titleXu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text=" "
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/titleXm"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text=" "
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/titleEval"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text=" "
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/titleError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" "
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+                    </TableRow>
+                </TableLayout>
+            </HorizontalScrollView>
+        </ScrollView>
+    </RelativeLayout>
+
+    <TableLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="3dip">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/graph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:text="Graph" />
+
+            <Button
+                android:id="@+id/calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calculate"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:layout_marginLeft="10dp"/>
+
+            <Button
+                android:id="@+id/help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bk_boton_plano"
+                android:layout_marginLeft="10dp"
+                android:text="Help" />
+
+        </TableRow>
+
+    </TableLayout>
 
 </android.support.constraint.ConstraintLayout>
