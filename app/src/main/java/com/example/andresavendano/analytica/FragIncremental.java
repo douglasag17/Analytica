@@ -118,6 +118,8 @@ public class FragIncremental extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), GraphActivity.class);
+                String[] funciones={txtfunction.getText().toString()};
+                intent.putExtra("function",funciones);
                 startActivityForResult(intent, 0);
             }
         });

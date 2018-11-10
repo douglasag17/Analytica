@@ -195,6 +195,8 @@ public class FragFalsePosition extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), GraphActivity.class);
+                String[] funciones={function.getText().toString()};
+                intent.putExtra("function",funciones);
                 startActivityForResult(intent, 0);
             }
         });

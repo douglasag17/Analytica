@@ -18,7 +18,7 @@ public class GraphActivity extends AppCompatActivity {
         GraphView graph = findViewById(R.id.graph);
 
         String[] functions = getIntent().getExtras().getStringArray("function");
-        for(int j =0;j<2;j++) {
+        for(int j =0;j<functions.length;j++) {
             double x=-50;
             LineGraphSeries<DataPoint> series= new LineGraphSeries<DataPoint>();
             String function=functions[j];
