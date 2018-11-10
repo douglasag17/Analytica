@@ -16,6 +16,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import io.github.kexanie.library.MathView;
+
 
 public class FragDividedDifferences extends Fragment {
     int num = 3;
@@ -24,7 +26,8 @@ public class FragDividedDifferences extends Fragment {
     private TableLayout vectorX;
     private TableLayout vectorFx;
     private EditText edtEval;
-    private TextView polinomio;
+    private MathView polinomio;
+    private MathView answer;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class FragDividedDifferences extends Fragment {
         vectorX = inflaterView.findViewById(R.id.vectorX);
         vectorFx = inflaterView.findViewById(R.id.vectorFx);
         polinomio = inflaterView.findViewById(R.id.polinomio);
+        answer = inflaterView.findViewById(R.id.answer);
         edtEval = inflaterView.findViewById(R.id.edtEval);
         createTable(inflaterView);
 
@@ -227,9 +231,9 @@ public class FragDividedDifferences extends Fragment {
             result += table[i][i]*aux;
         }
         System.out.println(pol);
-        polinomio.setText(pol);
+        polinomio.setText("\\("+pol+"\\)\t");
         System.out.println("--------------" + '\n');
         System.out.println("P(" + value + ") = " + result);
-        polinomio.append("\nP(" + value + ") = " + result);
+        answer.setText("\\(P(" + value + ") = " + result+"\\)");
     }
 }
