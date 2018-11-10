@@ -44,16 +44,13 @@ public class GraphFragment extends Fragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View inflatedView =inflater.inflate(R.layout.fragment_graph,null);
-        String[] meses = {"sin(x)","cos(x)","e^x","log(x)","sin(cos(x))+log(x^2)","x","x^2","x^3"};
         final AutoCompleteTextView text=inflatedView.findViewById(R.id.lol);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,meses);
-        text.setAdapter(adapter);
         
         final TextView tv= inflatedView.findViewById(R.id.tv);
         Button button= (Button) inflatedView.findViewById(R.id.button);
         final GraphView graph= (GraphView)inflatedView.findViewById(R.id.graph);
         final EditText xi= inflatedView.findViewById(R.id.xi);
-        final EditText xu= inflatedView.findViewById(R.id.xu);
+        final EditText xu= inflatedView.findViewById(R.id.xug);
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
@@ -63,23 +60,23 @@ public class GraphFragment extends Fragment{
                 Thread[] cores = new Thread[numCores];
                 HiloChart[] values = new HiloChart[numCores];
                 tv.setText(Integer.toString(numCores));
-                int inicio=0;
-                int cuanto=0;
+                double inicio=-50;
+                double cuanto=50;
 
                 if(checkSyntax(function)==true){
-                    if(xu.getText().toString()=="" && xi.getText().toString()==""){
+                    if(xu.getText().toString().trim().length() == 0 && xi.getText().toString().trim().length() == 0){
                         inicio=-20;
-                        cuanto=20;
+                        cuanto=40/numCores;
                     }
                     else{
                         inicio = Integer.parseInt(xi.getText().toString());
-                        cuanto = (Integer.parseInt(xu.getText().toString())+Math.abs(Integer.parseInt(xi.getText().toString())))/numCores;
+                        cuanto = (Math.abs(Double.parseDouble(xu.getText().toString()))+Math.abs(Double.parseDouble(xi.getText().toString())))/numCores;
 
                     }
                     List<LineGraphSeries<DataPoint>> listSeries = new LinkedList<>();
                     for(int num=0;num<numCores;num++) {
                         if (values[num]==null) {
-                            //crear eeedd para guardar los hilos y lo otro
+                            //crear eedd para guardar los hilos y lo otro
                             values[num] = new HiloChart( function, inicio, inicio + cuanto);
                             inicio = inicio + cuanto;
                             cores[num] = new Thread(values[num]);
@@ -123,8 +120,6 @@ public class GraphFragment extends Fragment{
                     graph.getViewport().setScalable(true); // enables horizontal zooming and scrolling
                     graph.getViewport().setScalableY(true);
                     for(int num=0;num<numCores;num++){
-                        //GraphHiloChart gafi= new GraphHiloChart(listSeries.get(num),inflatedView);
-                        //new Thread(gafi).start();
                         graph.addSeries(listSeries.get(num));
 
                     }
@@ -214,7 +209,7 @@ public class GraphFragment extends Fragment{
             series = new LineGraphSeries<DataPoint>();
             Expression expression = new Expression(function);
             while(this.x<this.end) {
-                x = x + 0.1;
+                x = x + 0.01;
                 try{
                     double y = expression.setVariable("x", String.valueOf(x)).eval().doubleValue();
                     series.appendData(new DataPoint(x, y), true, 500000);

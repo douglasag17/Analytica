@@ -79,7 +79,7 @@
                     android:layout_marginLeft="76dp" />
 
                 <EditText
-                    android:id="@+id/xu"
+                    android:id="@+id/xug"
                     android:layout_width="53dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/function"
