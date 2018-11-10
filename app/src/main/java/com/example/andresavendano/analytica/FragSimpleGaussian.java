@@ -15,6 +15,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FragSimpleGaussian extends Fragment {
     int num = 3;
     double A [][];
@@ -59,12 +61,19 @@ public class FragSimpleGaussian extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    double[][] example= {{14, 6, -2, 3},
-                            {3, 15, 2, -5},
-                            {-7, 4, -23, 2},
-                            {1, -3, -2, 16}};
+                    Double a[][] = {{14.0, 6.0, -2.0, 3.0},
+                                    {3.0, 15.0, 2.0, -5.0},
+                                    {-7.0, 4.0, -23.0, 2.0},
+                                    {1.0, -3.0, -2.0, 16.0}};
+                    Double b[][] = {{14.0, 6.0, -2.0, 3.0},
+                            {3.0, 15.0, 2.0, -5.0},
+                            {-7.0, 4.0, -23.0, 2.0},
+                            {1.0, -3.0, -2.0, 16.0}};
                     Intent intent = new Intent(v.getContext(), StepsActivity.class);
-                    intent.putExtra("parametro",example);
+                    ArrayList<Double[][]> myList = new ArrayList<Double[][]>();
+                    myList.add(a);
+                    myList.add(b);
+                    intent.putExtra("mylist", myList);
                     startActivityForResult(intent, 0);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
