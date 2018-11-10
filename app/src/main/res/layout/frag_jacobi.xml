@@ -45,8 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/scrollView"
         android:layout_alignEnd="@+id/butHelp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="-51dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="-82dp"
         android:text="Initial x"
         android:textSize="30sp" />
 
@@ -123,7 +123,9 @@
         android:layout_width="60dp"
         android:layout_height="200dp"
         android:layout_below="@+id/button3"
-        android:layout_alignStart="@+id/scrollView3">
+        android:layout_alignStart="@+id/scrollView3"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp">
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -180,5 +182,71 @@
         android:background="@drawable/bk_boton_plano"
         android:text="Help"
         android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/Iterations"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignEnd="@+id/button4"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="224dp"
+        android:text="Iterations"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/niter"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Iterations"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="-6dp"
+        android:layout_toEndOf="@+id/button4"
+        android:hint="#"
+        android:inputType="textEmailSubject|number" />
+
+    <Button
+        android:id="@+id/moreTolerance"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
+        android:layout_alignEnd="@+id/button2"
+        android:layout_alignBottom="@+id/tolerance"
+        android:text="+" />
+
+    <Spinner
+        android:id="@+id/tolerance"
+        android:layout_width="124dp"
+        android:layout_height="64dp"
+        android:layout_alignStart="@+id/Iterations"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="96dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Iterations"
+        android:layout_alignStart="@+id/Iterations"
+        android:layout_marginTop="-224dp">
+
+        <RadioButton
+            android:id="@+id/absoluteError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:checked="false"
+            android:text="Absolute Error"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/relativeError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:text="Relative Error"
+            android:textSize="18sp" />
+    </RadioGroup>
+
 
 </RelativeLayout>

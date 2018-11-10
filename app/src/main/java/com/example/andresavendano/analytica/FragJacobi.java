@@ -1,6 +1,8 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -10,13 +12,17 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 
 public class FragJacobi extends Fragment {
     int num = 3;
@@ -27,15 +33,23 @@ public class FragJacobi extends Fragment {
     private TableLayout vectorBB;
     private TableLayout vectorX;
     private TableLayout vectorX0;
+    private EditText iterations;
+    Spinner tol;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> values;
+    private Double tolerance;
+    private int errorType;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_jacobi, container, false);
+        final View newTol = inflater.inflate(R.layout.new_tolerance,  (ViewGroup) getView(), false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
         vectorX0 = inflaterView.findViewById(R.id.vectorX0);
+        iterations = inflaterView.findViewById(R.id.niter);
         createTable(inflaterView);
         Button button = inflaterView.findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +59,10 @@ public class FragJacobi extends Fragment {
                     A = getMatrixA();
                     b = getVectorB();
                     x0 = getVectorX0();
-                    //simpleGaussianElimination(A, b);
+                    int n = A.length;
+                    int niter = Integer.parseInt(iterations.getText().toString());
+                    tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
+                    jacobi(A, b, x0, tolerance, niter, n);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
                     View view = toast.getView();
@@ -110,6 +127,7 @@ public class FragJacobi extends Fragment {
                         editTextX0.setHint("  0  ");
                         editTextX0.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
+                        editTextX.setEnabled(false);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -164,6 +182,78 @@ public class FragJacobi extends Fragment {
                     vectorX.addView(rowX);
                     table.addView(row);
                     vectorX0.addView(rowX0);
+                }
+            }
+        });
+        /**
+         * This code is for the tolerance
+         */
+        //Determinated Tolerance
+        values = new ArrayList<String>();
+        values.add("0.5e-3"); values.add("1e-3"); values.add("0.5e-4"); values.add("1e-4"); values.add("0.5e-5");
+        values.add("1e-5"); values.add("0.5e-6"); values.add("1e-6"); values.add("0.5e-7"); values.add("1e-7");
+        tol = inflaterView.findViewById(R.id.tolerance);
+        adapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, values);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        tol.setAdapter(adapter);
+        //Add new tolerance
+        final Button moreTol = inflaterView.findViewById(R.id.moreTolerance);
+        moreTol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Type the new tolerance");
+                final EditText input =  newTol.findViewById(R.id.input);
+                if(newTol.getParent()!=null)
+                    ((ViewGroup)newTol.getParent()).removeView(newTol);
+                builder.setView(newTol);
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        String t = input.getText().toString();
+                        if(!t.isEmpty()) {
+                            if(Double.parseDouble(t) > 0) {
+                                if (!values.contains(t)) {
+                                    values.add(t);
+                                    int spinnerPosition = adapter.getPosition(t);
+                                    tol.setSelection(spinnerPosition);
+                                }
+                            }
+                        }else{
+                            Toast toast = Toast.makeText(getContext(),"Complete the field.", Toast.LENGTH_LONG);
+                            View view = toast.getView();
+                            TextView text = (TextView) view.findViewById(android.R.id.message);
+                            text.setTextColor(Color.BLACK);
+                            text.setGravity(1);
+                            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                            toast.show();
+                        }
+                    }
+                });
+                builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+            }
+        });
+        /**
+         * Error Type
+         */
+        RadioGroup radioGroup = inflaterView.findViewById(R.id.radioGroup);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // checkedId is the RadioButton selected
+                switch(checkedId) {
+                    case R.id.absoluteError:
+                        errorType = 1;
+                        break;
+                    case R.id.relativeError:
+                        errorType = 0;
+                        break;
                 }
             }
         });
@@ -266,5 +356,72 @@ public class FragJacobi extends Fragment {
             x0[i] = Double.valueOf(f.getText().toString());
         }
         return x0;
+    }
+
+    public void jacobi(double[][] A, double[] b, double[] x0, double tol, int niter, int n){
+        int count = 0;
+        double error = tol + 1;
+        while(error > tol && count < niter){
+            double x1[] = newJacobi(A, b, x0, n);
+            error = norm(substraction(x1,x0));
+            x0 = x1;
+            count++;
+            // Escribe en el vector X Regressive Substitution
+            for(int i = 0; i < x0.length; i++) {
+                TableRow row = (TableRow) vectorX.getChildAt(i);
+                EditText ed = (EditText) row.getChildAt(0);
+                ed.setEnabled(false);
+                ed.setTextColor(getResources().getColor(R.color.colorAccent));
+                ed.setText(String.format("%.3f", x0[i])+"");
+            }
+        }
+        if(error < tol){
+            Toast toast = Toast.makeText(getContext(),"x is an approximation with tol = " + tol, Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
+        }else{
+            Toast toast = Toast.makeText(getContext(),"Failed at " + niter + " iterations", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
+        }
+    }
+
+    public static double[] newJacobi(double[][] A, double[] b, double[] x0, int n){
+        double[] x1 = new double[x0.length];
+
+        for(int i = 0; i < n; i++) {
+            double s = 0;
+            for (int j = 0; j < n; j++) {
+                if(i != j){
+                    s += A[i][j]*x0[j];
+                }
+            }
+            x1[i] = (b[i]-s)/A[i][i];
+        }
+        return  x1;
+    }
+
+    public double norm(double[] x1){
+        double norm = 0;
+        for(int i = 0; i < x1.length; i++) {
+            norm += Math.pow(x1[i], 2);
+        }
+        return Math.sqrt(norm);
+    }
+
+    public double[] substraction(double[] x1, double[] x0){
+        double[] result = new double[x1.length];
+        for(int i = 0; i < x1.length; i++) {
+            result[i] = x1[i] - x0[i];
+        }
+        return result;
     }
 }
