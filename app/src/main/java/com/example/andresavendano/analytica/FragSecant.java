@@ -174,11 +174,6 @@ public class FragSecant extends Fragment {
                     Double xu = Double.parseDouble(xupp.getText().toString());
                     int niter = Integer.parseInt(iterations.getText().toString());
                     tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
-                    System.out.println(fx);
-                    System.out.println(xi);
-                    System.out.println(xu);
-                    System.out.println(niter);
-                    System.out.println(tolerance);
                     while (table.getChildCount() > 1) {
                         TableRow row =  (TableRow)table.getChildAt(1);
                         table.removeView(row);
