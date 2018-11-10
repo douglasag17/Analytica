@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
@@ -51,6 +52,8 @@ public class GraphFragment extends Fragment{
         final TextView tv= inflatedView.findViewById(R.id.tv);
         Button button= (Button) inflatedView.findViewById(R.id.button);
         final GraphView graph= (GraphView)inflatedView.findViewById(R.id.graph);
+        final EditText xi= inflatedView.findViewById(R.id.xi);
+        final EditText xu= inflatedView.findViewById(R.id.xu);
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
@@ -60,10 +63,19 @@ public class GraphFragment extends Fragment{
                 Thread[] cores = new Thread[numCores];
                 HiloChart[] values = new HiloChart[numCores];
                 tv.setText(Integer.toString(numCores));
+                int inicio=0;
+                int cuanto=0;
 
                 if(checkSyntax(function)==true){
-                    int inicio =-200;
-                    int cuanto = 400 / numCores;
+                    if(xu.getText().toString()=="" && xi.getText().toString()==""){
+                        inicio=-20;
+                        cuanto=20;
+                    }
+                    else{
+                        inicio = Integer.parseInt(xi.getText().toString());
+                        cuanto = (Integer.parseInt(xu.getText().toString())+Math.abs(Integer.parseInt(xi.getText().toString())))/numCores;
+
+                    }
                     List<LineGraphSeries<DataPoint>> listSeries = new LinkedList<>();
                     for(int num=0;num<numCores;num++) {
                         if (values[num]==null) {
