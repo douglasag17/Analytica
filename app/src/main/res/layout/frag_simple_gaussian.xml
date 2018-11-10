@@ -83,8 +83,9 @@
         android:id="@+id/scrollView2"
         android:layout_width="60dp"
         android:layout_height="200dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
         android:layout_toEndOf="@+id/scrollView3"
         android:layout_toRightOf="@+id/scrollView3">
         <HorizontalScrollView
@@ -176,8 +177,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="253dp"
-        android:layout_marginLeft="253dp"
+        android:layout_marginStart="247dp"
+        android:layout_marginLeft="247dp"
         android:layout_marginTop="519dp"
         android:background="@drawable/bk_boton_plano"
         android:text="Help"
@@ -196,5 +197,4 @@
         android:background="@drawable/bk_boton_plano"
         android:text="Steps"
         android:textColor="@android:color/white" />
-
     </RelativeLayout>

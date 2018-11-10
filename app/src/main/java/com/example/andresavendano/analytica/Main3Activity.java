@@ -159,10 +159,10 @@ public class Main3Activity extends AppCompatActivity {
                     fragment=new FragTotalPivoting();
                     break;
                 case 3:
-                    fragment=new FragLUPartial();
+                    fragment=new FragLUSimpleGaussian();
                     break;
                 case 4:
-                    fragment=new FragLUSimpleGaussian();
+                    fragment=new FragLUPartial();
                     break;
                 case 5:
                     fragment=new FragDirectFactorization();

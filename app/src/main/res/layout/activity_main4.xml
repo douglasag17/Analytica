@@ -30,7 +30,7 @@
             app:tabGravity="fill"
             app:tabMode="scrollable"
             app:tabTextColor="@color/white"
-            app:tabIndicatorColor="@color/yellow"
+            app:tabIndicatorColor="#FF8A14"
             >
 
             <android.support.design.widget.TabItem
