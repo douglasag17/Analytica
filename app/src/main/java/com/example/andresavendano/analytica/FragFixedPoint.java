@@ -143,10 +143,11 @@ public class FragFixedPoint extends Fragment {
                 if (helpView.getParent() != null)
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
-                t.setText("\nTo Guarantee the existence of a root the function must fulfill 2 conditions:\n" +
-                        "\t\t* \tThe function must be continuous in the interval [a, b]\n" +
-                        "\t\t* \tThe function evaluated at the extremes of the interval must have a sign change f(a)*f(b) < 0\n\n" +
-                        "The tolerance must be positive \n");
+                t.setText("\nA good fixed point function must fulfill the next 3 conditions to ensure that it converges to a single fixed point.\n" +
+                        "\t * \t g must be  a continuous function  in the interval [a, b]\n" +
+                        "\t * \t g(x) ∈ [a, b] for all x ∈ [a, b]\n" +
+                        "\t * \t g’(x) exists in every element of [a, b] with the property |g’(x)| <= K < 1  for all x ∈ [a, b]\n\n" +
+                        "The tolerance must be positive");
                 t.setTextSize(25);
                 builder.show();
             }
