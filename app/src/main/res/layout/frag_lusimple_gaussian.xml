@@ -56,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/button2"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="-32dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="-92dp"
         android:text="x"
         android:textSize="30sp" />
 
@@ -67,8 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/button2"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="105dp"
-        android:layout_marginEnd="-76dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="-136dp"
         android:text="="
         android:textSize="30sp" />
 
