@@ -303,7 +303,7 @@ public class FragFalsePosition extends Fragment {
                 if(errorType == 1) {
                     error = Math.abs(xm - xaux);
                 } else {
-                    error = Math.abs((xm - xaux)/xaux);
+                    error = Math.abs((xm - xaux)/xm);
                 }
                 count++;
                 TableRow fila1 = new TableRow(getContext());

@@ -147,7 +147,7 @@ public class FragNewton extends Fragment {
                 if (helpView.getParent() != null)
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
-                t.setText("\nA good fixed point function must fulfill the next 3 conditions to ensure that it converges to a single fixed point.\n" +
+                t.setText("\nTo ensure convergence, Newton must fulfill the following conditions:\n" +
                         "\t * \t g must be  a continuous function  in the interval [a, b]\n" +
                         "\t * \t g(x) ∈ [a, b] for all x ∈ [a, b]\n" +
                         "\t * \t g’(x) exists in every element of [a, b] with the property |g’(x)| <= K < 1  for all x ∈ [a, b]\n\n" +
@@ -267,7 +267,7 @@ public class FragNewton extends Fragment {
             if(errorType == 1) {
                 error = Math.abs(xn - xi);
             } else {
-                error = Math.abs((xn - xi)/xi);
+                error = Math.abs((xn - xi)/xn);
             }
             xi = xn;
             count++;
