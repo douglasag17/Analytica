@@ -2,36 +2,110 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:isScrollContainer="true">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:isScrollContainer="true">
-    <ImageView
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_marginLeft="85dp"
-        android:src="@drawable/logo" />
 
     <TextView
-        android:layout_width="140dp"
-        android:layout_height="72dp"
-        android:layout_marginLeft="86dp"
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="208dp"
+        android:gravity="center"
+        android:text="This app was developed with the purpose of helping students that are going to study this subject in future semesters."
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="196dp"
         android:fontFamily="@font/fontlogo"
         android:text="Analytica"
         android:textColor="#111"
         android:textSize="35dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        android:textColor="#111"
-        android:textSize="20dp" />
-    </android.support.v7.widget.LinearLayoutCompat>
-    </ScrollView>
+        android:layout_marginTop="18dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="160dp"
+        android:text="Team"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_below="@+id/textView3"
+        android:layout_marginTop="-160dp"
+        android:text="Douglas Ardila"
+        android:textColor="@android:color/background_dark"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="121dp"
+        android:layout_marginStart="36dp"
+        android:text="Andrés Felipe Avendaño"
+        android:textColor="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView5"
+        android:layout_toEndOf="@+id/textView3"
+        android:text="Felipe Macías"
+        android:textColor="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_toEndOf="@+id/textView3"
+        android:text="Camila White"
+        android:textColor="@android:color/background_dark" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_marginBottom="65dp"
+        android:text="Website"
+        android:textColor="@android:color/holo_blue_light"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="96dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="-65dp"
+        android:autoLink="web"
+        android:text="@string/Analytica"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
 </RelativeLayout>
