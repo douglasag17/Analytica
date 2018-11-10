@@ -298,7 +298,11 @@ public class FragFalsePosition extends Fragment {
                 double xaux = xm;
                 xm = xi - ((fxi * (xs-xi))/(fxs - fxi));
                 fxm = fx.with("x", Double.toString(xm)).eval().doubleValue();
-                error = Math.abs(xm - xaux);
+                if(errorType == 1) {
+                    error = Math.abs(xm - xaux);
+                } else {
+                    error = Math.abs((xm - xaux)/xaux);
+                }
                 count++;
                 TableRow fila1 = new TableRow(getContext());
                 TextView tv_col11 = new TextView(getContext());
