@@ -65,15 +65,10 @@ public class FragVandermonde extends Fragment {
                 for(int j=0; j<num; j++){
                     if(j<num-1) {
                         TableRow row = edit[j];
-                        EditText editText = new EditText(getContext());
-                        editText.setHint("  0  ");
-                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
-                        editText.setGravity(Gravity.CENTER_HORIZONTAL);
-                        row.addView(editText);
                         tablePoints.addView(row);
                     } else {
                         TableRow row = new TableRow(getContext());
-                        for(int i=0;i<num;i++){
+                        for(int i=0;i<2;i++){
                             EditText editText = new EditText(getContext());
                             editText.setHint("  0  ");
                             editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
@@ -98,7 +93,6 @@ public class FragVandermonde extends Fragment {
                 tablePoints.removeAllViews();
                 for(int j =0;j<num;j++){
                     TableRow row = edit[j];
-                    row.removeViewAt(num);
                     tablePoints.addView(row);
                 }
             }
