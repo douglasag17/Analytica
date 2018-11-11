@@ -64,14 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/value"
-            android:layout_alignEnd="@+id/fx"
             android:text="Start"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:layout_alignLeft="@+id/fx" />
 
         <EditText
             android:id="@+id/value"
@@ -84,26 +84,22 @@
             android:ems="10"
             android:hint="x"
             android:inputType="numberDecimal|numberSigned"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.562"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.221" />
+            android:layout_alignLeft="@+id/iters"
+            android:layout_alignRight="@+id/function" />
 
         <TextView
             android:id="@+id/Deltaaa"
             android:layout_width="56dp"
             android:layout_height="39dp"
             android:layout_alignBottom="@+id/delta"
-            android:layout_alignStart="@+id/fx"
             android:text="Delta"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/xi"
-            app:layout_constraintVertical_bias="0.06" />
+            app:layout_constraintVertical_bias="0.06"
+            android:layout_alignLeft="@+id/fx" />
 
         <EditText
             android:id="@+id/delta"
@@ -121,27 +117,28 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.334" />
+            app:layout_constraintVertical_bias="0.334"
+            android:layout_alignLeft="@+id/iters"
+            android:layout_alignRight="@+id/function" />
 
         <TextView
             android:id="@+id/Iterations"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_alignBottom="@+id/iters"
-            android:layout_alignStart="@+id/fx"
             android:text="Iterations"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/xi"
-            app:layout_constraintVertical_bias="0.06" />
+            app:layout_constraintVertical_bias="0.06"
+            android:layout_alignLeft="@+id/fx" />
 
         <EditText
             android:id="@+id/iters"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/function"
             android:layout_alignParentTop="true"
             android:layout_marginTop="185dp"
             android:ems="10"
@@ -152,7 +149,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.451" />
+            app:layout_constraintVertical_bias="0.451"
+            android:layout_alignRight="@+id/function" />
     </RelativeLayout>
 
     <TableLayout

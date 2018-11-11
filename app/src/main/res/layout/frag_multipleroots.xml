@@ -92,12 +92,9 @@
             android:id="@+id/moreTolerance"
             android:layout_width="40dp"
             android:layout_height="38dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="248dp"
             android:text="+"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="41dp" />
+            android:layout_toRightOf="@+id/tolerance"
+            android:layout_alignBottom="@+id/tolerance"/>
 
 
         <TextView
@@ -112,8 +109,8 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_alignBaseline="@+id/xa"
             app:layout_constraintVertical_bias="0.06"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="150dp" />
+            android:layout_toRightOf="@+id/niter"
+            android:layout_marginLeft="10dp"/>
 
         <EditText
             android:id="@+id/xa"
@@ -128,7 +125,7 @@
             app:layout_constraintStart_toEndOf="@+id/comma"
             app:layout_constraintTop_toBottomOf="@+id/function"
             app:layout_constraintVertical_bias="0.041"
-            android:layout_toLeftOf="@+id/moreTolerance" />
+            android:layout_toRightOf="@+id/Xa" />
 
         <TextView
             android:id="@+id/Iterations"
@@ -162,8 +159,7 @@
             android:layout_height="64dp"
             android:layout_below="@+id/Iterations"
             app:layout_constraintStart_toEndOf="@+id/radioGroup"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="100dp" />
+            android:layout_toRightOf="@+id/radioGroup"/>
 
         <RadioGroup
             android:id="@+id/radioGroup"
