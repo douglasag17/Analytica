@@ -290,6 +290,7 @@ public class FragSimpleGaussian extends Fragment {
     }
 
     public Double[][] scallingMatrix(double A[][], double b[], int n){
+        stepsMatrix.clear();
         Double [][] Ab = augmentMatrix(A, b);
         for (int i = 0; i < A.length; i++) {
             if(A[i][i] == 0){
@@ -305,14 +306,15 @@ public class FragSimpleGaussian extends Fragment {
                 }
             }
         }
-        for(int k = 0; k < n; k++){
+        for(int k = 0; k < n-1; k++){
             for(int i = k+1; i < n; i++){
                 double m = (Ab[i][k])/Ab[k][k];
                 for(int j = 0; j < n+1; j++){
                     Ab[i][j] = Ab[i][j]-(m*Ab[k][j]);
                 }
-                stepsMatrix.add(Ab);
             }
+            Double[][] matrixCopy = copy(Ab);
+            stepsMatrix.add(matrixCopy);
         }
         matrixAb.removeAllViews();
         // Escribe Ab es matrixAb
@@ -360,5 +362,15 @@ public class FragSimpleGaussian extends Fragment {
             x[i-1] = (Ab[i-1][n]-sum)/(double)(Ab[i-1][i-1]);
         }
         return x;
+    }
+
+    public Double[][] copy(Double[][] Ab){
+        Double[][] matrix = new Double[Ab.length][Ab[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = Ab[i][j];
+            }
+        }
+        return matrix;
     }
 }

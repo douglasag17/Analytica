@@ -19,6 +19,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FragPartialPivoting extends Fragment {
 
     int num = 3;
@@ -30,6 +32,8 @@ public class FragPartialPivoting extends Fragment {
     private TableLayout matrixAb;
     private TextView ab;
     private TextView t;
+    private ArrayList<Double[][]> stepsMatrix = new ArrayList<>();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,12 +70,8 @@ public class FragPartialPivoting extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    double[][] example= {{14, 6, -2, 3},
-                            {3, 15, 2, -5},
-                            {-7, 4, -23, 2},
-                            {1, -3, -2, 16}};
                     Intent intent = new Intent(v.getContext(), StepsActivity.class);
-                    intent.putExtra("parametro",example);
+                    intent.putExtra("stepsMatrix",stepsMatrix);
                     startActivityForResult(intent, 0);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
@@ -280,8 +280,9 @@ public class FragPartialPivoting extends Fragment {
     }
 
     public void gaussianElimination(double [][] A, double [] b) {
+        stepsMatrix.clear();
         int n = A.length;
-        double Ab[][] = augmentMatrix(A, b);
+        Double Ab[][] = augmentMatrix(A, b);
 
         for(int k = 0; k < n-1; k++) {
             Ab = partialPivoting(Ab, n, k);
@@ -291,6 +292,8 @@ public class FragPartialPivoting extends Fragment {
                     Ab[i][j] -=  mult*Ab[k][j];
                 }
             }
+            Double[][] matrixCopy = copy(Ab);
+            stepsMatrix.add(matrixCopy);
         }
         double x[] = regressiveSubstitution(Ab, Ab.length);
         // Escribe en el vector X Regressive Substitution
@@ -322,7 +325,7 @@ public class FragPartialPivoting extends Fragment {
         }
     }
 
-    public double[][] partialPivoting(double Ab[][], int n, int k){
+    public Double[][] partialPivoting(Double Ab[][], int n, int k){
         double maxi = Math.abs(Ab[k][k]);
         int maxiRow = k;
         for(int s = k; s < n; s++) {
@@ -332,7 +335,13 @@ public class FragPartialPivoting extends Fragment {
             }
         }
         if (maxi == 0) {
-            System.out.println("The system has no solution");
+            Toast toast = Toast.makeText(getContext(),"The system has no solution", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
         } else {
             if(maxiRow != k) {
                 Ab = exchangeRows(Ab, maxiRow, k);
@@ -342,7 +351,7 @@ public class FragPartialPivoting extends Fragment {
         return Ab;
     }
 
-    public double[][] exchangeRows(double [][]Ab, int maxiRow, int k) {
+    public Double[][] exchangeRows(Double [][]Ab, int maxiRow, int k) {
         double aux;
         for(int i = 0; i < Ab[0].length; i++) {
             aux = Ab[k][i];
@@ -352,8 +361,8 @@ public class FragPartialPivoting extends Fragment {
         return Ab;
     }
 
-    public double[][] augmentMatrix(double A[][], double b[]){
-        double result[][] = new double[A.length][A.length+1];
+    public Double[][] augmentMatrix(double A[][], double b[]){
+        Double result[][] = new Double[A.length][A.length+1];
         for(int i = 0; i < result.length; i++){
             for(int j = 0; j < result[0].length; j++){
                 if(j < A.length){
@@ -366,7 +375,7 @@ public class FragPartialPivoting extends Fragment {
         return result;
     }
 
-    public double[] regressiveSubstitution(double Ab[][], int n){
+    public double[] regressiveSubstitution(Double Ab[][], int n){
         double x[] = new double[n];
         x[n-1] = Ab[n-1][n]/(double)Ab[n-1][n-1];
         for(int i = n-1; i > 0; i--){
@@ -374,8 +383,18 @@ public class FragPartialPivoting extends Fragment {
             for(int p = i + 1; p < n + 1; p++){
                 sum += Ab[i-1][p-1]*x[p-1];
             }
-            x[i-1] = (Ab[i-1][n]-sum)/(double)(Ab[i-1][i-1]);
+            x[i-1] = (Ab[i-1][n]-sum)/(Ab[i-1][i-1]);
         }
         return x;
+    }
+
+    public Double[][] copy(Double[][] Ab){
+        Double[][] matrix = new Double[Ab.length][Ab[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = Ab[i][j];
+            }
+        }
+        return matrix;
     }
 }
