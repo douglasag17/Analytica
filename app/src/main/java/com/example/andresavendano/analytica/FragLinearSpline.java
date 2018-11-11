@@ -16,9 +16,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import katex.hourglass.in.mathlib.MathView;
-
-
 public class FragLinearSpline extends Fragment {
 
     int num = 3;
@@ -37,7 +34,6 @@ public class FragLinearSpline extends Fragment {
         vectorFx = inflaterView.findViewById(R.id.vectorFx);
         polinomio = inflaterView.findViewById(R.id.polinomio);
         createTable(inflaterView);
-
         Button butCalculate = inflaterView.findViewById(R.id.butCalculate);
         butCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,9 +146,7 @@ public class FragLinearSpline extends Fragment {
                 if (helpView.getParent() != null)
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
-                t.setText("Given a sequence\n" +
-                        "of (n +1) data points and a function f, the aim is to determine an n-th degree polynomial which interpolates\n" +
-                        "f at these points.\n\n-Be careful to don't repeat any x, else it won't be a function\n");
+                t.setText("");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -215,14 +209,12 @@ public class FragLinearSpline extends Fragment {
     }
 
     public void linearSpline(double[] x, double[] y, int n){
-
         GaussianEliminationPartialPivoting pp = new GaussianEliminationPartialPivoting();
-
         double[][] A = new double[n*2][n*2];
         double[]   b = new double[n*2];
-        String pol = "";
+        String pol;
         int j;
-        for (int i =0; i < x.length; i++){
+        for (int i =0; i < n; i++){
             j           = 2*i;
             A[j][j]     = x[i];
             A[j][j+1]   = 1;
@@ -231,34 +223,18 @@ public class FragLinearSpline extends Fragment {
             A[j+1][j+1] = 1;
             b[j+1]      = y[i+1];
         }
-        System.out.println("------------------");
-        print(A);
-
         double[] Ab = pp.gaussianElimination(A,b);
         int index = 0;
-
         for(int i = 0; i< Ab.length; i += 2){
-            System.out.println("ENTREEEEE");
-            pol = Double.toString(Ab[i]) + "x";
+            pol = String.format("%.1f", Ab[i]) + "x";
             if(Ab[i+1] >= 0) {
                 pol = pol + "+";
             }
-            pol += Double.toString(Ab[i+1]);
-            pol += "["+(int)x[index]+","+(int)x[index+1]+"]";
+            pol += String.format("%.1f", Ab[i+1]);
+            //polinomio.append("["+(int)x[index]+","+(int)x[index+1]+"]"+ "    "+ (int)x[index] + "x" + (int)x[index+1] +"\n");
+            polinomio.append(pol + "    "+ (int)x[index] + " < x < " + (int)x[index+1] +"\n");
             index += 1;
         }
-        polinomio.setText(pol + "\n");
-    }
 
-    public void print(double[][] Ab) {
-        System.out.println("###################");
-        System.out.println("\n Ab");
-        for (int v = 0; v < Ab.length; v++) {
-            for (int m = 0; m < Ab[v].length; m++) {
-                System.out.print (Ab[v][m]);
-                if (m != Ab[v].length-1) System.out.print("   ");
-            }
-            System.out.println();
-        }
     }
 }
