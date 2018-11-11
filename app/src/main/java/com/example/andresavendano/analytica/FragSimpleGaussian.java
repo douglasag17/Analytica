@@ -26,6 +26,7 @@ public class FragSimpleGaussian extends Fragment {
     private TableLayout vectorX;
     private TableLayout matrixAb;
     private TextView ab;
+    private ArrayList<Double[][]> stepsMatrix = new ArrayList<Double[][]>();;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,24 +57,13 @@ public class FragSimpleGaussian extends Fragment {
                 }
             }
         });
-        Button steps = inflaterView.findViewById(R.id.butEtapas);
+        final Button steps = inflaterView.findViewById(R.id.butEtapas);
         steps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Double a[][] = {{14.0, 6.0, -2.0, 3.0},
-                                    {3.0, 15.0, 2.0, -5.0},
-                                    {-7.0, 4.0, -23.0, 2.0},
-                                    {1.0, -3.0, -2.0, 16.0}};
-                    Double b[][] = {{14.0, 6.0, -2.0, 3.0},
-                            {3.0, 15.0, 2.0, -5.0},
-                            {-7.0, 4.0, -23.0, 2.0},
-                            {1.0, -3.0, -2.0, 16.0}};
                     Intent intent = new Intent(v.getContext(), StepsActivity.class);
-                    ArrayList<Double[][]> myList = new ArrayList<Double[][]>();
-                    myList.add(a);
-                    myList.add(b);
-                    intent.putExtra("mylist", myList);
+                    intent.putExtra("stepsMatrix", stepsMatrix);
                     startActivityForResult(intent, 0);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
@@ -255,7 +245,7 @@ public class FragSimpleGaussian extends Fragment {
     }
 
     public void simpleGaussianElimination(double [][] A, double [] b) {
-        double [][] U = scallingMatrix(A, b, A.length);
+        Double [][] U = scallingMatrix(A, b, A.length);
         int B = U.length;
         double x[] = regressiveSubstitution(U, B);
         // Escribe en el vector X Regressive Substitution
@@ -268,8 +258,8 @@ public class FragSimpleGaussian extends Fragment {
         }
     }
 
-    public double[][] scallingMatrix(double A[][], double b[], int n){
-        double [][] Ab = augmentMatrix(A, b);
+    public Double[][] scallingMatrix(double A[][], double b[], int n){
+        Double [][] Ab = augmentMatrix(A, b);
         for (int i = 0; i < Ab.length; i++) {
             if(Ab[i][i] == 0){
                 double a[] = new double[Ab[0].length];
@@ -286,15 +276,12 @@ public class FragSimpleGaussian extends Fragment {
         }
         for(int k = 0; k < n; k++){
             for(int i = k+1; i < n; i++){
-                double m = (float)(Ab[i][k])/Ab[k][k];
+                double m = (Ab[i][k])/Ab[k][k];
                 for(int j = 0; j < n+1; j++){
                     Ab[i][j] = Ab[i][j]-(m*Ab[k][j]);
                 }
+                stepsMatrix.add(Ab);
             }
-
-
-
-
         }
         matrixAb.removeAllViews();
         // Escribe Ab es matrixAb
@@ -317,8 +304,8 @@ public class FragSimpleGaussian extends Fragment {
         return Ab;
     }
 
-    public double[][] augmentMatrix(double A[][], double b[]){
-        double result[][] = new double[A.length][A.length+1];
+    public Double[][] augmentMatrix(double A[][], double b[]){
+        Double result[][] = new Double[A.length][A.length+1];
         for(int i = 0; i < result.length; i++){
             for(int j = 0; j < result[0].length; j++){
                 if(j < A.length){
@@ -331,7 +318,7 @@ public class FragSimpleGaussian extends Fragment {
         return result;
     }
 
-    public double[] regressiveSubstitution(double Ab[][], int n){
+    public double[] regressiveSubstitution(Double Ab[][], int n){
         double x[] = new double[n];
         x[n-1] = Ab[n-1][n]/(double)Ab[n-1][n-1];
         for(int i = n-1; i > 0; i--){

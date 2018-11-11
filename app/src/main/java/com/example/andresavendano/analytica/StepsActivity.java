@@ -11,7 +11,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.Color;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class StepsActivity extends AppCompatActivity {
@@ -19,24 +21,34 @@ public class StepsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
-        ArrayList<Double[][]> myList = (ArrayList<Double[][]>) getIntent().getSerializableExtra("mylist");
-
+        ArrayList<Double[][]> myList = (ArrayList<Double[][]>) getIntent().getSerializableExtra("stepsMatrix");
+        //System.out.println(myList.size());
         LinearLayout linear = findViewById(R.id.linearLay);
         for(int i =0;i<myList.size();i++) {
             TableLayout table = new TableLayout(this);
+            TableLayout iteration = new TableLayout(this);
             Double matrix[][] = myList.get(i);
             for(int j = 0;j<matrix.length;j++){
                 TableRow row = new TableRow(this);
                 System.out.println();
                 for(int k =0;k<matrix[0].length;k++) {
-                    TextView tv = new TextView(this);
-                    tv.setText((" "+matrix[j][k]+" ").toString());
-                    tv.setGravity(1);
-                    row.addView(tv);
+                    EditText et= new EditText(this);
+                    DecimalFormat f = new DecimalFormat("####.####");
+                    et.setText(f.format(matrix[j][k])+" ");
+                    et.setGravity(1);
+                    et.setEnabled(false);
+                    et.setTextColor(Color.BLACK);
+                    row.addView(et);
                     System.out.print(matrix[j][k]);
                 }
                 table.addView(row);
             }
+            TableRow rowIteration= new TableRow(this);
+            TextView number=new TextView(this);
+            number.setText("Step: "+(i+1));
+            rowIteration.addView(number);
+            iteration.addView(rowIteration);
+            linear.addView(iteration);
             linear.addView(table);
         }
 
