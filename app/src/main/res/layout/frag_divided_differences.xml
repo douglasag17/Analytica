@@ -47,34 +47,6 @@
         android:layout_marginRight="54dp"
         android:text="-" />
 
-    <Button
-        android:id="@+id/butCalculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginLeft="106dp"
-        android:layout_marginTop="519dp"
-        android:background="@drawable/bk_boton_plano"
-        android:text="Calculate"
-        android:textColor="@android:color/white" />
-
-    <Button
-        android:id="@+id/butHelp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="198dp"
-        android:layout_marginLeft="198dp"
-        android:layout_marginTop="519dp"
-        android:background="@drawable/bk_boton_plano"
-        android:text="Help"
-        android:textColor="@android:color/white" />
-
     <TextView
         android:id="@+id/txtEval"
         android:layout_width="wrap_content"
@@ -85,7 +57,9 @@
         android:layout_marginTop="256dp"
         android:text="Eval"
         android:textColor="@android:color/black"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_alignLeft="@+id/scrollView1"
+        android:layout_marginLeft="27dp" />
 
     <EditText
         android:id="@+id/edtEval"
@@ -136,31 +110,30 @@
         </HorizontalScrollView>
     </ScrollView>
 
+
     <ScrollView
         android:id="@+id/scrollView4"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_alignParentLeft="true">
-
+        android:layout_marginTop="400dp"
+        android:layout_marginRight="20dp">
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-
             <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/txtEval"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="153dp"
                 app:setClickable="false"
-                app:setTextSize="1sp">
-            </katex.hourglass.in.mathlib.MathView>
-
+                app:setTextSize="1sp"
+                android:layout_alignRight="@+id/txtEval"></katex.hourglass.in.mathlib.MathView>
         </HorizontalScrollView>
     </ScrollView>
+
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -182,6 +155,47 @@
 
         </HorizontalScrollView>
     </ScrollView>
+
+
+    <TableLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:padding="3dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/butCalculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bk_boton_plano"
+                android:text="Calculate"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/butHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bk_boton_plano"
+                android:text="Help"
+                android:textColor="@android:color/white" />
+
+        </TableRow>
+
+    </TableLayout>
 
 
 </RelativeLayout>
