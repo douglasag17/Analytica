@@ -229,9 +229,9 @@ public class FragDividedDifferences extends Fragment {
             aux *= (value - x[i-1]);
             result += table[i][i]*aux;
         }
-        //polinomio.setTextSize(8);
+        polinomio.setClickable(false);
         polinomio.setDisplayText("\\(" + pol + "\\)");
-        //answer.setTextSize(8);
+        polinomio.setClickable(false);
         answer.setDisplayText("\\( P(" + value + ") = " + result + "\\)");
     }
 }

@@ -155,7 +155,8 @@
                 android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:setTextSize="5sp">
+                app:setClickable="false"
+                app:setTextSize="1sp">
             </katex.hourglass.in.mathlib.MathView>
 
         </HorizontalScrollView>
@@ -175,7 +176,8 @@
                 android:id="@+id/polinomio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:setTextSize="5sp"
+                app:setClickable="false"
+                app:setTextSize="1sp"
                 />
 
         </HorizontalScrollView>
