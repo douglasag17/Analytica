@@ -291,14 +291,14 @@ public class FragSimpleGaussian extends Fragment {
 
     public Double[][] scallingMatrix(double A[][], double b[], int n){
         Double [][] Ab = augmentMatrix(A, b);
-        for (int i = 0; i < Ab.length; i++) {
-            if(Ab[i][i] == 0){
-                double a[] = new double[Ab[0].length];
-                System.arraycopy(Ab[i], 0, a, 0, Ab[0].length); // a = Ab[i]
-                for (int j = 1; j < Ab.length; j++) {
-                    if(Ab[j][i] != 0){
-                        System.arraycopy(Ab[j], 0, Ab[i], 0, Ab[0].length); //Ab[i] = Ab[j]
-                        System.arraycopy(a, 0, Ab[j], 0, Ab[0].length); //Ab[j] = a
+        for (int i = 0; i < A.length; i++) {
+            if(A[i][i] == 0){
+                double a[] = new double[A[0].length];
+                System.arraycopy(A[i], 0, a, 0, A[0].length); // a = Ab[i]
+                for (int j = 1; j < A.length; j++) {
+                    if(A[j][i] != 0){
+                        System.arraycopy(A[j], 0, A[i], 0, A[0].length); //Ab[i] = Ab[j]
+                        System.arraycopy(a, 0, A[j], 0, A[0].length); //Ab[j] = a
                         break;
                     }
 
