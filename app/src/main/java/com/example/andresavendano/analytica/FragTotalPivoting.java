@@ -280,6 +280,7 @@ public class FragTotalPivoting extends Fragment {
     }
 
     public void gaussianElimination(double [][] A, double [] b) {
+        stepsMatrix.clear();
         int n = A.length;
         marks = new int[n];
         for(int i = 0; i < this.marks.length; i++) {
@@ -294,11 +295,9 @@ public class FragTotalPivoting extends Fragment {
                 for(int j = k; j < n+1; j++) {
                     Ab[i][j] -=  mult*Ab[k][j];
                 }
-                stepsMatrix.add(Ab);
-                System.out.print(stepsMatrix.size());
             }
-            System.out.println("\nStep " + Integer.toString(k+1));
-            print(Ab);
+            Double[][] matrixCopy = copy(Ab);
+            stepsMatrix.add(matrixCopy);
         }
 
         matrixAb.removeAllViews();
@@ -320,11 +319,6 @@ public class FragTotalPivoting extends Fragment {
             matrixAb.addView(row);
         }
 
-        System.out.println("-----------------------");
-        for (int i = 0; i < this.marks.length; i++) {
-            System.out.print(marks[i] + " ");
-        }
-        System.out.println();
         double x[] = regressiveSubstitution(Ab, Ab.length);
 
         // Escribe en el vector X Regressive Substitution
@@ -351,7 +345,13 @@ public class FragTotalPivoting extends Fragment {
             }
         }
         if (maxi == 0) {
-            System.out.println("The system has no solution");
+            Toast toast = Toast.makeText(getContext(), "The system has no solution", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
         } else {
             if(maxiRow != k) {
                 Ab = exchangeRows(Ab, maxiRow, k);
@@ -391,17 +391,6 @@ public class FragTotalPivoting extends Fragment {
         this.marks[maxiCol] = aux;
     }
 
-    public void print(Double[][] Ab) {
-        System.out.println("\n Ab");
-        for (int v = 0; v < Ab.length; v++) {
-            for (int m = 0; m < Ab[v].length; m++) {
-                System.out.print (Ab[v][m]);
-                if (m != Ab[v].length-1) System.out.print("   ");
-            }
-            System.out.println();
-        }
-    }
-
     public Double[][] augmentMatrix(double A[][], double b[]){
         Double result[][] = new Double[A.length][A.length+1];
         for(int i = 0; i < result.length; i++){
@@ -424,8 +413,18 @@ public class FragTotalPivoting extends Fragment {
             for(int p = i + 1; p < n + 1; p++){
                 sum += Ab[i-1][p-1]*x[p-1];
             }
-            x[i-1] = (Ab[i-1][n]-sum)/(double)(Ab[i-1][i-1]);
+            x[i-1] = (Ab[i-1][n]-sum)/(Ab[i-1][i-1]);
         }
         return x;
+    }
+
+    public Double[][] copy(Double[][] Ab){
+        Double[][] matrix = new Double[Ab.length][Ab[0].length];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] = Ab[i][j];
+            }
+        }
+        return matrix;
     }
 }
