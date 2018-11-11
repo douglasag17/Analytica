@@ -231,7 +231,7 @@ public class FragDividedDifferences extends Fragment {
         }
         polinomio.setClickable(false);
         polinomio.setDisplayText("\\(" + pol + "\\)");
-        polinomio.setClickable(false);
+        answer.setClickable(false);
         answer.setDisplayText("\\( P(" + value + ") = " + result + "\\)");
     }
 }
