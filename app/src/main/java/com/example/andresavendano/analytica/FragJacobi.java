@@ -363,7 +363,8 @@ public class FragJacobi extends Fragment {
         double error = tol + 1;
         while(error > tol && count < niter){
             double x1[] = newJacobi(A, b, x0, n);
-            error = norm(substraction(x1,x0));
+            if(errorType == 1) error = norm(substraction(x1,x0));//absolute
+            else error = norm(substraction(x1,x0))/norm(x1);//relative
             x0 = x1;
             count++;
             // Escribe en el vector X Regressive Substitution

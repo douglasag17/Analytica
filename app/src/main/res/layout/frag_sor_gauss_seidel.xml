@@ -1,14 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragSorGaussSeidel">
+    android:id="@+id/frame"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/scrollView"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="0dp"
+        android:text="A"
+        android:textSize="30sp" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/button3"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="0dp"
+        android:text="b"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="-83dp"
+        android:text="x"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/x0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollView"
+        android:layout_alignEnd="@+id/butHelp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="-82dp"
+        android:text="Initial x"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/equal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="105dp"
+        android:layout_marginEnd="-137dp"
+        android:text="="
+        android:textSize="30sp" />
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:id="@+id/tableGauss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="60dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="40dp"
+        android:layout_toEndOf="@+id/scrollView3"
+        android:layout_toRightOf="@+id/scrollView3">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:id="@+id/vectorB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="60dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toEndOf="@+id/scrollView"
+        android:layout_toRightOf="@+id/scrollView">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:id="@+id/vectorX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView5"
+        android:layout_width="60dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/button3"
+        android:layout_alignStart="@+id/scrollView3"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp">
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TableLayout
+                android:id="@+id/vectorX0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/scrollView"
+        android:text="+" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/scrollView"
+        android:layout_toEndOf="@+id/button3"
+        android:text="-"
+        android:layout_toRightOf="@+id/button3" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="95dp"
+        android:layout_marginLeft="95dp"
+        android:layout_marginTop="519dp"
+        android:background="@drawable/bk_boton_plano"
+        android:text="Calculate"
+        android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/butHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="194dp"
+        android:layout_marginLeft="194dp"
+        android:layout_marginTop="519dp"
+        android:background="@drawable/bk_boton_plano"
+        android:text="Help"
+        android:textColor="@android:color/white" />
+
+    <TextView
+        android:id="@+id/sorCte"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_alignBaseline="@+id/edtxtSorcte"
+        android:layout_alignStart="@+id/Iterations"
+        android:layout_marginStart="1dp"
+        android:text="Relaxation"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/Iterations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/button4"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="234dp"
+        android:text="Iterations"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edtxtSorcte"
+        android:layout_width="99dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Iterations"
+        android:layout_alignEnd="@+id/niter"
+        android:hint="1.2"
+        android:inputType="numberDecimal|number" />
+
+    <EditText
+        android:id="@+id/niter"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Iterations"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="-13dp"
+        android:layout_toEndOf="@+id/button4"
+        android:hint="#"
+        android:inputType="textEmailSubject|number" />
+
+    <Button
+        android:id="@+id/moreTolerance"
+        android:layout_width="40dp"
+        android:layout_height="38dp"
+        android:layout_alignEnd="@+id/button2"
+        android:layout_alignBottom="@+id/tolerance"
+        android:text="+" />
+
+    <Spinner
+        android:id="@+id/tolerance"
+        android:layout_width="124dp"
+        android:layout_height="64dp"
+        android:layout_alignStart="@+id/Iterations"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="96dp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Iterations"
+        android:layout_alignStart="@+id/Iterations"
+        android:layout_marginTop="-224dp">
+
+        <RadioButton
+            android:id="@+id/absoluteError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:checked="false"
+            android:text="Absolute Error"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/relativeError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:buttonTint="@color/colorPrimaryDark"
+            android:text="Relative Error"
+            android:textSize="18sp" />
+    </RadioGroup>
+</RelativeLayout>
