@@ -130,6 +130,7 @@ public class FragPartialPivoting extends Fragment {
                         editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
+                        editTextX.setEnabled(false);
                         editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
@@ -244,6 +245,7 @@ public class FragPartialPivoting extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
+            editText.setEnabled(false);
             editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);

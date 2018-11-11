@@ -1,5 +1,6 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -30,6 +31,7 @@ public class FragTotalPivoting extends Fragment {
     private TableLayout vectorX;
     private TableLayout matrixAb;
     private TextView ab;
+    private TextView t;
     private ArrayList<Double[][]> stepsMatrix = new ArrayList<Double[][]>();;
 
     @Override
@@ -37,6 +39,7 @@ public class FragTotalPivoting extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_total_pivoting, container, false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
@@ -125,6 +128,7 @@ public class FragTotalPivoting extends Fragment {
                         editTextB.setHint("  0  ");
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
+                        editTextX.setEnabled(false);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -174,6 +178,25 @@ public class FragTotalPivoting extends Fragment {
                 }
             }
         });
+        final Button help = inflaterView.findViewById(R.id.butHelp);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("In every stage k, this method find the biggest (in absolute value) of " +
+                        "the submatrix, that is the result of the elimination rows from F1 until " +
+                        "Fk-1 and columns from C1 until Ck-1 in the augmented matrix Ab . When the " +
+                        "maximum value is detected the method swaps rows and columns to locate this " +
+                        "element in the position Ab(k,k). After apply the swaps you have to have in" +
+                        " mind that this change the order of the system variables");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
         return inflaterView;
     }
 
@@ -217,6 +240,7 @@ public class FragTotalPivoting extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
+            editText.setEnabled(false);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
