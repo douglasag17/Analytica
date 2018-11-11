@@ -17,6 +17,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.SocketPermission;
+import java.util.ArrayList;
+
 public class FragTotalPivoting extends Fragment {
     int num = 3;
     double A [][];
@@ -27,6 +30,8 @@ public class FragTotalPivoting extends Fragment {
     private TableLayout vectorX;
     private TableLayout matrixAb;
     private TextView ab;
+    private ArrayList<Double[][]> stepsMatrix = new ArrayList<Double[][]>();;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,17 +62,13 @@ public class FragTotalPivoting extends Fragment {
                 }
             }
         });
-        Button steps = inflaterView.findViewById(R.id.butEtapas);
+        final Button steps = inflaterView.findViewById(R.id.butEtapas);
         steps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    double[][] example= {{14, 6, -2, 3},
-                            {3, 15, 2, -5},
-                            {-7, 4, -23, 2},
-                            {1, -3, -2, 16}};
                     Intent intent = new Intent(v.getContext(), StepsActivity.class);
-                    intent.putExtra("parametro",example);
+                    intent.putExtra("stepsMatrix", stepsMatrix);
                     startActivityForResult(intent, 0);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
@@ -255,7 +256,7 @@ public class FragTotalPivoting extends Fragment {
             marks[i] = i+1;
         }
         double mult;
-        double Ab[][] = augmentMatrix(A, b);
+        Double Ab[][] = augmentMatrix(A, b);
         for(int k = 0; k < n-1; k++) {
             Ab = totalPivoting(Ab, n, k);
             for(int i = k+1; i < n; i++) {
@@ -263,6 +264,8 @@ public class FragTotalPivoting extends Fragment {
                 for(int j = k; j < n+1; j++) {
                     Ab[i][j] -=  mult*Ab[k][j];
                 }
+                stepsMatrix.add(Ab);
+                System.out.print(stepsMatrix.size());
             }
             System.out.println("\nStep " + Integer.toString(k+1));
             print(Ab);
@@ -304,8 +307,8 @@ public class FragTotalPivoting extends Fragment {
         }
     }
 
-    public double[][] totalPivoting(double Ab [][], int n, int k) {
-        double maxi = 0;
+    public Double[][] totalPivoting(Double Ab [][], int n, int k) {
+        Double maxi = 0.0;
         int maxiRow = k;
         int maxiCol = k;
         for(int r = k; r < n; r++) {
@@ -332,8 +335,8 @@ public class FragTotalPivoting extends Fragment {
         return Ab;
     }
 
-    public double[][] exchangeRows(double [][] Ab, int maxiRow, int k) {
-        double aux;
+    public Double[][] exchangeRows(Double [][] Ab, int maxiRow, int k) {
+        Double aux;
         for(int i = 0; i < Ab[0].length; i++) {
             aux = Ab[k][i];
             Ab[k][i] = Ab[maxiRow][i];
@@ -342,8 +345,8 @@ public class FragTotalPivoting extends Fragment {
         return Ab;
     }
 
-    public double[][] exchangeCols(double [][] Ab, int maxiCol, int k) {
-        double aux;
+    public Double[][] exchangeCols(Double [][] Ab, int maxiCol, int k) {
+        Double aux;
         for(int i = 0; i < Ab.length; i++) {
             aux = Ab[i][k];
             Ab[i][k] = Ab[i][maxiCol];
@@ -358,7 +361,7 @@ public class FragTotalPivoting extends Fragment {
         this.marks[maxiCol] = aux;
     }
 
-    public void print(double[][] Ab) {
+    public void print(Double[][] Ab) {
         System.out.println("\n Ab");
         for (int v = 0; v < Ab.length; v++) {
             for (int m = 0; m < Ab[v].length; m++) {
@@ -369,8 +372,8 @@ public class FragTotalPivoting extends Fragment {
         }
     }
 
-    public double[][] augmentMatrix(double A[][], double b[]){
-        double result[][] = new double[A.length][A.length+1];
+    public Double[][] augmentMatrix(double A[][], double b[]){
+        Double result[][] = new Double[A.length][A.length+1];
         for(int i = 0; i < result.length; i++){
             for(int j = 0; j < result[0].length; j++){
                 if(j < A.length){
@@ -383,11 +386,11 @@ public class FragTotalPivoting extends Fragment {
         return result;
     }
 
-    public double[] regressiveSubstitution(double Ab[][], int n){
+    public double[] regressiveSubstitution(Double Ab[][], int n){
         double x[] = new double[n];
         x[n-1] = Ab[n-1][n]/(double)Ab[n-1][n-1];
         for(int i = n-1; i > 0; i--){
-            double sum = 0;
+            Double sum = 0.0;
             for(int p = i + 1; p < n + 1; p++){
                 sum += Ab[i-1][p-1]*x[p-1];
             }
