@@ -18,9 +18,6 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import katex.hourglass.in.mathlib.MathView;
-
-
 public class FragLagrange extends Fragment {
     int num = 3;
     double x [];

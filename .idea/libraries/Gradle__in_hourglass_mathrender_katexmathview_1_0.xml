@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: in.hourglass.mathrender:katexmathview-1.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/katexmathview-1.0.aar/41dc2eddf0e8e6fa3584f6b5f6b98062/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/katexmathview-1.0.aar/41dc2eddf0e8e6fa3584f6b5f6b98062/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/in.hourglass.mathrender/katexmathview/1.0/61a6aec9f65f9c50efa31d37c5c7337b4ee9bfd9/katexmathview-1.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
