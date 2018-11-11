@@ -1,5 +1,6 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,14 +26,15 @@ public class FragDividedDifferences extends Fragment {
     private TableLayout vectorX;
     private TableLayout vectorFx;
     private EditText edtEval;
-    private MathView polinomio;
+    private TextView polinomio;
     private TextView answer;
-
+    private TextView t;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_divided_differences, container, false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         vectorX = inflaterView.findViewById(R.id.vectorX);
         vectorFx = inflaterView.findViewById(R.id.vectorFx);
         polinomio = inflaterView.findViewById(R.id.polinomio);
@@ -145,6 +147,22 @@ public class FragDividedDifferences extends Fragment {
                 }
             }
         });
+        final Button help = inflaterView.findViewById(R.id.butHelp);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("Given a sequence\n" +
+                        "of (n +1) data points and a function f, the aim is to determine an n-th degree polynomial which interpolates\n" +
+                        "f at these points.\n\n-Be careful to don't repeat any x, else it won't be a function\n");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
         return inflaterView;
     }
 
@@ -237,7 +255,7 @@ public class FragDividedDifferences extends Fragment {
             result += table[i][i]*aux;
         }
         polinomio.setClickable(false);
-        polinomio.setDisplayText("\\(" + pol + "\\)");
+        polinomio.setText(pol + "");
         answer.setText("P(" + value + ") = " + result);
     }
 }
