@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,12 +40,14 @@ public class FragJacobi extends Fragment {
     ArrayList<String> values;
     private Double tolerance;
     private int errorType;
+    private TextView t;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_jacobi, container, false);
         final View newTol = inflater.inflate(R.layout.new_tolerance,  (ViewGroup) getView(), false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
@@ -106,6 +109,7 @@ public class FragJacobi extends Fragment {
                         EditText editText = new EditText(getContext());
                         //editText.setText("0");
                         editText.setHint("  0  ");
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editText.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editText.setWidth(170);
                         row.addView(editText);
@@ -123,11 +127,14 @@ public class FragJacobi extends Fragment {
                         EditText editTextX0 = new EditText(getContext());
                         //editTextB.setText("0");
                         editTextB.setHint("  0  ");
+                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX0.setHint("  0  ");
+                        editTextX0.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextX0.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
                         editTextX.setEnabled(false);
+                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -137,6 +144,7 @@ public class FragJacobi extends Fragment {
                             EditText editText = new EditText(getContext());
                             //editText.setText("0");
                             editText.setHint("  0  ");
+                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             editText.setGravity(Gravity.CENTER_HORIZONTAL);
                             //editText.setWidth(170);
                             row.addView(editText);
@@ -257,6 +265,24 @@ public class FragJacobi extends Fragment {
                 }
             }
         });
+        final Button help = inflaterView.findViewById(R.id.butHelp);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("In numerical linear algebra, the Jacobi method (or Jacobi iterative method) " +
+                        "is an algorithm for determining the solutions of a diagonally dominant system of " +
+                        "linear equations. Each diagonal element is solved for, and an approximate value " +
+                        "is plugged in. The process is then iterated until it converges.\n");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
         return inflaterView;
     }
 
@@ -270,6 +296,7 @@ public class FragJacobi extends Fragment {
                 editText.setId(i+j);
                 //editText.setText("0");
                 editText.setHint("  0  ");
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 editText.setGravity(Gravity.CENTER_HORIZONTAL);
                 //editText.setWidth(170);
                 row.addView(editText);
@@ -285,6 +312,7 @@ public class FragJacobi extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -299,6 +327,7 @@ public class FragJacobi extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -315,6 +344,7 @@ public class FragJacobi extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);

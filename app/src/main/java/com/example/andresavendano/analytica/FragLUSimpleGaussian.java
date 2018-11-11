@@ -1,10 +1,12 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 public class FragLUSimpleGaussian extends Fragment {
 
@@ -29,11 +30,13 @@ public class FragLUSimpleGaussian extends Fragment {
     private TableLayout matrixU;
     private TextView txtL;
     private TextView txtU;
+    private TextView t;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_lusimple_gaussian, container, false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
@@ -88,6 +91,7 @@ public class FragLUSimpleGaussian extends Fragment {
                         EditText editText = new EditText(getContext());
                         //editText.setText("0");
                         editText.setHint("  0  ");
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editText.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editText.setWidth(170);
                         row.addView(editText);
@@ -102,8 +106,10 @@ public class FragLUSimpleGaussian extends Fragment {
                         EditText editTextX = new EditText(getContext());
                         //editTextB.setText("0");
                         editTextB.setHint("  0  ");
+                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
+                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -112,6 +118,7 @@ public class FragLUSimpleGaussian extends Fragment {
                             EditText editText = new EditText(getContext());
                             //editText.setText("0");
                             editText.setHint("  0  ");
+                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             editText.setGravity(Gravity.CENTER_HORIZONTAL);
                             //editText.setWidth(170);
                             row.addView(editText);
@@ -153,6 +160,25 @@ public class FragLUSimpleGaussian extends Fragment {
                 }
             }
         });
+        final Button help = inflaterView.findViewById(R.id.butHelp);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("The method of gaussian elimination is used to solve systems of linear " +
+                        "equations. This method has to steps. First it converts the original matrix " +
+                        "to another equivalent trought a serie of transformations, this matrix is" +
+                        " called the scalonated matrix,  this matrix is also an lower triangular " +
+                        "matrix. And the final step is to replace variables from the last row to " +
+                        "the first one.\n");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
         return inflaterView;
     }
     public void createTable(View inflaterView){
@@ -165,6 +191,7 @@ public class FragLUSimpleGaussian extends Fragment {
                 editText.setId(i+j);
                 //editText.setText("0");
                 editText.setHint("  0  ");
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 editText.setGravity(Gravity.CENTER_HORIZONTAL);
                 //editText.setWidth(170);
                 row.addView(editText);
@@ -180,6 +207,7 @@ public class FragLUSimpleGaussian extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -195,6 +223,7 @@ public class FragLUSimpleGaussian extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -255,7 +284,6 @@ public class FragLUSimpleGaussian extends Fragment {
             for(int i = k+1; i < n; i++){
                 double m = (float)(A[i][k])/A[k][k];
                 L[i][k] = m;
-                ////////////////////////////
                 for(int j = 0; j < n; j++){
                     A[i][j] = A[i][j]-(m*A[k][j]);
                 }

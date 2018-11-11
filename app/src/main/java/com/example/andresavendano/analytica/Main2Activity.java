@@ -91,8 +91,7 @@ public class Main2Activity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setMessage("Ingresa una funcion de la forma\n" +
-                    "ln(x) = log(x)");
+            alertDialog.setMessage("");
             alertDialog.setTitle("Help");
             alertDialog.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override

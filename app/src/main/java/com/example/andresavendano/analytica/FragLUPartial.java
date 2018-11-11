@@ -1,10 +1,12 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,11 +32,13 @@ public class FragLUPartial extends Fragment {
     private TableLayout matrixU;
     private TextView txtL;
     private TextView txtU;
+    private TextView t;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_lupartial, container, false);
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
@@ -89,6 +93,7 @@ public class FragLUPartial extends Fragment {
                         EditText editText = new EditText(getContext());
                         //editText.setText("0");
                         editText.setHint("  0  ");
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editText.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editText.setWidth(170);
                         row.addView(editText);
@@ -103,8 +108,10 @@ public class FragLUPartial extends Fragment {
                         EditText editTextX = new EditText(getContext());
                         //editTextB.setText("0");
                         editTextB.setHint("  0  ");
+                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
+                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -113,6 +120,7 @@ public class FragLUPartial extends Fragment {
                             EditText editText = new EditText(getContext());
                             //editText.setText("0");
                             editText.setHint("  0  ");
+                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             editText.setGravity(Gravity.CENTER_HORIZONTAL);
                             //editText.setWidth(170);
                             row.addView(editText);
@@ -154,6 +162,24 @@ public class FragLUPartial extends Fragment {
                 }
             }
         });
+        final Button help = inflaterView.findViewById(R.id.butHelp);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("In every stage k, this method find the biggest (in absolute value) of " +
+                        "the k column that occupies the position akk.In other words, it looks for " +
+                        "the biggest between |akk| with  k <= i <= n , and it swaps the rows in " +
+                        "order to set the biggest chosen in the row k. These steps guarantee the " +
+                        "next property.\n");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
         return inflaterView;
     }
 
@@ -167,6 +193,7 @@ public class FragLUPartial extends Fragment {
                 editText.setId(i+j);
                 //editText.setText("0");
                 editText.setHint("  0  ");
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 editText.setGravity(Gravity.CENTER_HORIZONTAL);
                 //editText.setWidth(170);
                 row.addView(editText);
@@ -182,6 +209,7 @@ public class FragLUPartial extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -197,6 +225,7 @@ public class FragLUPartial extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);

@@ -1,10 +1,12 @@
 package com.example.andresavendano.analytica;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,12 +33,13 @@ public class FragDirectFactorization extends Fragment {
     private TableLayout matrixU;
     private TextView txtL;
     private TextView txtU;
+    private TextView t;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflaterView = inflater.inflate(R.layout.frag_direct_factorization, container, false);
-
+        final View helpView = inflater.inflate(R.layout.help_bisection,  (ViewGroup) getView(), false);
         table = inflaterView.findViewById(R.id.tableGauss);
         vectorBB = inflaterView.findViewById(R.id.vectorB);
         vectorX = inflaterView.findViewById(R.id.vectorX);
@@ -130,6 +133,7 @@ public class FragDirectFactorization extends Fragment {
                         EditText editText = new EditText(getContext());
                         //editText.setText("0");
                         editText.setHint("  0  ");
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editText.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editText.setWidth(170);
                         row.addView(editText);
@@ -144,8 +148,10 @@ public class FragDirectFactorization extends Fragment {
                         EditText editTextX = new EditText(getContext());
                         //editTextB.setText("0");
                         editTextB.setHint("  0  ");
+                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
+                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -154,6 +160,7 @@ public class FragDirectFactorization extends Fragment {
                             EditText editText = new EditText(getContext());
                             //editText.setText("0");
                             editText.setHint("  0  ");
+                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                             editText.setGravity(Gravity.CENTER_HORIZONTAL);
                             //editText.setWidth(170);
                             row.addView(editText);
@@ -195,6 +202,24 @@ public class FragDirectFactorization extends Fragment {
                 }
             }
         });
+        final Button help = inflaterView.findViewById(R.id.butHelp);
+        t = (TextView) helpView.findViewById(R.id.helpText);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                t.setText("Any square matrix A admits an LUP factorization. If A is invertible, " +
+                        "then it admits an LU (or LDU) factorization if and only if all its leading " +
+                        "principal minors are non-zero. If A is a singular matrix of rank k, " +
+                        "then it admits an LU factorization if the first k leading principal " +
+                        "minors are non-zero, although the converse is not true.\n");
+                t.setTextSize(25);
+                builder.show();
+            }
+        });
         return inflaterView;
     }
 
@@ -208,6 +233,7 @@ public class FragDirectFactorization extends Fragment {
                 editText.setId(i+j);
                 //editText.setText("0");
                 editText.setHint("  0  ");
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 editText.setGravity(Gravity.CENTER_HORIZONTAL);
                 //editText.setWidth(170);
                 row.addView(editText);
@@ -223,6 +249,7 @@ public class FragDirectFactorization extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -238,6 +265,7 @@ public class FragDirectFactorization extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
