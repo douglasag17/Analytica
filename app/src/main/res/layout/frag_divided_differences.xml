@@ -121,16 +121,17 @@
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <katex.hourglass.in.mathlib.MathView
+            <TextView
                 android:id="@+id/answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignEnd="@+id/txtEval"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="153dp"
-                app:setClickable="false"
-                app:setTextSize="1sp"
-                android:layout_alignRight="@+id/txtEval"></katex.hourglass.in.mathlib.MathView>
+                android:textColor="#000000"
+                android:fontFamily="@font/latex"
+                android:textSize="30sp"
+                android:layout_alignRight="@+id/txtEval"/>
         </HorizontalScrollView>
     </ScrollView>
 
@@ -150,9 +151,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:setClickable="false"
-                app:setTextSize="1sp"
-                />
-
+                app:setTextSize="1sp">
+            </katex.hourglass.in.mathlib.MathView>
         </HorizontalScrollView>
     </ScrollView>
 

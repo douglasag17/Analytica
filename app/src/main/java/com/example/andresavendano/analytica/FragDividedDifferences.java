@@ -1,8 +1,6 @@
 package com.example.andresavendano.analytica;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
@@ -28,7 +26,8 @@ public class FragDividedDifferences extends Fragment {
     private TableLayout vectorFx;
     private EditText edtEval;
     private MathView polinomio;
-    private MathView answer;
+    private TextView answer;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -239,7 +238,6 @@ public class FragDividedDifferences extends Fragment {
         }
         polinomio.setClickable(false);
         polinomio.setDisplayText("\\(" + pol + "\\)");
-        answer.setClickable(false);
-        answer.setDisplayText("\\( P(" + value + ") = " + result + "\\)");
+        answer.setText("P(" + value + ") = " + result);
     }
 }
