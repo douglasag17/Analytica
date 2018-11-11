@@ -137,24 +137,6 @@
     </ScrollView>
 
     <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="290dp"
-        android:layout_marginRight="20dp">
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <io.github.kexanie.library.MathView
-                android:id="@+id/polinomio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </io.github.kexanie.library.MathView>
-        </HorizontalScrollView>
-    </ScrollView>
-
-    <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="match_parent"
         android:layout_height="80dp"
@@ -162,17 +144,42 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100dp"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_alignParentLeft="true">
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <io.github.kexanie.library.MathView
+            <katex.hourglass.in.mathlib.MathView
                 android:id="@+id/answer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></io.github.kexanie.library.MathView>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:setTextSize="5sp">
+            </katex.hourglass.in.mathlib.MathView>
+
         </HorizontalScrollView>
     </ScrollView>
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginRight="20dp">
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <katex.hourglass.in.mathlib.MathView
+                android:id="@+id/polinomio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:setTextSize="5sp"
+                />
+
+        </HorizontalScrollView>
+    </ScrollView>
+
 
 </RelativeLayout>

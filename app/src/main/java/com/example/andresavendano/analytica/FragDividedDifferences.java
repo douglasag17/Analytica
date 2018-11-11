@@ -16,7 +16,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import io.github.kexanie.library.MathView;
+import katex.hourglass.in.mathlib.MathView;
 
 
 public class FragDividedDifferences extends Fragment {
@@ -219,8 +219,7 @@ public class FragDividedDifferences extends Fragment {
             System.out.println(b[i]);
         }
         // Polinomio interpolante
-        System.out.println("Polinomio interpolante:");
-        String pol = "P(x): " + table[0][0];
+        String pol = "P(x) = " + table[0][0];
         String temp = "";
         double result = table[0][0];
         double aux = 1;
@@ -230,10 +229,9 @@ public class FragDividedDifferences extends Fragment {
             aux *= (value - x[i-1]);
             result += table[i][i]*aux;
         }
-        System.out.println(pol);
-        polinomio.setText("\\("+pol+"\\)\t");
-        System.out.println("--------------" + '\n');
-        System.out.println("P(" + value + ") = " + result);
-        answer.setText("\\(P(" + value + ") = " + result+"\\)");
+        //polinomio.setTextSize(8);
+        polinomio.setDisplayText("\\(" + pol + "\\)");
+        //answer.setTextSize(8);
+        answer.setDisplayText("\\( P(" + value + ") = " + result + "\\)");
     }
 }
