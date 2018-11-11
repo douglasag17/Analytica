@@ -108,7 +108,7 @@ public class FragSimpleGaussian extends Fragment {
                         EditText editText = new EditText(getContext());
                         //editText.setText("0");
                         editText.setHint("  0  ");
-                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                         editText.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editText.setWidth(170);
                         row.addView(editText);
@@ -123,11 +123,11 @@ public class FragSimpleGaussian extends Fragment {
                         EditText editTextX = new EditText(getContext());
                         //editTextB.setText("0");
                         editTextB.setHint("  0  ");
-                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  X"+num+"  ");
                         editTextX.setEnabled(false);
-                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -136,7 +136,7 @@ public class FragSimpleGaussian extends Fragment {
                             EditText editText = new EditText(getContext());
                             //editText.setText("0");
                             editText.setHint("  0  ");
-                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                             editText.setGravity(Gravity.CENTER_HORIZONTAL);
                             //editText.setWidth(170);
                             row.addView(editText);
@@ -210,7 +210,7 @@ public class FragSimpleGaussian extends Fragment {
                 editText.setId(i+j);
                 //editText.setText("0");
                 editText.setHint("  0  ");
-                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
                 editText.setGravity(Gravity.CENTER_HORIZONTAL);
                 //editText.setWidth(170);
                 row.addView(editText);
@@ -226,7 +226,7 @@ public class FragSimpleGaussian extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
-            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_NUMBER_FLAG_SIGNED);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -243,7 +243,6 @@ public class FragSimpleGaussian extends Fragment {
             //editText.setText("0");
             editText.setHint("  X"+count+"  ");
             editText.setEnabled(false);
-            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);

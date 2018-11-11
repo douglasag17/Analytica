@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,7 @@ public class FragDividedDifferences extends Fragment {
         polinomio = inflaterView.findViewById(R.id.polinomio);
         answer = inflaterView.findViewById(R.id.answer);
         edtEval = inflaterView.findViewById(R.id.edtEval);
+        edtEval.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
         createTable(inflaterView);
 
         Button butCalculate = inflaterView.findViewById(R.id.butCalculate);
@@ -84,6 +86,7 @@ public class FragDividedDifferences extends Fragment {
                         EditText editText = new EditText(getContext());
                         //editText.setText("0");
                         editText.setHint("  0  ");
+                        editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
                         editText.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editText.setWidth(170);
                         vectorFx.addView(rowB);
@@ -96,8 +99,10 @@ public class FragDividedDifferences extends Fragment {
                         EditText editTextX = new EditText(getContext());
                         //editTextB.setText("0");
                         editTextB.setHint("  0  ");
+                        editTextB.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
                         editTextB.setGravity(Gravity.CENTER_HORIZONTAL);
                         editTextX.setHint("  0  ");
+                        editTextX.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
                         editTextX.setGravity(Gravity.CENTER_HORIZONTAL);
                         //editTextB.setWidth(170);
                         rowB.addView(editTextB);
@@ -106,6 +111,7 @@ public class FragDividedDifferences extends Fragment {
                             EditText editText = new EditText(getContext());
                             //editText.setText("0");
                             editText.setHint("  0  ");
+                            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
                             editText.setGravity(Gravity.CENTER_HORIZONTAL);
                             //editText.setWidth(170);
                             row.addView(editText);
@@ -152,6 +158,7 @@ public class FragDividedDifferences extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
@@ -166,6 +173,7 @@ public class FragDividedDifferences extends Fragment {
             editText.setId(j);
             //editText.setText("0");
             editText.setHint("  0  ");
+            editText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL| InputType.TYPE_NUMBER_FLAG_SIGNED);
             editText.setGravity(Gravity.CENTER_HORIZONTAL);
             //editText.setWidth(170);
             row.addView(editText);
