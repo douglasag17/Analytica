@@ -73,17 +73,20 @@
             android:layout_marginTop="78dp"
             android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignParentRight="true" />
 
         <EditText
             android:id="@+id/functionDD"
             android:layout_width="324dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="136dp"
             android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignParentRight="true" />
 
         <Button
             android:id="@+id/moreTolerance"
@@ -92,24 +95,25 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="248dp"
-            android:layout_marginEnd="41dp"
-            android:text="+" />
+            android:text="+"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="41dp" />
 
 
         <TextView
             android:id="@+id/Xa"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/xa"
-            android:layout_marginEnd="150dp"
             android:text="xa"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Xa"
-            app:layout_constraintVertical_bias="0.06" />
+            android:layout_alignBaseline="@+id/xa"
+            app:layout_constraintVertical_bias="0.06"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="150dp" />
 
         <EditText
             android:id="@+id/xa"
@@ -117,14 +121,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="198dp"
-            android:layout_toStartOf="@+id/moreTolerance"
             android:ems="10"
             android:hint="xa"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/comma"
             app:layout_constraintTop_toBottomOf="@+id/function"
-            app:layout_constraintVertical_bias="0.041" />
+            app:layout_constraintVertical_bias="0.041"
+            android:layout_toLeftOf="@+id/moreTolerance" />
 
         <TextView
             android:id="@+id/Iterations"
@@ -144,21 +148,22 @@
             android:id="@+id/niter"
             android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_alignTop="@+id/Iterations"
-            android:layout_marginStart="89dp"
+            android:layout_toEndOf="@+id/Iterations"
             android:ems="10"
             android:hint="#"
-            android:inputType="textEmailSubject|number" />
+            android:inputType="textEmailSubject|number"
+            android:layout_toRightOf="@+id/Iterations"
+            android:layout_alignBaseline="@+id/Iterations"/>
 
         <Spinner
             android:id="@+id/tolerance"
             android:layout_width="124dp"
             android:layout_height="64dp"
-            android:layout_alignParentEnd="true"
             android:layout_below="@+id/Iterations"
-            android:layout_marginEnd="100dp"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup" />
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="100dp" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
