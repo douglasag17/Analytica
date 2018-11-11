@@ -11,9 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:isScrollContainer="true"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="98dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/fx"
@@ -31,30 +29,33 @@
             android:id="@+id/dfx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/functionD"
             android:layout_alignStart="@+id/fx"
+            android:layout_below="@+id/fx"
             android:text="f '(x)"
+            android:layout_alignBaseline="@+id/functionD"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/fx" />
 
         <EditText
             android:id="@+id/functionD"
-            android:layout_width="324dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="78dp"
+            android:layout_below="@+id/function"
+            android:layout_marginTop="70dp"
             android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/dfx"
+            android:layout_marginLeft="10dp"/>
 
         <Button
             android:id="@+id/moreTolerance"
             android:layout_width="40dp"
             android:layout_height="38dp"
             android:layout_alignBottom="@+id/radioGroup"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
+            android:layout_toRightOf="@+id/tolerance"
             android:text="+" />
 
         <EditText
@@ -77,8 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_alignBaseline="@+id/xi"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="157dp"
+            android:layout_toRightOf="@+id/niter"
+            android:layout_marginLeft="20dp"
             android:text="xi"
             android:textColor="@android:color/black"
             android:textSize="18sp"
@@ -91,7 +92,7 @@
             android:id="@+id/xi"
             android:layout_width="53dp"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/tolerance"
+            android:layout_toRightOf="@id/Xi"
             android:layout_below="@+id/functionD"
             android:ems="10"
             android:hint="xi"
@@ -107,6 +108,7 @@
             android:layout_height="48dp"
             android:layout_below="@+id/functionD"
             android:text="Iterations"
+            android:layout_alignBaseline="@+id/niter"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -118,9 +120,8 @@
             android:id="@+id/niter"
             android:layout_width="87dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
             android:layout_below="@+id/functionD"
-            android:layout_marginStart="83dp"
+            android:layout_toRightOf="@+id/Iterations"
             android:ems="10"
             android:hint="#"
             android:inputType="textEmailSubject|number" />
@@ -129,10 +130,9 @@
             android:id="@+id/tolerance"
             android:layout_width="124dp"
             android:layout_height="64dp"
-
-            android:layout_alignTop="@+id/moreTolerance"
-            android:layout_toEndOf="@+id/niter"
-            app:layout_constraintStart_toEndOf="@+id/radioGroup" />
+            android:layout_alignBottom="@+id/radioGroup"
+            app:layout_constraintStart_toEndOf="@+id/radioGroup"
+            android:layout_toRightOf="@+id/niter" />
 
         <RadioGroup
             android:id="@+id/radioGroup"

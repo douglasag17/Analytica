@@ -59,34 +59,21 @@
             android:id="@+id/leftBracket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/Iterations"
-            android:layout_marginEnd="156dp"
+            android:layout_toRightOf="@id/niter"
+            android:layout_alignBaseline="@+id/Iterations"
             android:text="x0"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/function"
-            app:layout_constraintVertical_bias="0.0"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="156dp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/x0"
             android:layout_width="53dp"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/Iterations"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="88dp"
+            android:layout_toRightOf="@id/leftBracket"
             android:ems="10"
             android:hint="x0"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/function"
-            app:layout_constraintVertical_bias="0.041"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="88dp" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/Iterations"
@@ -108,14 +95,12 @@
             android:id="@+id/niter"
             android:layout_width="81dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/Iterations"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginEnd="201dp"
-            android:layout_marginRight="201dp"
+            android:layout_alignBaseline="@id/Iterations"
+            android:layout_toEndOf="@+id/Iterations"
             android:ems="10"
             android:hint="#"
-            android:inputType="textEmailSubject|number" />
+            android:inputType="textEmailSubject|number"
+            android:layout_toRightOf="@+id/Iterations" />
 
         <Spinner
             android:id="@+id/tolerance"

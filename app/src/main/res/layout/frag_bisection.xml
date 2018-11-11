@@ -149,13 +149,10 @@
 
             <EditText
                 android:id="@+id/niter"
-                android:layout_width="263dp"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@+id/Iterations"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="19dp"
-                android:layout_marginRight="19dp"
+                android:layout_toRightOf="@+id/Iterations"
                 android:ems="10"
                 android:hint="#"
                 android:inputType="textEmailSubject|number" />

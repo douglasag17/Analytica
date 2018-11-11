@@ -11,55 +11,45 @@
         android:layout_width="382dp"
         android:layout_height="match_parent"
         android:isScrollContainer="true"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/fx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/function"
-            android:layout_alignLeft="@+id/leftBracket"
-            android:layout_marginLeft="15dp"
+            android:layout_alignLeft="@+id/radioGroup"
+            android:layout_marginTop="10dp"
             android:text="f(x)"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            app:layout_constraintVertical_bias="0.0" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/dfx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/functionD"
-            android:layout_alignStart="@+id/fx"
             android:text="f '(x)"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/fx" />
 
         <TextView
             android:id="@+id/ddfx"
+            android:layout_alignLeft="@+id/radioGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/functionDD"
-            android:layout_alignStart="@+id/fx"
+            android:layout_alignBaseline="@id/functionDD"
             android:text="f ''(x)"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
         <EditText
             android:id="@+id/function"
+            android:layout_toRightOf="@id/fx"
+            android:layout_alignBaseline="@id/fx"
             android:layout_width="324dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_toEndOf="@+id/fx"
-            android:layout_toRightOf="@+id/fx"
-            android:ems="10"
+            android:layout_marginLeft="10dp"
             android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
             android:textSize="18sp" />
@@ -68,25 +58,21 @@
             android:id="@+id/functionD"
             android:layout_width="324dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="78dp"
+            android:layout_below="@id/function"
+            android:layout_alignLeft="@id/function"
             android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
-            android:textSize="18sp"
-            android:layout_alignParentRight="true" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/functionDD"
             android:layout_width="324dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="136dp"
+            android:layout_below="@+id/functionD"
+            android:layout_alignLeft="@id/function"
             android:hint="(sin(x)+e^2*x-4)/log(x^2)"
             android:inputType="textPersonName"
-            android:textSize="18sp"
-            android:layout_alignParentRight="true" />
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/moreTolerance"
@@ -105,10 +91,7 @@
             android:text="xa"
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_alignBaseline="@+id/xa"
-            app:layout_constraintVertical_bias="0.06"
+            android:layout_alignBaseline="@+id/Iterations"
             android:layout_toRightOf="@+id/niter"
             android:layout_marginLeft="10dp"/>
 
@@ -116,23 +99,17 @@
             android:id="@+id/xa"
             android:layout_width="53dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="198dp"
-            android:ems="10"
+            android:layout_alignBaseline="@id/Iterations"
             android:hint="xa"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/comma"
-            app:layout_constraintTop_toBottomOf="@+id/function"
-            app:layout_constraintVertical_bias="0.041"
             android:layout_toRightOf="@+id/Xa" />
 
         <TextView
             android:id="@+id/Iterations"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="216dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/functionDD"
             android:text="Iterations"
             android:textColor="@android:color/black"
             android:textSize="18sp"
