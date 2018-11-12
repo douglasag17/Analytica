@@ -42,7 +42,7 @@ public class FragCubicSpline extends Fragment {
                 try {
                     x = getVectorX();
                     fx = getVectorFx();
-                    cubic(x, fx, x.length-1);
+                    cubic(x, fx, x.length);
                 } catch (Exception e) {
                     System.out.println(e.getMessage());
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
