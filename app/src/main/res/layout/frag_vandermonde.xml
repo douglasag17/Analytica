@@ -73,31 +73,39 @@
         </HorizontalScrollView>
     </ScrollView>
 
-    <Button
-        android:id="@+id/button2"
+    <TableLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="102dp"
-        android:layout_marginLeft="102dp"
-        android:layout_marginTop="519dp"
-        android:background="@drawable/bk_boton_plano"
-        android:text="Calculate"
-        android:textColor="@android:color/white" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:padding="3dip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/butHelp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="195dp"
-        android:layout_marginLeft="195dp"
-        android:layout_marginTop="519dp"
-        android:background="@drawable/bk_boton_plano"
-        android:text="Help"
-        android:textColor="@android:color/white" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bk_boton_plano"
+                android:text="Calculate"
+                android:textColor="@android:color/white" />
+            <Button
+                android:id="@+id/butHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bk_boton_plano"
+                android:text="Help"
+                android:textColor="@android:color/white" />
+        </TableRow>
+    </TableLayout>
 </RelativeLayout>

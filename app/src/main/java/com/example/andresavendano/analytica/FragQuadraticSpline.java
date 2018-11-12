@@ -146,7 +146,8 @@ public class FragQuadraticSpline extends Fragment {
                 if (helpView.getParent() != null)
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
-                t.setText("");
+                t.setText("Spline interpolation is a form of interpolation where the interpolant is a " +
+                        "special type of piecewise polynomial called a spline.\n");
                 t.setTextSize(25);
                 builder.show();
             }
