@@ -10,63 +10,56 @@
         android:id="@+id/A"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/scrollView"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
         android:layout_marginTop="0dp"
         android:text="A"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_alignLeft="@+id/scrollView"
+        android:layout_marginLeft="11dp" />
 
     <TextView
         android:id="@+id/Ab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/scrollView"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="277dp"
+        android:layout_toRightOf="@id/button4"
+        android:layout_alignBaseline="@id/button3"
         android:text=""
-        android:textSize="30sp" />
+        android:textSize="30sp"/>
 
     <TextView
         android:id="@+id/b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button3"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="320dp"
         android:layout_marginTop="0dp"
         android:text="b"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_alignLeft="@+id/scrollView2" />
 
     <TextView
         android:id="@+id/x"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button2"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="-32dp"
         android:text="x"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_alignLeft="@+id/scrollView3" />
 
     <TextView
         android:id="@+id/equal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/button2"
         android:layout_alignParentTop="true"
         android:layout_marginTop="105dp"
-        android:layout_marginEnd="-76dp"
         android:text="="
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_toRightOf="@id/scrollView3" />
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp">
+        android:layout_marginLeft="10dp">
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -85,8 +78,7 @@
         android:layout_height="200dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="40dp"
-        android:layout_toEndOf="@+id/scrollView3"
+        android:layout_alignTop="@+id/scrollView"
         android:layout_toRightOf="@+id/scrollView3">
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -101,11 +93,10 @@
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="200dp"
-        android:layout_marginTop="40dp"
+        android:layout_alignTop="@+id/scrollView"
         android:layout_marginLeft="20dp"
-        android:layout_toEndOf="@+id/scrollView"
         android:layout_toRightOf="@+id/scrollView">
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -138,11 +129,10 @@
     <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="340dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="308dp">
+        android:layout_marginBottom="50dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/button3">
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -160,40 +150,30 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="157dp"
-        android:layout_marginLeft="157dp"
-        android:layout_marginTop="519dp"
         android:background="@drawable/bk_boton_plano"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:text="Calculate"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/butHelp"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="247dp"
-        android:layout_marginLeft="247dp"
-        android:layout_marginTop="519dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/button2"
         android:background="@drawable/bk_boton_plano"
         android:text="Help"
         android:textColor="@android:color/white" />
 
     <Button
         android:id="@+id/butEtapas"
+        android:layout_marginRight="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="66dp"
-        android:layout_marginLeft="66dp"
-        android:layout_marginTop="519dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/button2"
         android:background="@drawable/bk_boton_plano"
         android:text="Steps"
         android:textColor="@android:color/white" />
