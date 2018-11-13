@@ -226,6 +226,7 @@ public class FragLinearSpline extends Fragment {
         }
         double[] Ab = pp.gaussianElimination(A,b);
         int index = 0;
+        polinomio.setText("");
         for(int i = 0; i< Ab.length; i += 2){
             pol = String.format("%.1f", Ab[i]) + "x";
             if(Ab[i+1] >= 0) {
@@ -236,6 +237,5 @@ public class FragLinearSpline extends Fragment {
             polinomio.append(pol + "    "+ (int)x[index] + " < x < " + (int)x[index+1] +"\n");
             index += 1;
         }
-
     }
 }

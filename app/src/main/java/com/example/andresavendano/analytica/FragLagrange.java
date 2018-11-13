@@ -225,7 +225,7 @@ public class FragLagrange extends Fragment {
         String term = "";
         String num;
         String den;
-
+        polinomio.setText("");
         for (int k = 0; k < nPoints; k++) {
             mult = 1;
             term = "";

@@ -241,6 +241,7 @@ public class FragQuadraticSpline extends Fragment {
         A[(3*n)-1][0] = 1;
         double[] Ab = pv.gaussianElimination(A,b);
         int index = 0;
+        polinomio.setText("");
         for(int i = 0; i < Ab.length; i += 3){
             pol = String.format("%.1f", Ab[i]) + "x^2";
             if(Ab[i+1] >= 0) {

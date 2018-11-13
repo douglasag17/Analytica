@@ -280,6 +280,7 @@ public class FragCubicSpline extends Fragment {
         double[] Ab = pv.gaussianElimination(ecu,b);
         int index = 0;
         String pol = "";
+        polinomio.setText("");
         for(int k = 0; k < Ab.length; k += 4){
             pol = String.format("%.1f", Ab[k]) + "x^3";
             if(Ab[k+1] >= 0) {
