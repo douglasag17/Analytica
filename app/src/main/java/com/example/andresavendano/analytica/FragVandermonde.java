@@ -129,7 +129,7 @@ public class FragVandermonde extends Fragment {
         }
         double[][] Ab = scallingMatrix(A, b, A.length);
         double[] x = regressiveSubstitution(Ab, Ab.length);
-
+        polinomio.setText("");
         for (int i = 0; i < n; i++) {
             if(x[i] > 0) {
                 polinomio.append("+");
