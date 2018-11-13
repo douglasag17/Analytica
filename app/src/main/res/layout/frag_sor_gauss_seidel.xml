@@ -234,7 +234,7 @@
         android:layout_width="40dp"
         android:layout_height="38dp"
         android:layout_toRightOf="@id/tolerance"
-        android:layout_alignBottom="@+id/tolerance"
+        android:layout_alignTop="@id/tolerance"
         android:text="+" />
 
     <Spinner
