@@ -128,8 +128,14 @@ public class FragVandermonde extends Fragment {
             }
         }
         double[][] Ab = scallingMatrix(A, b, A.length);
+        for (int i = 0; i < Ab.length; i++) {
+            System.out.println();
+            for (int j = 0; j < Ab[0].length; j++) {
+                System.out.print(Ab[i][j] + " ");
+            }
+        }
         double[] x = regressiveSubstitution(Ab, Ab.length);
-        polinomio.setText("");
+        polinomio.setText("P(x)=");
         for (int i = 0; i < n; i++) {
             if(x[i] > 0) {
                 polinomio.append("+");
@@ -157,13 +163,13 @@ public class FragVandermonde extends Fragment {
 
     public double[] regressiveSubstitution(double [][] Ab, int n){
         double x[] = new double[n];
-        x[n-1] = Ab[n-1][n]/(double)Ab[n-1][n-1];
+        x[n-1] = Ab[n-1][n]/Ab[n-1][n-1];
         for(int i = n-1; i > 0; i--){
             double sum = 0;
             for(int p = i + 1; p < n + 1; p++){
                 sum += Ab[i-1][p-1]*x[p-1];
             }
-            x[i-1] = (Ab[i-1][n]-sum)/(double)(Ab[i-1][i-1]);
+            x[i-1] = (Ab[i-1][n]-sum)/(Ab[i-1][i-1]);
         }
         return x;
     }
@@ -184,14 +190,17 @@ public class FragVandermonde extends Fragment {
 
     public double[][] scallingMatrix(double A[][], double b[], int n){
         double Ab[][] = augmentMatrix(A, b);
-        if(Ab[0][0] == 0){
-            double a[] = new double[Ab[0].length];
-            System.arraycopy(Ab[0], 0, a, 0, Ab[0].length);
-            for(int i = 1; i < n; i++){
-                if(Ab[i][0] != 0){
-                    System.arraycopy(Ab[i], 0, Ab[0], 0, Ab[0].length); //Ab[0] = Ab[i]
-                    System.arraycopy(a, 0, Ab[i], 0, Ab[0].length);
-                    break;
+        for (int i = 0; i < A.length; i++) {
+            if(A[i][i] == 0){
+                double a[] = new double[A[0].length];
+                System.arraycopy(A[i], 0, a, 0, A[0].length); // a = Ab[i]
+                for (int j = 1; j < A.length; j++) {
+                    if(A[j][i] != 0){
+                        System.arraycopy(A[j], 0, A[i], 0, A[0].length); //Ab[i] = Ab[j]
+                        System.arraycopy(a, 0, A[j], 0, A[0].length); //Ab[j] = a
+                        break;
+                    }
+
                 }
             }
         }
