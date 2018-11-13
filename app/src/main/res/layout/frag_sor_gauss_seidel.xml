@@ -78,7 +78,7 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="60dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_alignBottom="@+id/scrollView"
         android:layout_toEndOf="@+id/equal"
         android:layout_toRightOf="@+id/equal">
@@ -97,7 +97,7 @@
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="60dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
         android:layout_toEndOf="@+id/scrollView"
@@ -214,7 +214,7 @@
         android:id="@+id/edtxtSorcte"
         android:layout_width="99dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/Iterations"
+        android:layout_below="@id/button3"
         android:layout_alignEnd="@+id/niter"
         android:hint="1.2"
         android:inputType="numberDecimal|number" />
@@ -223,18 +223,19 @@
         android:id="@+id/niter"
         android:layout_width="103dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/Iterations"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="-13dp"
+        android:layout_alignBaseline="@+id/Iterations"
+
         android:layout_toEndOf="@+id/button4"
         android:hint="#"
-        android:inputType="textEmailSubject|number" />
+        android:inputType="textEmailSubject|number"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/button4" />
 
     <Button
         android:id="@+id/moreTolerance"
         android:layout_width="40dp"
         android:layout_height="38dp"
-        android:layout_alignEnd="@+id/button2"
+        android:layout_toRightOf="@id/tolerance"
         android:layout_alignBottom="@+id/tolerance"
         android:text="+" />
 
@@ -244,7 +245,8 @@
         android:layout_height="64dp"
         android:layout_alignStart="@+id/Iterations"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="96dp" />
+        android:layout_marginBottom="96dp"
+        android:layout_alignLeft="@+id/Iterations" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
