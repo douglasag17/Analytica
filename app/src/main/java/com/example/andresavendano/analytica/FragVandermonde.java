@@ -131,7 +131,14 @@ public class FragVandermonde extends Fragment {
         double[] x = regressiveSubstitution(Ab, Ab.length);
 
         for (int i = 0; i < n; i++) {
-            polinomio.append("a"+(x.length-1-i) + " = " + x[i]+"\n");
+            if(x[i] > 0) {
+                polinomio.append("+");
+            }
+            if(x.length-1-i == 0) {
+                polinomio.append(Double.toString(x[i]));
+            } else {
+                polinomio.append(x[i] + "x^" + (x.length-1-i));
+            }
         }
     }
 
