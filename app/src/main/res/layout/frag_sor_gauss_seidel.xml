@@ -242,8 +242,7 @@
         android:layout_width="124dp"
         android:layout_height="64dp"
         android:layout_alignStart="@+id/Iterations"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="96dp"
+        android:layout_below="@id/radioGroup"
         android:layout_alignLeft="@+id/Iterations" />
 
     <RadioGroup
