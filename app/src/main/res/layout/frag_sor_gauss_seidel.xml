@@ -203,9 +203,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/button4"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="-2dp"
-        android:layout_marginBottom="234dp"
+        android:layout_below="@+id/sorCte"
         android:text="Iterations"
         android:textColor="@android:color/black"
         android:textSize="18sp" />
@@ -254,7 +252,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Iterations"
         android:layout_alignStart="@+id/Iterations"
-        android:layout_marginTop="-224dp">
+        android:layout_alignLeft="@+id/Iterations">
 
         <RadioButton
             android:id="@+id/absoluteError"
