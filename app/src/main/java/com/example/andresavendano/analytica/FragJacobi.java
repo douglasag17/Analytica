@@ -70,7 +70,7 @@ public class FragJacobi extends Fragment {
                     int n = A.length;
                     int niter = Integer.parseInt(iterations.getText().toString());
                     tolerance = Double.parseDouble(values.get(tol.getSelectedItemPosition()));
-                    jacobi(A, b, x0, tolerance, niter, n);
+                    jacobi(A, b, x0, tolerance, niter, n, helpView);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
                     View view = toast.getView();
@@ -284,7 +284,7 @@ public class FragJacobi extends Fragment {
                         "is an algorithm for determining the solutions of a diagonally dominant system of " +
                         "linear equations. Each diagonal element is solved for, and an approximate value " +
                         "is plugged in. The process is then iterated until it converges.\n" +
-                        "\"El método converge si el radio espectral es menor a 1\"");
+                        "The method converges if the spectral radius is less than 1.");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -394,7 +394,7 @@ public class FragJacobi extends Fragment {
         return x0;
     }
 
-    public void jacobi(double[][] A, double[] b, double[] x0, double tol, int niter, int n){
+    public void jacobi(double[][] A, double[] b, double[] x0, double tol, int niter, int n, View helpView){
         double det = det(A);
         if(det == 0) {
             isError = true;
@@ -442,6 +442,24 @@ public class FragJacobi extends Fragment {
             text.setGravity(1);
             view.setBackgroundColor(Color.parseColor("#B3E5FE"));
             toast.show();
+        }
+        if(isError){
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            if (helpView.getParent() != null)
+                ((ViewGroup) helpView.getParent()).removeView(helpView);
+            builder.setView(helpView);
+            double[][] matrix = diagonalDomiante(A);
+            String text="The matrix is not diagonally dominant, try with this one.\n";
+            for(int j = 0;j<matrix.length;j++){
+                for(int k =0;k<matrix.length;k++){
+                    text=text+matrix[j][k] + "  ";
+                }
+                text=text+"\n";
+            }
+            t.setText(text);
+
+            t.setTextSize(25);
+            builder.show();
         }
     }
 
@@ -512,7 +530,47 @@ public class FragJacobi extends Fragment {
             else
                 suma-=A[i][0] * det(nm);
         }
-        System.out.println(suma);
         return suma;
+    }
+
+    public double[][] diagonalDomiante(double m[][]){
+        for(int i = 0; i < m.length;i++){
+            double sum = getSum(i, m);
+            int index = extractGreater(i, m);
+            if(m[i][index] > (sum-m[i][index])){
+                double aux = m[i][i];
+                m[i][i] = m[i][index];
+                m[i][index] = aux;
+            }else{
+                Toast toast = Toast.makeText(getContext(),"This matrix can't be convert to diagonally dominant", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
+            }
+        }
+        return m;
+    }
+
+    public int extractGreater(int i, double m[][]){
+        double greater = 0;
+        int index = 0;
+        for(int j = 0; j < m[0].length; j++){
+            if(m[i][j] > greater){
+                greater = m[i][j];
+                index = j;
+            }
+        }
+        return index;
+    }
+
+    public double getSum(int i, double m[][]){
+        double sum = 0;
+        for(int j = 0; j < m[0].length; j++){
+            sum+=Math.abs(m[i][j]);
+        }
+        return sum;
     }
 }

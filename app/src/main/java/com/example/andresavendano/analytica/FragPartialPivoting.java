@@ -339,16 +339,14 @@ public class FragPartialPivoting extends Fragment {
                 String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
-                        text=text+matrix[j][k];
+                        text=text+matrix[j][k] + "  ";
                     }
                     text=text+"\n";
                 }
                 t.setText(text);
 
                 t.setTextSize(25);
-                if(matrix!=A) {
-                    builder.show();
-                }
+                builder.show();
                 break;
             } else {
                 ed.setText(String.format("%.3f", x[i]) + "");
