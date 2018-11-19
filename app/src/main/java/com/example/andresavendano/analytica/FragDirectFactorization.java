@@ -34,6 +34,9 @@ public class FragDirectFactorization extends Fragment {
     private TextView txtL;
     private TextView txtU;
     private TextView t;
+
+    private boolean isError;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class FragDirectFactorization extends Fragment {
         butCholesky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     A = getMatrixA();
                     b = getVectorB();
@@ -71,6 +75,7 @@ public class FragDirectFactorization extends Fragment {
         butCrout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     A = getMatrixA();
                     b = getVectorB();
@@ -91,6 +96,7 @@ public class FragDirectFactorization extends Fragment {
         butDoolittle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     A = getMatrixA();
                     b = getVectorB();
@@ -303,6 +309,17 @@ public class FragDirectFactorization extends Fragment {
 
     public void choleskyMethod(double[][]A, double [] b) {
         int n = A.length;
+        double det = det(A);
+        if(det == 0) {
+            isError = true;
+            Toast toast = Toast.makeText(getContext(),"The matrix you entered can not be invertible", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
+        }
         L = new double[n][n];
         U = new double[n][n];
         for(int i = 0;i < n; i++){
@@ -370,7 +387,11 @@ public class FragDirectFactorization extends Fragment {
                 txtL.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixL.addView(row);
+            if(!isError) {
+                matrixL.addView(row);
+            } else {
+                matrixL.removeView(row);
+            }
         }
 
         matrixU.removeAllViews();
@@ -389,7 +410,11 @@ public class FragDirectFactorization extends Fragment {
                 txtU.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixU.addView(row);
+            if(!isError) {
+                matrixU.addView(row);
+            } else {
+                matrixU.removeView(row);
+            }
         }
 
         z = progressiveSubstitution(L,b,L.length);
@@ -402,7 +427,11 @@ public class FragDirectFactorization extends Fragment {
             EditText ed = (EditText) row.getChildAt(0);
             ed.setEnabled(false);
             ed.setTextColor(getResources().getColor(R.color.colorAccent));
-            ed.setText(String.format("%.3f", x[i])+"");
+            if (isError) {
+                break;
+            } else {
+                ed.setText(String.format("%.3f", x[i]) + "");
+            }
         }
     }
 
@@ -645,5 +674,36 @@ public class FragDirectFactorization extends Fragment {
             x[i] = (b[i] - sum) / (double)(L[i][i]);
         }
         return x;
+    }
+
+    public static double det(double[][] A) {
+        double det;
+        if(A.length == 2) {
+            det = (A[0][0]*A[1][1])-(A[1][0]*A[0][1]);
+            return det;
+        }
+        double suma = 0;
+        for(int i = 0; i < A.length; i++){
+            double[][] nm = new double[A.length-1][A.length-1];
+            for(int j = 0; j< A.length; j++){
+                if(j != i){
+                    for(int k = 1; k < A.length; k++){
+                        int indice = -1;
+                        if (j < i) {
+                            indice = j;
+                        } else if(j > i) {
+                            indice = j - 1;
+                        }
+                        nm[indice][k-1]=A[j][k];
+                    }
+                }
+            }
+            if(i%2==0)
+                suma+=A[i][0] * det(nm);
+            else
+                suma-=A[i][0] * det(nm);
+        }
+        System.out.println(suma);
+        return suma;
     }
 }

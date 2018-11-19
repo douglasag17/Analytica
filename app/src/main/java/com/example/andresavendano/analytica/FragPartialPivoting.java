@@ -34,6 +34,9 @@ public class FragPartialPivoting extends Fragment {
     private TextView t;
     private ArrayList<Double[][]> stepsMatrix = new ArrayList<>();
 
+    private boolean isError;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class FragPartialPivoting extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     A = getMatrixA();
                     b = getVectorB();
@@ -282,12 +286,34 @@ public class FragPartialPivoting extends Fragment {
     public void gaussianElimination(double [][] A, double [] b) {
         stepsMatrix.clear();
         int n = A.length;
+        double det = det(A);
+        if(det == 0) {
+            isError = true;
+            Toast toast = Toast.makeText(getContext(),"The matrix you entered can not be invertible", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
+        }
         Double Ab[][] = augmentMatrix(A, b);
-
         for(int k = 0; k < n-1; k++) {
             Ab = partialPivoting(Ab, n, k);
             for(int i = k+1; i < n; i++) {
                 double mult = Ab[i][k]/Ab[k][k];
+                if(!isError) {
+                    if (Ab[k][k] == 0) {
+                        isError = true;
+                        Toast toast = Toast.makeText(getContext(), "Division by 0, check the matrix", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setTextColor(Color.BLACK);
+                        text.setGravity(1);
+                        view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                        toast.show();
+                    }
+                }
                 for(int j = k; j < n+1; j++) {
                     Ab[i][j] -=  mult*Ab[k][j];
                 }
@@ -302,7 +328,11 @@ public class FragPartialPivoting extends Fragment {
             EditText ed = (EditText) row.getChildAt(0);
             ed.setEnabled(false);
             ed.setTextColor(getResources().getColor(R.color.colorAccent));
-            ed.setText(String.format("%.3f", x[i])+"");
+            if (isError) {
+                break;
+            } else {
+                ed.setText(String.format("%.3f", x[i]) + "");
+            }
         }
 
         matrixAb.removeAllViews();
@@ -321,7 +351,11 @@ public class FragPartialPivoting extends Fragment {
                 ab.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixAb.addView(row);
+            if(!isError) {
+                matrixAb.addView(row);
+            } else {
+                matrixAb.removeView(row);
+            }
         }
     }
 
@@ -396,5 +430,36 @@ public class FragPartialPivoting extends Fragment {
             }
         }
         return matrix;
+    }
+
+    public static double det(double[][] A) {
+        double det;
+        if(A.length == 2) {
+            det = (A[0][0]*A[1][1])-(A[1][0]*A[0][1]);
+            return det;
+        }
+        double suma = 0;
+        for(int i = 0; i < A.length; i++){
+            double[][] nm = new double[A.length-1][A.length-1];
+            for(int j = 0; j< A.length; j++){
+                if(j != i){
+                    for(int k = 1; k < A.length; k++){
+                        int indice = -1;
+                        if (j < i) {
+                            indice = j;
+                        } else if(j > i) {
+                            indice = j - 1;
+                        }
+                        nm[indice][k-1]=A[j][k];
+                    }
+                }
+            }
+            if(i%2==0)
+                suma+=A[i][0] * det(nm);
+            else
+                suma-=A[i][0] * det(nm);
+        }
+        System.out.println(suma);
+        return suma;
     }
 }
