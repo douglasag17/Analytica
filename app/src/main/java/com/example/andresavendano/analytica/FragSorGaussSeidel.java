@@ -22,6 +22,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -408,7 +409,8 @@ public class FragSorGaussSeidel extends Fragment {
             }
         }
         if(error < tol){
-            Toast toast = Toast.makeText(getContext(),"x is an approximation with tol = " + tol, Toast.LENGTH_LONG);
+            DecimalFormat f = new DecimalFormat("0.##E0");
+            Toast toast = Toast.makeText(getContext(),"x is an approximation with tol = " + f.format(error) + " in " + count + " iterations", Toast.LENGTH_LONG);
             View view = toast.getView();
             TextView text = (TextView) view.findViewById(android.R.id.message);
             text.setTextColor(Color.BLACK);
