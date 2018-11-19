@@ -306,6 +306,16 @@ public class FragDirectFactorization extends Fragment {
         return b;
     }
 
+    public boolean isSymmetric(double[][] A) {
+        int N = A.length;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < i; j++) {
+                if (A[i][j] != A[j][i]) return false;
+            }
+        }
+        return true;
+    }
+
 
     public void choleskyMethod(double[][]A, double [] b) {
         int n = A.length;
@@ -322,8 +332,19 @@ public class FragDirectFactorization extends Fragment {
         }
         L = new double[n][n];
         U = new double[n][n];
-        for(int i = 0;i < n; i++){
-            for(int j = 0; j < n; j++){
+        boolean symetric = isSymmetric(A);
+        for(int i = 0;i < n; i++) {
+            if(symetric && L[i][i] <= 0) {
+                isError = true;
+                Toast toast = Toast.makeText(getContext(),"The matrix you entered is not positive defined", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
+            }
+            for(int j = 0; j < n; j++) {
                 if(i < j){
                     U[i][j] = Double.POSITIVE_INFINITY;
                     L[i][j] = 0;
@@ -366,7 +387,6 @@ public class FragDirectFactorization extends Fragment {
                 U[k][j] = (A[k][j] - sum3)/L[k][k];
             }
         }
-
         //resolve System
         double[]z;
         double[][] Uz;
@@ -437,11 +457,32 @@ public class FragDirectFactorization extends Fragment {
 
     public void croutMethod(double[][]A, double [] b) {
         int n = A.length;
+        double det = det(A);
+        if(det == 0) {
+            isError = true;
+            Toast toast = Toast.makeText(getContext(),"The matrix you entered can not be invertible", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
+        }
         L = new double[n][n];
         U = new double[n][n];
 
         for(int i = 0; i < n; i++){
             for(int j = 0; j < n; j++){
+                if(A[i][i] == 0) {
+                    isError = true;
+                    Toast toast = Toast.makeText(getContext(),"The system can't be solved", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
+                }
                 if(i < j){
                     U[i][j] = Double.POSITIVE_INFINITY;
                     L[i][j] = 0;
@@ -500,7 +541,11 @@ public class FragDirectFactorization extends Fragment {
                 txtL.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixL.addView(row);
+            if(!isError) {
+                matrixL.addView(row);
+            } else {
+                matrixL.removeView(row);
+            }
         }
 
         matrixU.removeAllViews();
@@ -519,7 +564,11 @@ public class FragDirectFactorization extends Fragment {
                 txtU.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixU.addView(row);
+            if(!isError) {
+                matrixU.addView(row);
+            } else {
+                matrixU.removeView(row);
+            }
         }
 
         z = progressiveSubstitution(L,b,L.length);
@@ -532,17 +581,42 @@ public class FragDirectFactorization extends Fragment {
             EditText ed = (EditText) row.getChildAt(0);
             ed.setEnabled(false);
             ed.setTextColor(getResources().getColor(R.color.colorAccent));
-            ed.setText(String.format("%.3f", x[i])+"");
+            if (isError) {
+                break;
+            } else {
+                ed.setText(String.format("%.3f", x[i]) + "");
+            }
         }
     }
 
     public void doolittleMethod(double [][] A, double [] b) {
         int n = A.length;
+        double det = det(A);
+        if(det == 0) {
+            isError = true;
+            Toast toast = Toast.makeText(getContext(),"The matrix you entered can not be invertible", Toast.LENGTH_LONG);
+            View view = toast.getView();
+            TextView text = (TextView) view.findViewById(android.R.id.message);
+            text.setTextColor(Color.BLACK);
+            text.setGravity(1);
+            view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+            toast.show();
+        }
         L = new double[n][n];
         U = new double[n][n];
 
-        for(int i = 0; i < n; i++){
-            for(int j = 0; j < n; j++){
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < n; j++) {
+                if(A[i][i] == 0) {
+                    isError = true;
+                    Toast toast = Toast.makeText(getContext(),"The system can't be solved", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
+                }
                 if(i < j){
                     U[i][j] = Double.POSITIVE_INFINITY;
                     L[i][j] = 0;
@@ -601,7 +675,11 @@ public class FragDirectFactorization extends Fragment {
                 txtL.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixL.addView(row);
+            if(!isError) {
+                matrixL.addView(row);
+            } else {
+                matrixL.removeView(row);
+            }
         }
 
         matrixU.removeAllViews();
@@ -620,7 +698,11 @@ public class FragDirectFactorization extends Fragment {
                 txtU.setTextSize(30);
                 //ab.setTextColor(getResources().getColor(R.color.colorAccent));
             }
-            matrixU.addView(row);
+            if(!isError) {
+                matrixU.addView(row);
+            } else {
+                matrixU.removeView(row);
+            }
         }
 
         z = progressiveSubstitution(L,b,L.length);
@@ -633,7 +715,11 @@ public class FragDirectFactorization extends Fragment {
             EditText ed = (EditText) row.getChildAt(0);
             ed.setEnabled(false);
             ed.setTextColor(getResources().getColor(R.color.colorAccent));
-            ed.setText(String.format("%.3f", x[i])+"");
+            if (isError) {
+                break;
+            } else {
+                ed.setText(String.format("%.3f", x[i]) + "");
+            }
         }
     }
 
