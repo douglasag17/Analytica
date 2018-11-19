@@ -26,6 +26,9 @@ public class FragDividedDifferences extends Fragment {
     private TextView polinomio;
     private TextView answer;
     private TextView t;
+
+    private boolean isError;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,6 +47,7 @@ public class FragDividedDifferences extends Fragment {
         butCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     x = getVectorX();
                     fx = getVectorFx();
@@ -225,7 +229,18 @@ public class FragDividedDifferences extends Fragment {
         }
         for (int i = 0; i < nPoints; i++) {
             for (int j = 1; j < i+1; j++) {
-                table[i][j] = (table[i][j-1] - table[i-1][j-1])/(x[i] - x[i-j]);
+                if((x[i] - x[i-j]) == 0) {
+                    isError = true;
+                    Toast toast = Toast.makeText(getContext(),"Division by zero", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
+                } else {
+                    table[i][j] = (table[i][j - 1] - table[i - 1][j - 1]) / (x[i] - x[i - j]);
+                }
             }
         }
         for (int i = 0; i < nPoints; i++) {
@@ -251,8 +266,12 @@ public class FragDividedDifferences extends Fragment {
             aux *= (value - x[i-1]);
             result += table[i][i]*aux;
         }
-        polinomio.setClickable(false);
-        polinomio.setText(pol + "");
-        answer.setText("P(" + value + ") = " + result);
+        if(!isError) {
+            polinomio.setClickable(false);
+            polinomio.setText(pol + "");
+            answer.setText("P(" + value + ") = " + result);
+        } else {
+            polinomio.setText("");
+        }
     }
 }

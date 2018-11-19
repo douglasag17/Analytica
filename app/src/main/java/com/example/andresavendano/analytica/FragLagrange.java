@@ -28,6 +28,9 @@ public class FragLagrange extends Fragment {
     private TextView polinomio;
     private TextView answer;
     private TextView t;
+
+    private boolean isError;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class FragLagrange extends Fragment {
         butCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     x = getVectorX();
                     fx = getVectorFx();
@@ -232,18 +236,34 @@ public class FragLagrange extends Fragment {
             for (int i = 0; i < nPoints; i++) {
                 if (i != k) {
                     mult = mult * (value - x[i]) / (x[k] - x[i]);
+                    if((x[k] - x[i]) == 0) {
+                        isError = true;
+                        Toast toast = Toast.makeText(getContext(),"Division by zero", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setTextColor(Color.BLACK);
+                        text.setGravity(1);
+                        view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                        toast.show();
+                    }
                     num = "x - " + Double.toString(x[i]); //x-xi
                     den = Double.toString(x[k] - x[i]);//x0-xi
                     term = term + ("[( " + num + ") / (" + den + ")]");
                 }
             }
-            polinomio.append("L" + Integer.toString(k) + "(x) = " + term + "\n");
+            if(!isError) {
+                polinomio.append("L" + Integer.toString(k) + "(x) = " + term + "\n");
+            } else {
+                polinomio.setText("");
+            }
             pol += Double.toString(y[k]) + "*" + term + '\n';
             result += mult * y[k];
         }
-        System.out.println();
-        System.out.println(pol);
-        polinomio.append("\n"+pol);
-        answer.setText("P(" + Double.toString(value) + ") = " + Double.toString(result));
+        if(!isError) {
+            polinomio.append("\n" + pol);
+            answer.setText("P(" + Double.toString(value) + ") = " + Double.toString(result));
+        } else {
+            polinomio.setText("");
+        }
     }
 }
