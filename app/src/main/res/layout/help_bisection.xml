@@ -8,15 +8,15 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/helpText"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textAlignment="gravity"
-            android:text=" " />
+                <TextView
+                    android:id="@+id/helpText"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:textAlignment="gravity"
+                    android:text=" " />
         </ScrollView>
 
 

@@ -54,7 +54,7 @@ public class FragSimpleGaussian extends Fragment {
                 try {
                     A = getMatrixA();
                     b = getVectorB();
-                    simpleGaussianElimination(A, b);
+                    simpleGaussianElimination(A, b,helpView);
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
                     View view = toast.getView();
@@ -280,7 +280,7 @@ public class FragSimpleGaussian extends Fragment {
         return b;
     }
 
-    public void simpleGaussianElimination(double [][] A, double [] b) {
+    public void simpleGaussianElimination(double [][] A, double [] b, View helpView) {
         Double [][] U = scallingMatrix(A, b, A.length);
         int B = U.length;
         double x[] = regressiveSubstitution(U, B);
@@ -291,13 +291,62 @@ public class FragSimpleGaussian extends Fragment {
             ed.setEnabled(false);
             ed.setTextColor(getResources().getColor(R.color.colorAccent));
             if (isError) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                if (helpView.getParent() != null)
+                    ((ViewGroup) helpView.getParent()).removeView(helpView);
+                builder.setView(helpView);
+                double[][] matrix = diagonalDomiante(A);
+                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                    for(int j = 0;j<matrix.length;j++){
+                        for(int k =0;k<matrix.length;k++){
+                            text=text+matrix[j][k];
+                        }
+                        text=text+"\n";
+                    }
+                t.setText(text);
+
+                t.setTextSize(25);
+                if(matrix!=A) {
+                    builder.show();
+                }
                 break;
             } else {
                 ed.setText(String.format("%.3f", x[i]) + "");
             }
         }
     }
+    public static double[][] diagonalDomiante(double m[][]){
+        for(int i = 0; i < m.length;i++){
+            double sum = getSum(i, m);
+            int index = extractGreater(i, m);
+            if(m[i][index] > (sum-m[i][index])){
+                double aux = m[i][i];
+                m[i][i] = m[i][index];
+                m[i][index] = aux;
+            }
+        }
+        return m;
+    }
 
+    public static int extractGreater(int i, double m[][]){
+        double greater = 0;
+        int index = 0;
+        for(int j = 0; j < m[0].length; j++){
+            if(m[i][j] > greater){
+                greater = m[i][j];
+                index = j;
+            }
+        }
+        return index;
+    }
+
+    public static double getSum(int i, double m[][]){
+        double sum = 0;
+        for(int j = 0; j < m[0].length; j++){
+            sum+=m[i][j];
+        }
+        return sum;
+    }
     public Double[][] scallingMatrix(double A[][], double b[], int n){
         stepsMatrix.clear();
         double det = det(A);
