@@ -179,7 +179,8 @@ public class FragLUSimpleGaussian extends Fragment {
                         "to another equivalent trought a serie of transformations, this matrix is" +
                         " called the scalonated matrix,  this matrix is also an lower triangular " +
                         "matrix. And the final step is to replace variables from the last row to " +
-                        "the first one.\n");
+                        "the first one.\n" +
+                        "If the determinant of the matrix is 0, then it is not invertible and does not have solution.");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -381,7 +382,7 @@ public class FragLUSimpleGaussian extends Fragment {
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
                 double[][] matrix = diagonalDomiante(A);
-                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
                         text=text+matrix[j][k];

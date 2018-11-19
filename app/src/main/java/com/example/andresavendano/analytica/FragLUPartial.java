@@ -180,7 +180,8 @@ public class FragLUPartial extends Fragment {
                         "the k column that occupies the position akk.In other words, it looks for " +
                         "the biggest between |akk| with  k <= i <= n , and it swaps the rows in " +
                         "order to set the biggest chosen in the row k. These steps guarantee the " +
-                        "next property.\n");
+                        "next property.\n" +
+                        "If the determinant of the matrix is 0, then it is not invertible and does not have solution.");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -304,7 +305,7 @@ public class FragLUPartial extends Fragment {
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
                 double[][] matrix = diagonalDomiante(A);
-                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
                         text=text+matrix[j][k];

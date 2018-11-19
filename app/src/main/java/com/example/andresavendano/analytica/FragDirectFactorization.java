@@ -222,7 +222,10 @@ public class FragDirectFactorization extends Fragment {
                         "then it admits an LU (or LDU) factorization if and only if all its leading " +
                         "principal minors are non-zero. If A is a singular matrix of rank k, " +
                         "then it admits an LU factorization if the first k leading principal " +
-                        "minors are non-zero, although the converse is not true.\n");
+                        "minors are non-zero, although the converse is not true.\n" +
+                        "-Cholesky: The matrix must be positive define.\n" +
+                        "-Crout: if the matrix has 0's in the diagonal, it can not be solved.\n" +
+                        "-Doolittle: if the matrix has 0's in the diagonal, it can not be solved.");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -365,7 +368,13 @@ public class FragDirectFactorization extends Fragment {
             for(int p = 0; p < k; p++) {
                 sum1 += L[k][p] * U[p][k];
                 if(A[k][k] - sum1 < 0) {
-                    System.out.println("This matrix can't be used with Cholesky because it generates complex numbers.");
+                    Toast toast = Toast.makeText(getContext(),"This matrix can't be used with Cholesky because it generates complex numbers.", Toast.LENGTH_LONG);
+                    View view = toast.getView();
+                    TextView text = (TextView) view.findViewById(android.R.id.message);
+                    text.setTextColor(Color.BLACK);
+                    text.setGravity(1);
+                    view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                    toast.show();
                     break;
                 }
             }
@@ -452,7 +461,7 @@ public class FragDirectFactorization extends Fragment {
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
                 double[][] matrix = diagonalDomiante(A);
-                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
                         text=text+matrix[j][k];
@@ -644,7 +653,7 @@ public class FragDirectFactorization extends Fragment {
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
                 double[][] matrix = diagonalDomiante(A);
-                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
                         text=text+matrix[j][k];
@@ -796,7 +805,7 @@ public class FragDirectFactorization extends Fragment {
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
                 double[][] matrix = diagonalDomiante(A);
-                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
                         text=text+matrix[j][k];

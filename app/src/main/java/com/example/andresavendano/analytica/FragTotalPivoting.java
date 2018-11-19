@@ -199,7 +199,9 @@ public class FragTotalPivoting extends Fragment {
                         "Fk-1 and columns from C1 until Ck-1 in the augmented matrix Ab . When the " +
                         "maximum value is detected the method swaps rows and columns to locate this " +
                         "element in the position Ab(k,k). After apply the swaps you have to have in" +
-                        " mind that this change the order of the system variables");
+                        " mind that this change the order of the system variables.\n" +
+                        "If the greatest chosen at the step k is 0, it's because all the Aij with " +
+                        "i = k and j = k are 0. It means that the system has infinity solutions.");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -363,7 +365,7 @@ public class FragTotalPivoting extends Fragment {
                     ((ViewGroup) helpView.getParent()).removeView(helpView);
                 builder.setView(helpView);
                 double[][] matrix = diagonalDomiante(A);
-                String text="es porque no es diagonal dominante, intenta con esta matriz: \n";
+                String text="The matrix is not diagonally dominant, try with this one.\n";
                 for(int j = 0;j<matrix.length;j++){
                     for(int k =0;k<matrix.length;k++){
                         text=text+matrix[j][k];
