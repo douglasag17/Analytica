@@ -25,6 +25,9 @@ public class FragQuadraticSpline extends Fragment {
     private TableLayout vectorFx;
     private TextView polinomio;
     private TextView t;
+
+    private boolean isError;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -38,12 +41,13 @@ public class FragQuadraticSpline extends Fragment {
         butCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     x = getVectorX();
                     fx = getVectorFx();
-                    linearSpline(x, fx, x.length-1);
+                    quadraticSpline(x, fx, x.length-1);
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    //System.out.println(e.getMessage());
                     Toast toast = Toast.makeText(getContext(),"Complete the fields and verify that the fields are well written, see helps", Toast.LENGTH_LONG);
                     View view = toast.getView();
                     TextView text = view.findViewById(android.R.id.message);
@@ -209,12 +213,11 @@ public class FragQuadraticSpline extends Fragment {
         return fx;
     }
 
-    public void linearSpline(double[] x, double[] y, int n){
+    public void quadraticSpline(double[] x, double[] y, int n){
         GaussianEliminationPartialPivoting pv = new GaussianEliminationPartialPivoting();
 
         double[][] A = new double[n*3][n*3];
         double[]   b = new double[n*3];
-        String pol;
         int j,l;
         for(int i=0; i < n; i++){
             j = 2*i;
@@ -241,19 +244,45 @@ public class FragQuadraticSpline extends Fragment {
         A[(3*n)-1][0] = 1;
         double[] Ab = pv.gaussianElimination(A,b);
         int index = 0;
+        String pol = "";
         polinomio.setText("");
-        for(int i = 0; i < Ab.length; i += 3){
-            pol = String.format("%.1f", Ab[i]) + "x^2";
-            if(Ab[i+1] >= 0) {
-                pol = pol + "+";
+        for(int i = 0; i < Ab.length; i += 3) {
+            System.out.println(Ab[i]);
+            if (Double.isNaN(Ab[i]) || Double.isInfinite(Ab[i]) || Ab[i] == Double.POSITIVE_INFINITY || Ab[i] == Double.NEGATIVE_INFINITY) {
+                isError = true;
+            } else {
+                pol = String.format("%.1f", Ab[i]) + "x^2";
+                if (Ab[i + 1] >= 0) {
+                    pol = pol + "+";
+                }
             }
-            pol += String.format("%.1f", Ab[i+1]) + "x";
-            if(Ab[i+2] >= 0) {
-                pol = pol + "+";
+            if (Double.isNaN(Ab[i+1]) || Double.isInfinite(Ab[i+1]) || Ab[i + 1] == Double.POSITIVE_INFINITY || Ab[i + 1] == Double.NEGATIVE_INFINITY) {
+                isError = true;
+            } else {
+                pol += String.format("%.1f", Ab[i + 1]) + "x";
+                if (Ab[i + 2] >= 0) {
+                    pol = pol + "+";
+                }
             }
-            pol += String.format("%.1f", Ab[i+2]);
-            polinomio.append(pol + "    "+ (int)x[index] + " < x < " + (int)x[index+1] +"\n");
-            index += 1;
+            if (Double.isNaN(Ab[i+2]) || Double.isInfinite(Ab[i+2]) ||Ab[i + 2] == Double.POSITIVE_INFINITY || Ab[i + 2] == Double.NEGATIVE_INFINITY) {
+                isError = true;
+            } else {
+                pol += String.format("%.1f", Ab[i + 2]);
+            }
+            if (!isError) {
+                polinomio.append(pol + "    " + (int) x[index] + " < x < " + (int) x[index + 1] + "\n");
+                index += 1;
+            } else {
+                polinomio.setText("");
+                Toast toast = Toast.makeText(getContext(),"Mathematical error", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
+                break;
+            }
         }
     }
 }

@@ -42,6 +42,7 @@ public class FragCubicSpline extends Fragment {
         butCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     x = getVectorX();
                     fx = getVectorFx();
@@ -285,21 +286,49 @@ public class FragCubicSpline extends Fragment {
         String pol = "";
         polinomio.setText("");
         for(int k = 0; k < Ab.length; k += 4){
-            pol = String.format("%.1f", Ab[k]) + "x^3";
-            if(Ab[k+1] >= 0) {
-                pol = pol + "+";
+            if(Ab[k] == Double.NaN || Ab[k] == Double.POSITIVE_INFINITY || Ab[k] == Double.NEGATIVE_INFINITY ) {
+                isError = true;
+            } else {
+                pol = String.format("%.1f", Ab[k]) + "x^3";
+                if (Ab[k + 1] >= 0) {
+                    pol += "+";
+                }
             }
-            pol += String.format("%.1f", Ab[k+1]) + "x^2";
-            if(Ab[k+2] >= 0) {
-                pol = pol + "+";
+            if(Ab[k+1] == Double.NaN || Ab[k+1] == Double.POSITIVE_INFINITY || Ab[k+1] == Double.NEGATIVE_INFINITY ) {
+                isError = true;
+            } else {
+                pol += String.format("%.1f", Ab[k + 1]) + "x^2";
+                if (Ab[k + 2] >= 0) {
+                    pol += "+";
+                }
             }
-            pol += String.format("%.1f", Ab[k+2]) + "x";
-            if(Ab[k+3] >= 0) {
-                pol = pol + "+";
+            if(Ab[k+2] == Double.NaN || Ab[k+2] == Double.POSITIVE_INFINITY || Ab[k+2] == Double.NEGATIVE_INFINITY ) {
+                isError = true;
+            } else {
+                pol += String.format("%.1f", Ab[k + 2]) + "x";
+                if (Ab[k + 3] >= 0) {
+                    pol += "+";
+                }
             }
-            pol += String.format("%.1f", Ab[k+3]);
-            polinomio.append(pol + "    "+ (int)x[index] + " < x < " + (int)x[index+1] +"\n");
-            index += 1;
+            if(Ab[k+3] == Double.NaN || Ab[k+3] == Double.POSITIVE_INFINITY || Ab[k+3] == Double.NEGATIVE_INFINITY ) {
+                isError = true;
+            } else {
+                pol += String.format("%.1f", Ab[k + 3]);
+            }
+            if(!isError) {
+                polinomio.append(pol + "    " + (int) x[index] + " < x < " + (int) x[index + 1] + "\n");
+                index += 1;
+            } else {
+                polinomio.setText("");
+                Toast toast = Toast.makeText(getContext(),"Mathematical error", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
+                break;
+            }
         }
     }
 }

@@ -25,6 +25,9 @@ public class FragVandermonde extends Fragment {
     double b [];
     private TextView polinomio;
     private TableLayout tablePoints;
+
+    private boolean isError;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class FragVandermonde extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isError = false;
                 try {
                     puntos = getMatrixA();
                     vandermonde(puntos);
@@ -137,13 +141,25 @@ public class FragVandermonde extends Fragment {
         double[] x = regressiveSubstitution(Ab, Ab.length);
         polinomio.setText("P(x)=");
         for (int i = 0; i < n; i++) {
-            if(x[i] > 0) {
-                polinomio.append("+");
-            }
-            if(x.length-1-i == 0) {
-                polinomio.append(Double.toString(x[i]));
+            if(x[i] == Double.NaN || x[i] == Double.NEGATIVE_INFINITY || x[i] == Double.POSITIVE_INFINITY) {
+                polinomio.setText("");
+                Toast toast = Toast.makeText(getContext(),"Mathematical error", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
+                break;
             } else {
-                polinomio.append(x[i] + "x^" + (x.length-1-i));
+                if (x[i] > 0) {
+                    polinomio.append("+");
+                }
+                if (x.length - 1 - i == 0) {
+                    polinomio.append(String.format("%.1f", x[i]));
+                } else {
+                    polinomio.append(String.format("%.1f", x[i]) + "x^" + (x.length - 1 - i));
+                }
             }
         }
     }
