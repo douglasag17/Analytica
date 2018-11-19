@@ -315,7 +315,7 @@ public class FragSimpleGaussian extends Fragment {
             }
         }
     }
-    public static double[][] diagonalDomiante(double m[][]){
+    public double[][] diagonalDomiante(double m[][]){
         for(int i = 0; i < m.length;i++){
             double sum = getSum(i, m);
             int index = extractGreater(i, m);
@@ -323,12 +323,20 @@ public class FragSimpleGaussian extends Fragment {
                 double aux = m[i][i];
                 m[i][i] = m[i][index];
                 m[i][index] = aux;
+            }else{
+                Toast toast = Toast.makeText(getContext(),"This matrix can't be convert to diagonally dominant", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextColor(Color.BLACK);
+                text.setGravity(1);
+                view.setBackgroundColor(Color.parseColor("#B3E5FE"));
+                toast.show();
             }
         }
         return m;
     }
 
-    public static int extractGreater(int i, double m[][]){
+    public int extractGreater(int i, double m[][]){
         double greater = 0;
         int index = 0;
         for(int j = 0; j < m[0].length; j++){
@@ -340,10 +348,10 @@ public class FragSimpleGaussian extends Fragment {
         return index;
     }
 
-    public static double getSum(int i, double m[][]){
+    public double getSum(int i, double m[][]){
         double sum = 0;
         for(int j = 0; j < m[0].length; j++){
-            sum+=m[i][j];
+            sum+=Math.abs(m[i][j]);
         }
         return sum;
     }
