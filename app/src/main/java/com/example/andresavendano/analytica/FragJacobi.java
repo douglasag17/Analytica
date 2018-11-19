@@ -283,7 +283,8 @@ public class FragJacobi extends Fragment {
                 t.setText("In numerical linear algebra, the Jacobi method (or Jacobi iterative method) " +
                         "is an algorithm for determining the solutions of a diagonally dominant system of " +
                         "linear equations. Each diagonal element is solved for, and an approximate value " +
-                        "is plugged in. The process is then iterated until it converges.\n");
+                        "is plugged in. The process is then iterated until it converges.\n" +
+                        "\"El método converge si el radio espectral es menor a 1\"");
                 t.setTextSize(25);
                 builder.show();
             }
@@ -419,7 +420,9 @@ public class FragJacobi extends Fragment {
                 EditText ed = (EditText) row.getChildAt(0);
                 ed.setEnabled(false);
                 ed.setTextColor(getResources().getColor(R.color.colorAccent));
-                ed.setText(String.format("%.3f", x0[i])+"");
+                if(!isError) {
+                    ed.setText(String.format("%.3f", x0[i]) + "");
+                }
             }
         }
         if(error < tol){

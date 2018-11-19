@@ -424,7 +424,9 @@ public class FragGaussSeidel extends Fragment {
                 EditText ed = (EditText) row.getChildAt(0);
                 ed.setEnabled(false);
                 ed.setTextColor(getResources().getColor(R.color.colorAccent));
-                ed.setText(String.format("%.3f", x0[i])+"");
+                if(!isError) {
+                    ed.setText(String.format("%.3f", x0[i]) + "");
+                }
             }
         }
         if(error < tol){
